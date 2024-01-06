@@ -3,22 +3,31 @@ import * as S from './style';
 import SideBar from '@/components/SideBar/SideBar'
 import HamburgerButton from '../Button/HamburgerButton/HamburgerButton';
 import BellButton from '../Button/BellButton/BellButton';
-
-type Props = {
+import useModal from '@/hooks/useModal';
+import AttackedListModal from '@/components/Modal/AttackedListModal/AttackedListModal';
+interface Props {
   children: React.ReactNode;
-};
+}
 
 export default function MainPageLayout({ children }: Props) {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false); // 사이드바 상태 관리
-
+  const {
+    isOpen: isAttackedListModalOpen,
+    openModal: openAttackedListModal,
+    closeModal: closeAttackedListeModal,
+  } = useModal();
+  
   const handleHamburgerClick = () => {
     setIsSideBarOpen(!isSideBarOpen); // 사이드바 표시 상태 토글
   };
 
   const handleBellClick = () => {
+    openAttackedListModal();
   };
 
   return (
+    <>
+ 
     <S.Layout>
       <S.Wrapper>
         <S.NavBar>
@@ -29,5 +38,12 @@ export default function MainPageLayout({ children }: Props) {
       </S.Wrapper>
       <SideBar isOpen={isSideBarOpen} onCloseClick={() => setIsSideBarOpen(false)} /> {/* SideBar 컴포넌트에 상태 전달 */}
     </S.Layout>
+
+    <AttackedListModal
+      closeModal={closeAttackedListeModal}
+      isOpen={isAttackedListModalOpen}
+    />
+  </>
+
   );
 }

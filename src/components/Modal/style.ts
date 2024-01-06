@@ -1,7 +1,5 @@
 import styled, { keyframes } from 'styled-components';
-import SmallModalImg from '@/assets/Modal/SmallModal.png';
-import ModalImg from '@/assets/Modal/Modal.png';
-import {ModalContentProps, ModalWrapperProps} from '@/interfaces/modal';
+import { ModalContentProps, ModalWrapperProps} from '@/interfaces/modal';
 import theme from '@/theme';
 
 const fadeIn = keyframes`
@@ -23,26 +21,14 @@ const ModalWrapper = styled.div<ModalWrapperProps>`
   height: 100%;
   display: ${(props) => (props.show ? 'block' : 'none')};
   z-index: 999;
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(156, 195, 249, 0.5);
 `;
 
-const getModalBackgroundImage = (
-  imageType?: 'SmallModal' | 'Modal' ,
-) => {
-  switch (imageType) {
-    case 'SmallModal':
-      return SmallModalImg;
-    case 'Modal':
-      return ModalImg;
-    default:
-      return ModalImg;
-  }
-};
 
 const getModalSize = (
-  imageType?: 'SmallModal' | 'Modal' ,
+  modalType?: 'SmallModal' | 'Modal' ,
 ) => {
-  switch (imageType) {
+  switch (modalType) {
     case 'SmallModal':
       return {width: '300px', height: '300px', backgroundSize: '300px 300px'};
     case 'Modal':
@@ -57,13 +43,13 @@ const ModalContent = styled.div<ModalContentProps>`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-image: url(${(props) => getModalBackgroundImage(props.imageType)});
+  background-color: ${(props) => props.modalColor}; // 괄호를 제거함
   background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box;
   padding: 15px;
-  ${({imageType}) => {
-    const {width, height, backgroundSize} = getModalSize(imageType);
+  ${({modalType}) => {
+    const {width, height, backgroundSize} = getModalSize(modalType);
     return `
       width: ${width};
       height: ${height};
@@ -75,6 +61,7 @@ const ModalContent = styled.div<ModalContentProps>`
   color: ${theme.colors.textMain};
   font-size: 20px;
   overflow-y: auto;
+  border-radius: 20px;
 `;
 
 const ModalInnerContent = styled.div`
