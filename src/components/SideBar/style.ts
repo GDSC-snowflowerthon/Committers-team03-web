@@ -35,7 +35,7 @@ flex-direction: column;
 align-items: center;
 background-color: #3499FE;
 z-index: 1000;
-transform: translateX(${(props) => (props.$isOpenProps ? "80%" : "100%")});
+transform: translateX(${(props) => (props.$isOpenProps ? "80%" : "200%")});
 visibility: ${(props) => (props.$isOpenProps ? "visible" : "hidden")};
 transition: transform 0.5s ease-in-out, visibility 0.5s ease-in-out;
 `;
