@@ -17,7 +17,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-background-color: rgba(228, 240, 213, 0.5);
+background-color: rgba(156, 195, 249, 0.5);
 display: ${({ $show }) => ($show ? "block" : "none")};
 `;
 
@@ -32,7 +32,7 @@ display: flex;
 border-radius: 0 20px 20px 0;
 flex-direction: column;
 align-items: center;
-background-color: #FFF;
+background-color: #3181F4;
 z-index: 1000;
 transform: translateX(${(props) => (props.$isOpenProps ? "0" : "100%")});
 visibility: ${(props) => (props.$isOpenProps ? "visible" : "hidden")};
