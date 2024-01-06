@@ -14,3 +14,8 @@ export interface ButtonProps {
     socialType?: string;
   }
   
+  export interface HamburgerButtonProps extends Partial<ButtonProps> {
+  }
+
+  export interface BellButtonProps extends Partial<ButtonProps> {
+  }
