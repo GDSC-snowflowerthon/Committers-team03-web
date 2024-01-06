@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
 
   html {
     font-size: 16px; // 16px 기본 설정
-    //background-color:  #8a6149;
+    background-color:  #90C9F6;
     overflow-x: hidden;
   }
 
