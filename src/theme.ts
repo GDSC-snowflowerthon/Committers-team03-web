@@ -2,7 +2,7 @@ import {DefaultTheme} from 'styled-components';
 import 'styled-components';
 
 declare module 'styled-components' {
-  export type DefaultThemeColorKey = 'white' | 'textMain' | 'textBrown';
+  export type DefaultThemeColorKey = 'white' | 'black' | 'textMain' | 'textBlue';
 
   export interface DefaultTheme {
     colors: {
@@ -13,8 +13,9 @@ declare module 'styled-components' {
 
 const colors = {
   white: '#ffffff',
-  textMain: '#F9F1E1',
-  textBrown: '#572E16',
+  black: '#000000',
+  textMain: '#4F5861',
+  textBlue: '#3181F4',
 };
 const theme: DefaultTheme = {
   colors,
