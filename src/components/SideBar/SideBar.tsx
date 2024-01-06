@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import * as S from './style'
 import { useNavigate } from "react-router-dom";
 import { SideBarProps } from "@/interfaces/sideBar";
+import LogoutButton from "../Button/LogoutButton/LogoutButton";
 
 const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
         []
     );
 
+
     return (
         <S.Container>
             {isOpen && (
@@ -41,6 +43,7 @@ const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
                         </S.MenuItem>
                     ))}
                 </S.MenuList>
+                <LogoutButton />
             </S.MainSection>
         </S.Container>
     );

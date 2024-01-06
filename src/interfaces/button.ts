@@ -12,10 +12,15 @@ export interface ButtonProps {
     dark?: boolean;
     type?: string;
     socialType?: string;
+    backgroundColor?: string;
+    borderRadius?: string;
   }
   
   export interface HamburgerButtonProps extends Partial<ButtonProps> {
   }
 
   export interface BellButtonProps extends Partial<ButtonProps> {
+  }
+
+  export interface LogoutButtonProps extends Partial<ButtonProps> {
   }

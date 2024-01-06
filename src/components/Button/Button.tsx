@@ -16,6 +16,8 @@ export default function Button(props: ButtonProps) {
       padding={props.padding}
       onClick={props.route ? handleNavigate : props.onClick}
       background={props.background}
+      backgroundColor={props.backgroundColor}
+      borderRadius={props.borderRadius}
       disabled={props.disabled}
       dark={props.dark ? props.dark : false}
     >

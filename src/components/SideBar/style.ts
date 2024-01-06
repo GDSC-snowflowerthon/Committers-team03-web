@@ -33,7 +33,7 @@ display: flex;
 border-radius: 40px 0 0 40px;
 flex-direction: column;
 align-items: center;
-background-color: #3181F4;
+background-color: #3499FE;
 z-index: 1000;
 transform: translateX(${(props) => (props.$isOpenProps ? "80%" : "100%")});
 visibility: ${(props) => (props.$isOpenProps ? "visible" : "hidden")};
@@ -72,3 +72,4 @@ list-style-type: none;
 position: absolute;
 margin-top: 160px;
 `;
+
