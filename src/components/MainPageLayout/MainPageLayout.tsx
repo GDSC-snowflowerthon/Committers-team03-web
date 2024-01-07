@@ -12,9 +12,9 @@ interface Props {
 export default function MainPageLayout({ children }: Props) {
   const [isSideBarOpen, setIsSideBarOpen] = useState(false); // 사이드바 상태 관리
   const {
-    isOpen: isAttackedListModalOpen,
-    openModal: openAttackedListModal,
-    closeModal: closeAttackedListeModal,
+    isOpen,
+    openModal,
+    closeModal,
   } = useModal();
   
   const handleHamburgerClick = () => {
@@ -22,7 +22,7 @@ export default function MainPageLayout({ children }: Props) {
   };
 
   const handleBellClick = () => {
-    openAttackedListModal();
+    openModal();
   };
 
   return (
@@ -40,8 +40,8 @@ export default function MainPageLayout({ children }: Props) {
     </S.Layout>
 
     <AttackedListModal
-      closeModal={closeAttackedListeModal}
-      isOpen={isAttackedListModalOpen}
+      closeModal={closeModal}
+      isOpen={isOpen}
     />
   </>
 

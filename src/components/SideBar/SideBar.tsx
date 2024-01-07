@@ -23,6 +23,10 @@ const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
         []
     );
 
+    const handleNavigateToHome = () => {
+        navigate(`${"/nickname"}`); //TODO: 닉네임을 상태관리 해야함.
+    };
+
 
     return (
         <S.Container>
@@ -30,7 +34,7 @@ const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
                 <S.Overlay $show={isOpen} onClick={onCloseClick} />
             )}            
             <S.MainSection $isOpenProps={isOpen}>
-                <S.NicknameWrapper>
+                <S.NicknameWrapper onClick={handleNavigateToHome}>
                     {`안녕하세요 :) \n ${dummyName} 님`}
                 </S.NicknameWrapper>
                 <S.MenuList>
