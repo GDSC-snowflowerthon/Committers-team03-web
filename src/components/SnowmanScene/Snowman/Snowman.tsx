@@ -1,21 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere, Cylinder } from '@react-three/drei';
 import * as THREE from 'three';
-import { useRecoilValue } from 'recoil';
-import { snowmanYPositionState } from '@/atoms/snowmanState';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { snowmanRotationState, snowmanYPositionState } from '@/atoms/snowmanState';
 import { snowmanDecorationState } from '@/atoms/snowmanDecorationState';
 
 export default function Snowman() {
-  const snowmanRef = useRef<THREE.Group>(null);
-  const yPosition = useRecoilValue(snowmanYPositionState); // Recoil 상태 값을 사용
-  const decoration = useRecoilValue(snowmanDecorationState); // Recoil 상태 값을 사용
+    const snowmanRef = useRef<THREE.Group>(null);
+    const yPosition = useRecoilValue(snowmanYPositionState); // Recoil 상태 값을 사용
+    const decoration = useRecoilValue(snowmanDecorationState); // Recoil 상태 값을 사용
+    const [rotate, setRotate] = useRecoilState(snowmanRotationState);
 
-  useFrame(() => {
-    if (snowmanRef.current) {
-      snowmanRef.current.rotation.x = 3 * (Math.PI / 180);
-    }
-  });
+    useFrame(() => {
+        if (rotate && snowmanRef.current) {
+            const rotationStep = 0.11; // 회전 속도
+            snowmanRef.current.rotation.y += rotationStep;
+
+            if (snowmanRef.current.rotation.y >= Math.PI * 4) {
+                // 2바퀴 회전 후 멈춤
+                snowmanRef.current.rotation.y = 0; // 회전 각도 초기화
+                setRotate(false); // 회전 상태를 false로 설정
+            }
+        }
+    });
 
   return (
     <group ref={snowmanRef} position={[0, yPosition, 0]}>

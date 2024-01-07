@@ -24,3 +24,6 @@ export interface ButtonProps {
 
   export interface LogoutButtonProps extends Partial<ButtonProps> {
   }
+
+  export interface CustomCompleteButtonProps extends Partial<ButtonProps> {
+  }
