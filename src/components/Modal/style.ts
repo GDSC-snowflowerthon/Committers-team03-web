@@ -117,8 +117,7 @@ export const ModalContent = styled.div<ModalContentProps>`
 export const ModalInnerContent = styled.div`
   width: 100%;
   height: 100%;
-  overflow: auto;
-
+  overflow-y: auto;
 `;
 
 export const ModalTitle = styled.div`

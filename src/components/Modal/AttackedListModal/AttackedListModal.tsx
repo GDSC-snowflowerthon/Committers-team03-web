@@ -13,7 +13,7 @@ function AttackedListModal({closeModal, isOpen}: Props) {
     const dummyData: AttackedList = { //TODO: 더미데이터임. 테스트용
         attackedList: [
           {
-            nickname: "githubId",
+            nickname: "gitffadsfasdfasdfsadff",
             time: "2024.01.11 15:20",
             newAttack: true,
           },

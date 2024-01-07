@@ -5,10 +5,10 @@ export default function MessageWrapper({ newAttack, nickname, time }: attackMess
 
   return (
     <S.StatusContainer newAttack={newAttack}>
-      <div>
-        <div>{`[${time}]`}</div>
-        <div>{nickname}님께 공격을 받았습니다!</div>
-      </div>
+      <S.TextWrapper>
+        <S.TextLine>{`[${time}]`}</S.TextLine>
+        <S.TextLine>{nickname}님께 공격을 받았습니다!</S.TextLine>
+      </S.TextWrapper>
     </S.StatusContainer>
   );
 }
