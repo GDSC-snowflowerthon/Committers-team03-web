@@ -9,7 +9,7 @@ flex-direction: row;
 position: fixed;
 top: 0;
 background-color: #FFF;
-z-index: 999;
+z-index: 9999;
 `;
 
 export const Overlay = styled.div<{ $show: boolean }>`
