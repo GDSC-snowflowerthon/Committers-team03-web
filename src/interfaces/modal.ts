@@ -3,7 +3,7 @@ export interface ModalProps {
     onClose: (event?: React.MouseEvent) => void;
     children: React.ReactNode;
     modalTitle: string;
-    modalType?: 'SmallModal' | 'Modal' | 'SlideUpModal' ,
+    modalType?: 'SmallModal' | 'Modal' | 'CustomModal' | 'RankingModal'; // Add 'SlideUpModal' or other modal types as needed
     modalColor?: string;
   }
 
@@ -14,7 +14,7 @@ export interface ModalProps {
   // show 프로퍼티를 갖는 ModalWrapperProps 인터페이스를 정의
   export interface ModalWrapperProps {
     show: boolean;
-    modalType?: 'SmallModal' | 'Modal' | 'SlideUpModal'; // Add 'SlideUpModal' or other modal types as needed
+    modalType?: 'SmallModal' | 'Modal' | 'CustomModal' | 'RankingModal'; // Add 'SlideUpModal' or other modal types as needed
   }
 
   export interface ModalButtonProps {

@@ -7,15 +7,14 @@ interface Props {
     isOpen: boolean;
 }
 
-function CustomModal({closeModal, isOpen}: Props) {
+function RankingModal({closeModal, isOpen}: Props) {
     return (
         <Modal
             modalTitle={""}
             isOpen={isOpen}
             onClose={closeModal}
-            modalType={'CustomModal'}
+            modalType={'RankingModal'}
             modalColor={'white'}
-
         >
             <S.Wrapper>
 
@@ -24,4 +23,4 @@ function CustomModal({closeModal, isOpen}: Props) {
         </Modal>
     )
 }
-export default React.memo(CustomModal);
+export default React.memo(RankingModal);
