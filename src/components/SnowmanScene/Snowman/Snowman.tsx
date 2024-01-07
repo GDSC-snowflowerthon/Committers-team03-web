@@ -1,19 +1,22 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Sphere, Cylinder, Torus } from '@react-three/drei';
-import * as THREE from 'three'; // THREE 객체를 import 합니다.
+import { Sphere, Cylinder } from '@react-three/drei';
+import * as THREE from 'three';
+import { useRecoilValue } from 'recoil';
+import { snowmanYPositionState } from '@/atoms/snowmanState';
 
 export default function Snowman() {
-    const snowmanRef = useRef<THREE.Group>(null); // group의 타입을 THREE.Group으로 설정합니다.
+  const snowmanRef = useRef<THREE.Group>(null);
+  const yPosition = useRecoilValue(snowmanYPositionState); // Recoil 상태 값을 사용
 
-    useFrame(() => {
-        if (snowmanRef.current) {
-            snowmanRef.current.rotation.x = 3 * (Math.PI / 180); // 라디안으로 변환
-        }
-    });
+  useFrame(() => {
+    if (snowmanRef.current) {
+      snowmanRef.current.rotation.x = 3 * (Math.PI / 180);
+    }
+  });
 
-    return (
-        <group ref={snowmanRef} position={[0, -1.6, 0]}>
+  return (
+    <group ref={snowmanRef} position={[0, yPosition, 0]}>
         {/* 눈사람 몸체 */}
         <Sphere position={[0, 1.25, 0]} args={[0.6, 32, 32]}><meshStandardMaterial color="white" /></Sphere>
         <Sphere position={[0, 0.4, 0]} args={[0.9, 32, 32]}><meshStandardMaterial color="white" /></Sphere>
