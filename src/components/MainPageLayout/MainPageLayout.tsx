@@ -27,7 +27,6 @@ export default function MainPageLayout({ children }: Props) {
 
   return (
     <>
- 
     <S.Layout>
       <S.Wrapper>
         <S.NavBar>
