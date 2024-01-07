@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react'
 import PageLayout from '@/components/PageLayout/PageLayout'
-import useModal from '@/hooks/useModal';
 import RankingModal from '@/components/Modal/RankingModal/RankingModal';
+import useRankingModal from '@/hooks/useRankingModal';
 
 export default function Ranking() {
-  const { isOpen, openModal, closeModal } = useModal(); // setOpen 함수를 useModal에서 가져옵니다.
+  const { isOpen, openModal, closeModal } = useRankingModal(); // setOpen 함수를 useModal에서 가져옵니다.
   
   // 마운트 될 때 isOpen을 true로 설정
   useEffect(() => {

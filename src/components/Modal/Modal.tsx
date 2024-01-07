@@ -3,9 +3,9 @@ import * as S from "./style";
 import { ModalProps } from '@/interfaces/modal'
 
 
-const Modal: React.FC<ModalProps> = ({ isOpen, children, modalTitle, modalType, modalColor }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, modalTitle, modalType, modalColor }) => {
   return (
-    <S.ModalWrapper show={isOpen} modalType={modalType}>
+    <S.ModalWrapper show={isOpen} modalType={modalType} onClick={onClose}>
       <S.ModalContent 
       onClick={(e: React.SyntheticEvent) => e.stopPropagation()}
       modalType={modalType}

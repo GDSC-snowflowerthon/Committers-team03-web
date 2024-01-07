@@ -40,7 +40,7 @@ export default function MainPageLayout({ children }: Props) {
     </S.Layout>
 
     <AttackedListModal
-      closeModal={closeModal}
+      closeModal={() => closeModal()}
       isOpen={isOpen}
     />
   </>
