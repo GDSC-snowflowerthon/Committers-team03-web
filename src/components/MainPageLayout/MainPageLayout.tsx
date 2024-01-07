@@ -5,6 +5,7 @@ import HamburgerButton from '../Button/HamburgerButton/HamburgerButton';
 import BellButton from '../Button/BellButton/BellButton';
 import useModal from '@/hooks/useModal';
 import AttackedListModal from '@/components/Modal/AttackedListModal/AttackedListModal';
+
 interface Props {
   children: React.ReactNode;
 }
@@ -16,7 +17,7 @@ export default function MainPageLayout({ children }: Props) {
     openModal,
     closeModal,
   } = useModal();
-  
+
   const handleHamburgerClick = () => {
     setIsSideBarOpen(!isSideBarOpen); // 사이드바 표시 상태 토글
   };

@@ -12,10 +12,12 @@ export const SnowmanCanvas = styled(Canvas)`
 export const Container = styled.div`
   width: 100%;
   background-color: transparent;
+  
 `;
 
 export const Wrapper = styled.div<SnowmanSceneProps>`
   width: 100%; // 너비를 300px로 설정
   height: ${(props) => props.height || '500px'}; // props에서 height 값을 사용하거나 기본값으로 '500px'를 설정합니다.
   background-size: cover; // 배경 이미지 사이즈 조정 (필요에 따라)
+  
 `;

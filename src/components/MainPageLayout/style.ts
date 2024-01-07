@@ -27,5 +27,7 @@ export const NavBar = styled.div`
   width: 100vw;
   height: 50px;
   background-color: transparent;
-  margin-top: -50px;
+  margin-top: 0px;
+  position: fixed;
+  z-index: 2;
 `;
