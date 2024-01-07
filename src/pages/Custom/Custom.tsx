@@ -18,7 +18,8 @@ export default function Custom() {
   return (
     <>
       <PageLayout title={"눈사람 꾸미기"}>
-
+        <>
+        </>
       </PageLayout>
       <CustomModal
         closeModal={closeModal}
