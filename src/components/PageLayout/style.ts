@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import BellButtonImg from '@/assets/Button/BellButton.png';
 import theme from '@/theme';
 
 export const Layout = styled.div`
