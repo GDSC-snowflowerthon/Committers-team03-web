@@ -11,7 +11,7 @@ export const SnowmanCanvas = styled(Canvas)`
 
 export const Container = styled.div`
   width: 100%;
-  background-color: #90C9F6;
+  background-color: transparent;
 `;
 
 export const Wrapper = styled.div<SnowmanSceneProps>`
