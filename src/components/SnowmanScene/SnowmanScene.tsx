@@ -3,11 +3,12 @@ import React from 'react';
 import * as S from './style'; // 스타일 파일의 경로를 확인하세요.
 import CustomOrbitControls from './CustomOrbitControls/CustomOrbitControls';
 import Snowman from './Snowman/Snowman';
+import { SnowmanSceneProps } from '@/interfaces/snowman'; 
 
-export default function SnowmanScene() {
-  return (
+export default function SnowmanScene({ height }: SnowmanSceneProps) {
+    return (
     <S.Container>
-      <S.Wrapper>
+      <S.Wrapper height={height}>
         <S.SnowmanCanvas>
           {/* 조명과 Snowman, CustomOrbitControls 컴포넌트를 여기에 배치합니다 */}
             <ambientLight intensity={1.8 as any} />

@@ -35,4 +35,5 @@ export const Title = styled.div`
   flex-direction: column;
   align-items: center;
   font-size: 24px;
+  z-index: 1;
 `;

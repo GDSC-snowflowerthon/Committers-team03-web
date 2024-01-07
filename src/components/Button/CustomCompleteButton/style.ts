@@ -1,17 +1,17 @@
 import theme from '@/theme';
 import styled from 'styled-components';
 
-export const LogoutButtonWrapper = styled.div`
-    background-size: 120px 44px;
+export const CustomCompleteButtonWrapper = styled.div`
+    background-size: 60px 38px;
     background-repeat: no-repeat;
     background-size: contain;
-    width: 120px;  // 버튼 크기 조정
-    height: 44px; // 버튼 크기 조정
+    width: 60px;  // 버튼 크기 조정
+    height: 38px; // 버튼 크기 조정
     border: none;
     cursor: pointer;
     position: absolute;
-    bottom: 25px;    // 상단에서의 위치
-    right: 40px;   // 좌측에서의 위치
+    top: 22px;    // 상단에서의 위치
+    right: 36px;   // 좌측에서의 위치
     z-index: 2;
     background-color: transparent;
 `;

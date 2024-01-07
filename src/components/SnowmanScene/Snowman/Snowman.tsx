@@ -1,23 +1,42 @@
-import { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Sphere, Cylinder, Torus } from '@react-three/drei';
-import * as THREE from 'three'; // THREE 객체를 import 합니다.
+import { Sphere, Cylinder } from '@react-three/drei';
+import * as THREE from 'three';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { snowmanRotationState, snowmanYPositionState } from '@/atoms/snowmanState';
+import { snowmanDecorationState } from '@/atoms/snowmanDecorationState';
 
 export default function Snowman() {
-    const snowmanRef = useRef<THREE.Group>(null); // group의 타입을 THREE.Group으로 설정합니다.
+    const snowmanRef = useRef<THREE.Group>(null);
+    const yPosition = useRecoilValue(snowmanYPositionState); // Recoil 상태 값을 사용
+    const decoration = useRecoilValue(snowmanDecorationState); // Recoil 상태 값을 사용
+    const [rotate, setRotate] = useRecoilState(snowmanRotationState);
 
     useFrame(() => {
-        if (snowmanRef.current) {
-            snowmanRef.current.rotation.x = 3 * (Math.PI / 180); // 라디안으로 변환
+        if (rotate && snowmanRef.current) {
+            const rotationStep = 0.11; // 회전 속도
+            snowmanRef.current.rotation.y += rotationStep;
+
+            if (snowmanRef.current.rotation.y >= Math.PI * 4) {
+                // 2바퀴 회전 후 멈춤
+                snowmanRef.current.rotation.y = 0; // 회전 각도 초기화
+                setRotate(false); // 회전 상태를 false로 설정
+            }
         }
     });
 
-    return (
-        <group ref={snowmanRef} position={[0, -1.6, 0]}>
+  return (
+    <group ref={snowmanRef} position={[0, yPosition, 0]}>
         {/* 눈사람 몸체 */}
-        <Sphere position={[0, 1.25, 0]} args={[0.6, 32, 32]}><meshStandardMaterial color="white" /></Sphere>
-        <Sphere position={[0, 0.4, 0]} args={[0.9, 32, 32]}><meshStandardMaterial color="white" /></Sphere>
-        <Sphere position={[0, -1.1, 0]} args={[1.2, 32, 32]}><meshStandardMaterial color="white" /></Sphere>
+        <Sphere position={[0, 1.25, 0]} args={[0.6, 32, 32]}>
+            <meshStandardMaterial color={decoration.body.color} />
+        </Sphere>
+        <Sphere position={[0, 0.4, 0]} args={[0.9, 32, 32]}>
+            <meshStandardMaterial color={decoration.body.color} />
+        </Sphere>
+        <Sphere position={[0, -1.1, 0]} args={[1.2, 32, 32]}>
+            <meshStandardMaterial color={decoration.body.color} />
+        </Sphere>
 
         {/* 두 번째 몸통에 단추 추가 */}
         <Sphere position={[0, 0.6, 0.87]} args={[0.07, 32, 32]}>
@@ -64,15 +83,27 @@ export default function Snowman() {
         </Sphere>
 
         {/* 팔 */}
-        <Cylinder position={[-0.7, 0.7, 0]} args={[0.03, 0.03, 0.9, 32]} rotation={[0, 0, Math.PI / 2]}><meshStandardMaterial color="brown" /></Cylinder>
-        <Cylinder position={[0.7, 0.7, 0]} args={[0.03, 0.03, 0.9, 32]} rotation={[0, 0, Math.PI / 2]}><meshStandardMaterial color="brown" /></Cylinder>
+        <Cylinder position={[-0.7, 0.7, 0]} args={[0.03, 0.03, 0.9, 32]} rotation={[0, 0, Math.PI / 2]}>
+            <meshStandardMaterial color="brown" />
+        </Cylinder>
+        <Cylinder position={[0.7, 0.7, 0]} args={[0.03, 0.03, 0.9, 32]} rotation={[0, 0, Math.PI / 2]}>
+            <meshStandardMaterial color="brown" />
+        </Cylinder>
 
         {/* 목도리 */}
-        <Cylinder position={[0, 1.05, 0]} args={[0.63, 0.8, 0.35, 32]}><meshStandardMaterial color="red" /></Cylinder>
-        <Cylinder position={[-0.2, 1, 0.5]} args={[0.25, 0.25, 1.2, 8]}rotation={[-Math.PI / 5, 0, -Math.PI / 8]}><meshStandardMaterial color="red" /></Cylinder>
+        <Cylinder position={[0, 1.05, 0]} args={[0.63, 0.8, 0.35, 32]}>
+            <meshStandardMaterial color={decoration.scarf.color} />
+        </Cylinder>
+        <Cylinder position={[-0.2, 1, 0.5]} args={[0.25, 0.25, 1.2, 8]}rotation={[-Math.PI / 5, 0, -Math.PI / 8]}>
+            <meshStandardMaterial color={decoration.scarf.color} />
+        </Cylinder>
         {/* 모자 */}
-        <Cylinder position={[0, 1.68, 0]} args={[0.8, 0.8, 0.05, 32]}><meshStandardMaterial color="red" /></Cylinder>
-        <Cylinder position={[0, 2.45, 0]} args={[0.6, 0.5, 1.5, 32]}><meshStandardMaterial color="red" /></Cylinder>
+        <Cylinder position={[0, 1.68, 0]} args={[0.8, 0.8, 0.05, 32]}>
+            <meshStandardMaterial color={decoration.hat.color} />
+        </Cylinder>
+        <Cylinder position={[0, 2.45, 0]} args={[0.6, 0.5, 1.5, 32]}>
+            <meshStandardMaterial color={decoration.hat.color} />
+        </Cylinder>
 
         {/* 손가락을 표현하기 위한 작은 실린더들 */}
         {/* 왼쪽 손가락 */}

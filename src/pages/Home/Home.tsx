@@ -10,7 +10,7 @@ export default function Home() {
     <MainPageLayout >
         <SnowFalling />
         <S.SnowmanContainer>
-          <SnowmanScene />
+          <SnowmanScene height={"500px"}/>
         </S.SnowmanContainer>
 
     </MainPageLayout>

@@ -8,3 +8,14 @@ export const Wrapper = styled.div`
   align-items: center;
 `;
 
+export const Title = styled.div`
+  position: absolute;
+  color: #4F5861;
+  text-align: center;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  left: 40px;
+  top: 28px;
+`;
