@@ -5,6 +5,7 @@ import SnowFalling from '@/components/SnowFalling/SnowFalling'
 import SnowmanScene from '@/components/SnowmanScene/SnowmanScene';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { snowmanHeightState, snowmanYPositionState } from '@/atoms/snowmanState';
+import Clouds from '@/components/Clouds/Clouds';
 
 export default function Home() {
   const snowmanHeight = useRecoilValue(snowmanHeightState);
@@ -18,7 +19,6 @@ export default function Home() {
 
     <MainPageLayout >
       <S.Background height={snowmanHeight} />
-
         <SnowFalling />
         <S.SnowmanContainer>
           <SnowmanScene height={"500px"}/>

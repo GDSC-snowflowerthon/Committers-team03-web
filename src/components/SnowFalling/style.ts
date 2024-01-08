@@ -56,9 +56,9 @@ interface SnowProps {
 export const SnowWrapper = styled.div`
   position: absolute;
   width: 100%;
-  max-width: 820px;
-  max-height: 1180px;
-  height: 870px;
+  max-width: 430px;
+  max-height: 932px;
+  height: 932px;
   top: -30px;
   left: 50%;
   right: 50%;
@@ -70,8 +70,8 @@ export const SnowWrapper = styled.div`
 export const Container = styled.div`
   position: absolute;
   width: 100%;
-  max-width: 820px;
-  max-height: 1180px;
+  max-width: 430px;
+  max-height: 932px;
   height: 800px;
   
 `;

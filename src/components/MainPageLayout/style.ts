@@ -8,7 +8,7 @@ export const Layout = styled.div`
   max-height: 932px;
   min-height: 850px;
   //overflow-y: hidden;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: 'Pretendard';
 `;
 

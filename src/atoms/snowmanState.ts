@@ -12,5 +12,5 @@ export const snowmanRotationState = atom<boolean>({
 
 export const snowmanHeightState = atom<number>({
   key: 'snowmanHeightState',
-  default: 400, // 초기 눈사람의 키는 0으로 설정
+  default: 100, // 초기 눈사람의 키는 0으로 설정
 });
