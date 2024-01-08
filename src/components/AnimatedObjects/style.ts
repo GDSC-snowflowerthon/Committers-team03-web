@@ -10,15 +10,15 @@ const moveUpDown = keyframes`
 // AnimatedObjectWrapper 스타일 컴포넌트
 export const AnimatedObjectWrapper = styled.div<AnimatedObjectsProps>`
   position: absolute;
-  top: ${({ topPosition }) => topPosition === 0 ? '250px' : `${topPosition+250}px`};
-  left: 40px;
+  top: ${({ topPosition }) => topPosition === 0 ? '320px' : `${topPosition+320}px`};
+  right: 50px;
   z-index: 1;
   background-image: url(${props => props.backgroundImageUrl});
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 250px;
-  height: 250px;
+  width: 180px;
+  height: 180px;
   animation: ${moveUpDown} 3s ease-in-out infinite;
 `;
 
