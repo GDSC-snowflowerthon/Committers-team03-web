@@ -27,3 +27,5 @@ export interface ButtonProps {
 
   export interface CustomCompleteButtonProps extends Partial<ButtonProps> {
   }
+  export interface GithubButtonProps extends Partial<ButtonProps>{
+  }
