@@ -69,6 +69,7 @@ export const ModalContent = styled.div<ModalContentProps>`
   background-repeat: no-repeat;
   background-position: center;
   box-sizing: border-box;
+  overflow-y: hidden;
   ${({modalType}) => {
     const {width, height, backgroundSize} = getModalSize(modalType);
     if (modalType === 'CustomModal') {
@@ -77,6 +78,7 @@ export const ModalContent = styled.div<ModalContentProps>`
         height: ${height};
         background-size: ${backgroundSize};
         animation: ${slideUpAnimationPortrait} 0.5s ease-out forwards;
+        overflow: hidden;
         border-radius: 40px;
         max-width: 430px;
         /* 모바일 기기에서 가로 모드일 때만 애니메이션 적용 */
@@ -90,6 +92,7 @@ export const ModalContent = styled.div<ModalContentProps>`
         width: ${width};
         height: ${height};
         background-size: ${backgroundSize};
+        overflow-y: hidden;
         border-radius: 40px;
         max-width: 430px;
         /* 모바일 기기에서 가로 모드일 때만 애니메이션 적용 */
@@ -111,13 +114,13 @@ export const ModalContent = styled.div<ModalContentProps>`
   transform: translate(-50%, -50%);
   color: ${theme.colors.textMain};
   font-size: 20px;
-  overflow-y: auto;
+  overflow-y: hidden;
 `;
 
 export const ModalInnerContent = styled.div`
   width: 100%;
   height: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
 `;
 
 export const ModalTitle = styled.div`
@@ -131,3 +134,35 @@ export const ModalTitle = styled.div`
   overflow: hidden;
 `;
 
+export const TabsWrapper = styled.div`
+  display: flex;
+  margin-bottom: 1rem;
+  overflow-y: hidden;
+`;
+
+export const Tab = styled.div<{ isActive: boolean }>`
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  background-color: ${(props) => (props.isActive ? '#ffffff' : '#3181F4')};
+  color: ${(props) => (props.isActive ? '#14F5861' : '#FFFFFF')};
+  transition: background-color 0.5s, color 0.5s;
+`;
+
+export const TabContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+`;
+
+export const TabContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 1rem;
+`;
+
+export const TabDivider = styled.div``;
