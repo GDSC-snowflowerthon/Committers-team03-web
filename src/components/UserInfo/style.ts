@@ -26,18 +26,11 @@ export const WhiteWrapper = styled.div`
     color: ${theme.colors.textMain};
 `;
 
-export const BlueButton = styled.button`
-    width: 160px;
-    height: 30px;
-    background-size: 160px 30px;
-    align-items: center;
-    text-align: center;
-    background: #3181F4;
-    border-radius: 12px;
-    font-size: 16px;
-    margin-bottom: 4px;
-    border: transparent;
-    line-height: 1.8;
-    font-weight: 400;
-    color: ${theme.colors.white};
+export const ButtonRowContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 160px;
+  height: 30px;
+  margin: 0 auto; 
 `;

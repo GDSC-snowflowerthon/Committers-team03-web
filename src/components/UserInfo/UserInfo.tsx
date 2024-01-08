@@ -2,11 +2,14 @@ import { myState } from '@/atoms/userState';
 import React from 'react'
 import { useRecoilValue } from 'recoil';
 import * as S from './style'
+import useIsMyHome from '@/hooks/useIsMyHome';
+import GrowButton from '../Button/GrowButton/GrowButton';
+import FollowButton from '../Button/FollowButton/FollowButton';
+import AttackButton from '../Button/AttackButton/AttackButton';
 export default function UserInfo() {
     const userInfo = useRecoilValue(myState);
-    const handleGrow = () => {
-        //TODO: api 호출. 성공 시 값들 업데이트
-    }
+    const isMyHome = useIsMyHome();
+
     return (
         <S.Container>
             <S.WhiteWrapper>
@@ -15,12 +18,20 @@ export default function UserInfo() {
             <S.WhiteWrapper>
                 {`눈사람 키: ${userInfo.snowmanHeight}`}
             </S.WhiteWrapper>
-            <S.WhiteWrapper>
-                {`보유 눈송이: ${userInfo.snowflake}`}
-            </S.WhiteWrapper>
-            <S.BlueButton onClick={handleGrow}>
-                키우기
-            </S.BlueButton>
+            {isMyHome ? (
+                <>
+                    <S.WhiteWrapper>
+                        {`보유 눈송이: ${userInfo.snowflake}`}
+                    </S.WhiteWrapper>
+                    <GrowButton />
+                </>
+            ) : (
+                // 다른 사용자의 홈일 경우 표시할 내용
+                <S.ButtonRowContainer>
+                    <FollowButton />
+                    <AttackButton />
+                </S.ButtonRowContainer>
+            )}
         </S.Container>
-    )
+    );
 }
