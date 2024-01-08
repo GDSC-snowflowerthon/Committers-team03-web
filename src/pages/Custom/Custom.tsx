@@ -9,7 +9,7 @@ import { snowmanYPositionState } from '@/atoms/snowmanState';
 
 export default function Custom() {
   const { isOpen, openModal, closeModal } = useCustomModal(); // setOpen 함수를 useModal에서 가져옵니다.
-  const [yPosition, setYPosition] = useRecoilState(snowmanYPositionState);
+  const [, setYPosition] = useRecoilState(snowmanYPositionState);
 
   // 마운트 될 때 isOpen을 true로 설정
   useEffect(() => {

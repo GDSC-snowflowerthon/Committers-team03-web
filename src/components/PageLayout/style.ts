@@ -14,7 +14,7 @@ export const Layout = styled.div`
 `;
 
 export const Wrapper = styled.div`
-  max-width: 440px;
+  max-width: 430px;
   max-height: 932px;
   display: flex;
   flex-direction: column;
@@ -24,7 +24,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
-  max-width: 440px;
+  max-width: 430px;
   width: 100vw;
   height: 50px;
   background-color: transparent;
