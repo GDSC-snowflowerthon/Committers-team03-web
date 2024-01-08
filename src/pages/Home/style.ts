@@ -3,13 +3,14 @@ import BackgroundImg from '@/assets/Background/Background.png';
 
 export const Background = styled.div<{ height: number }>`
   width: 430px;
-  height: 850px;
+  height: 932px;
   max-height: 932px;
   background-image: url(${BackgroundImg});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: ${({ height }) => `bottom -${height*10}px center`};
   overflow: hidden;
+  bottom: 0px;
 `;
 
 export const SnowmanContainer = styled.div`

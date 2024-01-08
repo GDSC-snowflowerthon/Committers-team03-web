@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 
-const numStars = 10;
+const numStars = 15;
 
 const ShootingStarFalling: React.FC = () => {
   const [stars, setStars] = useState<Array<JSX.Element>>([]);
@@ -10,7 +10,7 @@ const ShootingStarFalling: React.FC = () => {
     const newStars = [];
 
     for (let i = 0; i < numStars; i++) {
-      const size = Math.random() > 0.6 ? 'medium' : 'small';
+      const size = Math.random() > 0.5 ? 'medium' : 'small';
       const delay = Math.random() * 15;
       const duration = Math.random() * 5 + 5;
 

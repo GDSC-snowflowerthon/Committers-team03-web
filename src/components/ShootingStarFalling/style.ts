@@ -24,9 +24,8 @@ export const ShootingStarWrapper = styled.div`
   position: absolute;
   width: 100%;
   max-width: 430px;
-  max-height: 962px;
-  height: 962px;
-  top: -30px;
+  max-height: 932px;
+  height: 932px;
   left: 50%;
   right: 50%;
   transform: translateX(-50%);
