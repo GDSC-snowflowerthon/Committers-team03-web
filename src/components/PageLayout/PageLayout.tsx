@@ -17,9 +17,10 @@ export default function PageLayout({ children, title }: Props) {
 
   return (
     <>
-    <SnowFalling />
+
 
     <S.Layout>
+    <SnowFalling />
       <S.Wrapper>
         <HamburgerButton onClick={handleHamburgerClick} /> {/* 클릭 이벤트 핸들러 추가 */}
         <S.Title>

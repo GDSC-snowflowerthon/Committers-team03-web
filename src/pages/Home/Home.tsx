@@ -5,7 +5,6 @@ import SnowFalling from '@/components/SnowFalling/SnowFalling'
 import SnowmanScene from '@/components/SnowmanScene/SnowmanScene';
 import { useRecoilValue, useRecoilState } from 'recoil';
 import { snowmanHeightState, snowmanYPositionState } from '@/atoms/snowmanState';
-
 export default function Home() {
   const snowmanHeight = useRecoilValue(snowmanHeightState);
   const [, setYPosition] = useRecoilState(snowmanYPositionState);

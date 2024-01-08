@@ -1,15 +1,7 @@
-import React, { useEffect, useState, CSSProperties } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as S from './style';
 
 const numSnows = 30;
-
-// CSSProperties를 확장하여 사용자 정의 CSS 변수를 포함
-interface CSSPropertiesWithCustomVars extends CSSProperties {
-  '--start-left'?: string;
-  '--end-left'?: string;
-  '--rotation-start'?: string;
-  '--rotation-end'?: string;
-}
 
 const SnowFalling: React.FC = () => {
   const [leaves, setLeaves] = useState<Array<JSX.Element>>([]);
