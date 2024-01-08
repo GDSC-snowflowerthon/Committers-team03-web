@@ -6,6 +6,7 @@ import BellButton from '../Button/BellButton/BellButton';
 import useModal from '@/hooks/useModal';
 import AttackedListModal from '@/components/Modal/AttackedListModal/AttackedListModal';
 import SnowFalling from '../SnowFalling/SnowFalling';
+import ShootingStarFalling from '../ShootingStarFalling/ShootingStarFalling';
 
 interface Props {
   children: React.ReactNode;
@@ -30,7 +31,7 @@ export default function MainPageLayout({ children }: Props) {
   return (
     <>
     <S.Layout>
-    <SnowFalling />
+    <ShootingStarFalling />
       <S.Wrapper>
         <S.NavBar>
         <HamburgerButton onClick={handleHamburgerClick} /> {/* 클릭 이벤트 핸들러 추가 */}
