@@ -1,9 +1,9 @@
-import { userState } from '@/atoms/userState';
+import { myState } from '@/atoms/userState';
 import React from 'react'
 import { useRecoilValue } from 'recoil';
 import * as S from './style'
 export default function UserInfo() {
-    const userInfo = useRecoilValue(userState);
+    const userInfo = useRecoilValue(myState);
     const handleGrow = () => {
         //TODO: api 호출. 성공 시 값들 업데이트
     }
