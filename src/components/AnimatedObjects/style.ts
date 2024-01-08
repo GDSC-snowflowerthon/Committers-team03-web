@@ -1,23 +1,36 @@
 import { AnimatedObjectsProps } from "@/interfaces/object";
 import styled, { keyframes } from "styled-components";
 
-// 위아래로 움직이는 애니메이션
 const moveUpDown = keyframes`
   0% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
   100% { transform: translateY(0); }
 `;
 
+// AnimatedObjectWrapper 스타일 컴포넌트
 export const AnimatedObjectWrapper = styled.div<AnimatedObjectsProps>`
   position: absolute;
-  top: 50%;
-  right: 5px;
-  z-index: 10;
+  top: ${({ topPosition }) => topPosition === 0 ? '250px' : `${topPosition+250}px`};
+  left: 40px;
+  z-index: 1;
   background-image: url(${props => props.backgroundImageUrl});
   background-color: transparent;
   background-size: contain;
   background-repeat: no-repeat;
-  width: 200px; // 이미지 크기에 맞게 조절
-  height: 200px; // 이미지 크기에 맞게 조절
-  animation: ${moveUpDown} 3s ease-in-out infinite; // 애니메이션 적용
+  width: 250px;
+  height: 250px;
+  animation: ${moveUpDown} 3s ease-in-out infinite;
+`;
+
+
+export const Background = styled.div`
+  position: absolute;
+  width: 430px;
+  height: 932px;
+  max-height: 932px;
+  background-image: transparent;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  top: 0px
 `;

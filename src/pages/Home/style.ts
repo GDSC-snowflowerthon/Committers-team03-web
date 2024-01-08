@@ -5,10 +5,10 @@ export const Background = styled.div<{ height: number }>`
   width: 430px;
   height: 932px;
   max-height: 932px;
-  background-image: url(${BackgroundImg});
+  background-image: ${({ height }) => height >= 130 ? 'none' : `url(${BackgroundImg})`};
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: ${({ height }) => `bottom -${height*10}px center`};
+  background-position: ${({ height }) => `bottom -${height * 10}px center`};
   overflow: hidden;
   bottom: 0px;
 `;
