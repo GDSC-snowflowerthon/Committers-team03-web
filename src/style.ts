@@ -1,7 +1,7 @@
 import {createGlobalStyle} from 'styled-components';
 import Pretendard from './static/font/Pretendard-Medium.woff2';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<{ backgroundColor: string }>`
   @font-face {
     font-family: 'Pretendard';
     src: url(${Pretendard}) format('woff2');
@@ -10,8 +10,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    font-size: 16px; // 16px 기본 설정
-    background-color:  #90C9F6;
+    font-size: 16px;
+    background: ${({ backgroundColor }) => backgroundColor};
     overflow-x: hidden;
   }
 
