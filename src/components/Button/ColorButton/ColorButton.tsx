@@ -1,6 +1,5 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { snowmanDecorationState } from '@/atoms/snowmanDecorationState';
 import { Button } from './style';
 import { ColorButtonProps } from '@/interfaces/decoration';
 import { myState } from '@/atoms/userState';

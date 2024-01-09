@@ -24,7 +24,7 @@ const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
     );
 
     const handleNavigateToHome = () => {
-        navigate(`${"/nickname"}`); //TODO: 닉네임을 상태관리 해야함.
+        navigate(`${"/githubid00"}`); //TODO: 닉네임을 상태관리 해야함.
     };
 
 

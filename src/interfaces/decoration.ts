@@ -1,5 +1,5 @@
 
 export interface ColorButtonProps {
-    color: number;
+    color: string;
     part: 'snowId' | 'decoId' | 'hatId';
   }
