@@ -17,7 +17,7 @@ export const GlobalStyle = createGlobalStyle<{ backgroundColor: string }>`
 
   body, html {
     font-family: 'Pretendard';
-    font-weight: 700;
+    font-weight: 400;
     margin: 0;
     font-size: 16px;
   }
