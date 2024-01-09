@@ -5,6 +5,7 @@ import HamburgerButton from '../Button/HamburgerButton/HamburgerButton';
 import BellButton from '../Button/BellButton/BellButton';
 import useModal from '@/hooks/useModal';
 import AttackedListModal from '@/components/Modal/AttackedListModal/AttackedListModal';
+import UserInfo from '../UserInfo/UserInfo';
 
 interface Props {
   children: React.ReactNode;
@@ -33,6 +34,7 @@ export default function MainPageLayout({ children }: Props) {
         <S.NavBar>
         <HamburgerButton onClick={handleHamburgerClick} /> {/* 클릭 이벤트 핸들러 추가 */}
         <BellButton onClick={handleBellClick} /> {/* 클릭 이벤트 핸들러 추가 */}
+        <UserInfo />
         </S.NavBar>
         {children}
       </S.Wrapper>

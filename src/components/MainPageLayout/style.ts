@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
 `;
 
 export const NavBar = styled.div`
-  max-width: 440px;
+  max-width: 430px;
   width: 100vw;
   height: 50px;
   background-color: transparent;
