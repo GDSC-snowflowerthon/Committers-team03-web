@@ -2,29 +2,31 @@ export default async (req, res) => {
   const renderSVG = (data) => {
     let gradientStops;
 
+    // snowmanHeight 값에 따라 그라디언트를 조정합니다.
     if (data.snowmanHeight <= 150) {
-      // snowmanHeight이 150 이하일 때는 하나의 색상만 사용
+      // 150 이하인 경우, #90C9F6 색상만 사용합니다.
       gradientStops = `
         <stop offset="0%" style="stop-color:#90C9F6;" />
         <stop offset="100%" style="stop-color:#90C9F6;" />
       `;
-    } else if (data.snowmanHeight > 150 && data.snowmanHeight <= 320) {
-      // snowmanHeight이 150 초과, 320 이하일 때는 두 색상을 그라디언트로 사용
-      const ratio = (data.snowmanHeight - 150) / (320 - 150);
+    } else if (data.snowmanHeight <= 320) {
+      // 150 초과 320 이하인 경우, #90C9F6 에서 #2E44BC로 그라디언트를 적용합니다.
+      const gradientRatio = (data.snowmanHeight - 150) / (320 - 150);
       gradientStops = `
-        <stop offset="0%" style="stop-color:#90C9F6;" />
-        <stop offset="${ratio * 100}%" style="stop-color:#90C9F6;" />
-        <stop offset="${ratio * 100}%" style="stop-color:#2E44BC;" />
-        <stop offset="100%" style="stop-color:#2E44BC;" />
+        <stop offset="100%" style="stop-color:#90C9F6;" />
+        <stop offset="${100 * gradientRatio}%" style="stop-color:#90C9F6;" />
+        <stop offset="${100 * gradientRatio}%" style="stop-color:#2E44BC;" />
+        <stop offset="0%" style="stop-color:#2E44BC;" />
       `;
     } else {
-      // snowmanHeight이 320 초과일 때는 다른 하나의 색상만 사용
+      // 320 초과인 경우, #2E44BC 색상만 사용합니다.
       gradientStops = `
         <stop offset="0%" style="stop-color:#2E44BC;" />
         <stop offset="100%" style="stop-color:#2E44BC;" />
       `;
     }
 
+    // SVG 문자열을 반환합니다.
     return `
       <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
         <defs>
