@@ -11,7 +11,6 @@ const renderSVG = (data) => {
     </svg>
   `;
 };
-export {renderSVG};
 
 export default async (req, res) => {
   try {
