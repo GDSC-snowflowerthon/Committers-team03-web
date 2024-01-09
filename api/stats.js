@@ -13,10 +13,10 @@ export default async (req, res) => {
       // 150 초과 320 이하인 경우, #90C9F6 에서 #2E44BC로 그라디언트를 적용합니다.
       const gradientRatio = (data.snowmanHeight - 150) / (320 - 150);
       gradientStops = `
-        <stop offset="100%" style="stop-color:#90C9F6;" />
-        <stop offset="${100 * gradientRatio}%" style="stop-color:#90C9F6;" />
-        <stop offset="${100 * gradientRatio}%" style="stop-color:#2E44BC;" />
         <stop offset="0%" style="stop-color:#2E44BC;" />
+        <stop offset="${100 * gradientRatio}%" style="stop-color:#2E44BC;" />
+        <stop offset="${100 * gradientRatio}%" style="stop-color:#90C9F6;" />
+        <stop offset="100%" style="stop-color:#90C9F6;" />
       `;
     } else {
       // 320 초과인 경우, #2E44BC 색상만 사용합니다.
