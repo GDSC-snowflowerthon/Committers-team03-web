@@ -13,21 +13,21 @@ export const SnowmanDecorationSection: React.FC = () => {
             <S.SectionTitle>눈덩이 꾸미기</S.SectionTitle>
             <S.ColorSection>
             {bodyColors.map((color) => (
-                <ColorButton key={color} color={color} part="body" />
+                <ColorButton key={color} color={color} part="snowId" />
             ))}
             </S.ColorSection>
     
             <S.SectionTitle>목도리 꾸미기</S.SectionTitle>
             <S.ColorSection>
             {scarfColors.map((color) => (
-                <ColorButton key={color} color={color} part="scarf" />
+                <ColorButton key={color} color={color} part="decoId" />
             ))}
             </S.ColorSection>
     
             <S.SectionTitle>모자 꾸미기</S.SectionTitle>
             <S.ColorSection>
             {hatColors.map((color) => (
-                <ColorButton key={color} color={color} part="hat" />
+                <ColorButton key={color} color={color} part="hatId" />
             ))}
             </S.ColorSection>
         </S.Container>

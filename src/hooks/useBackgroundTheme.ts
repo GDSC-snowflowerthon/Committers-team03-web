@@ -8,7 +8,7 @@ export const useBackgroundTheme = () => {
     const topScrollRoutes = ['/', '/custom', '/ranking', '/follow', '/register'];
 
     const calculateGradient = (height: number): string => {
-        const gradientStart = Math.min(100, (height - 250) / 150 * 100);
+        const gradientStart = Math.min(100, (height - 150) / 170 * 100);
         const gradientEnd = Math.min(100, gradientStart + 50);
 
         // 특정 경로에서는 기본 색상 반환
@@ -16,9 +16,9 @@ export const useBackgroundTheme = () => {
             return '#90C9F6';
         }
 
-        if (height < 250) {
+        if (height < 150) {
             return '#90C9F6'; // 기본 색상
-        } else if (height >= 250 && height < 400) {
+        } else if (height >= 150 && height < 320) {
             return `linear-gradient(to bottom, #2E44BC ${gradientStart}%, #90C9F6 ${gradientEnd}%)`;
         } else {
             return '#2E44BC';

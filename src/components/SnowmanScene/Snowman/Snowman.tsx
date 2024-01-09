@@ -1,17 +1,51 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere, Cylinder } from '@react-three/drei';
 import * as THREE from 'three';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { snowmanRotationState, snowmanYPositionState } from '@/atoms/snowmanState';
-import { snowmanDecorationState } from '@/atoms/snowmanDecorationState';
+import useIsMyHome from '@/hooks/useIsMyHome';
+import { myState, otherUserState } from '@/atoms/userState';
+
+// 섹션별 컬러 매핑
+const bodyColorToNumberMap = {
+    1: '#FFFFFF',
+    2: '#FFBA7A',
+    3: '#A3FF82',
+    4: '#1E90FF',
+    5: '#FF77F1',
+  };
+  
+  const scarfColorToNumberMap = {
+    1: '#1E90FF',
+    2: '#FF7777',
+    3: '#FFBA7A',
+    4: '#A3FF82',
+    5: '#FF77F1',
+  };
+  
+  const hatColorToNumberMap = {
+    1: '#1E90FF',
+    2: '#FF7777',
+    3: '#FFBA7A',
+    4: '#A3FF82',
+    5: '#FF77F1',
+  };
 
 export default function Snowman() {
     const snowmanRef = useRef<THREE.Group>(null);
-    const yPosition = useRecoilValue(snowmanYPositionState); // Recoil 상태 값을 사용
-    const decoration = useRecoilValue(snowmanDecorationState); // Recoil 상태 값을 사용
+    const yPosition = useRecoilValue(snowmanYPositionState);
     const [rotate, setRotate] = useRecoilState(snowmanRotationState);
+    const myInfo = useRecoilValue(myState);
+    const otherUserInfo = useRecoilValue(otherUserState);
+    const isMyHome = useIsMyHome();
 
+    // 현재 페이지와 사용자 컨텍스트에 따라 장식 결정
+    const userInfo = isMyHome || window.location.pathname === '/custom' ? myInfo : otherUserInfo;
+    const bodyColor = bodyColorToNumberMap[userInfo.snowId];
+    const scarfColor = scarfColorToNumberMap[userInfo.decoId];
+    const hatColor = hatColorToNumberMap[userInfo.hatId];
+    console.log(`${bodyColor}${scarfColor}${hatColor}`)
     useFrame(() => {
         if (rotate && snowmanRef.current) {
             const rotationStep = 0.11; // 회전 속도
@@ -29,13 +63,13 @@ export default function Snowman() {
     <group ref={snowmanRef} position={[0, yPosition, 0]}>
         {/* 눈사람 몸체 */}
         <Sphere position={[0, 1.25, 0]} args={[0.6, 32, 32]}>
-            <meshStandardMaterial color={decoration.body.color} />
+            <meshStandardMaterial color={bodyColor} />
         </Sphere>
         <Sphere position={[0, 0.4, 0]} args={[0.9, 32, 32]}>
-            <meshStandardMaterial color={decoration.body.color} />
+            <meshStandardMaterial color={bodyColor} />
         </Sphere>
         <Sphere position={[0, -1.1, 0]} args={[1.2, 32, 32]}>
-            <meshStandardMaterial color={decoration.body.color} />
+            <meshStandardMaterial color={bodyColor} />
         </Sphere>
 
         {/* 두 번째 몸통에 단추 추가 */}
@@ -92,17 +126,17 @@ export default function Snowman() {
 
         {/* 목도리 */}
         <Cylinder position={[0, 1.05, 0]} args={[0.63, 0.8, 0.35, 32]}>
-            <meshStandardMaterial color={decoration.scarf.color} />
+            <meshStandardMaterial color={scarfColor} />
         </Cylinder>
         <Cylinder position={[-0.2, 1, 0.5]} args={[0.25, 0.25, 1.2, 8]}rotation={[-Math.PI / 5, 0, -Math.PI / 8]}>
-            <meshStandardMaterial color={decoration.scarf.color} />
+            <meshStandardMaterial color={scarfColor} />
         </Cylinder>
         {/* 모자 */}
         <Cylinder position={[0, 1.68, 0]} args={[0.8, 0.8, 0.05, 32]}>
-            <meshStandardMaterial color={decoration.hat.color} />
+            <meshStandardMaterial color={hatColor} />
         </Cylinder>
         <Cylinder position={[0, 2.45, 0]} args={[0.6, 0.5, 1.5, 32]}>
-            <meshStandardMaterial color={decoration.hat.color} />
+            <meshStandardMaterial color={hatColor} />
         </Cylinder>
 
         {/* 손가락을 표현하기 위한 작은 실린더들 */}

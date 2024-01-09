@@ -1,12 +1,30 @@
 import React from 'react';
-import { AnimatedObjectWrapper } from './style'; // 스타일 파일의 경로를 확인하세요
+import * as S from './style';
+import { useRecoilValue } from 'recoil';
+import { snowmanHeightState } from '@/atoms/snowmanState';
+import Objects from '@/assets/Objects';
 
-interface AnimatedObjectsProps {
-  backgroundImageUrl: string;
-}
+export default function AnimatedObjects() {
+  const snowmanHeight = useRecoilValue(snowmanHeightState);
 
-export default function AnimatedObjects({ backgroundImageUrl }: AnimatedObjectsProps) {
+  let objectIndex = -1;
+  if (snowmanHeight >= 130) {
+    objectIndex = Math.floor((snowmanHeight - 130) / 30);
+    objectIndex = Math.min(objectIndex, Objects.length - 1);
+  }
+  const backgroundImageUrl = objectIndex >= 0 ? Objects[objectIndex] : null;
+
+  // 이미지가 변경될 때마다 top 위치 설정
+  const topPosition = objectIndex >= 0 ? (snowmanHeight - 130 - (objectIndex * 30)) * 15 : snowmanHeight * 15;
+  console.log(`${topPosition}`)
   return (
-    <AnimatedObjectWrapper backgroundImageUrl={backgroundImageUrl} />
+    <S.Background>
+      {backgroundImageUrl && (
+        <S.AnimatedObjectWrapper 
+          backgroundImageUrl={backgroundImageUrl} 
+          topPosition={topPosition}
+        />
+      )}
+    </S.Background>
   );
 }

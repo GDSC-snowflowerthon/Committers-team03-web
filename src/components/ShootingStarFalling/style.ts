@@ -45,8 +45,8 @@ export const Star = styled.div<{
   position: absolute;
   top: var(--start-top);
   left: var(--start-left);
-  width: ${props => props.size === 'medium' ? '50px' : '40px'};
-  height: ${props => props.size === 'medium' ? '50px' : '40px'};
+  width: ${props => props.size === 'medium' ? '40px' : '30px'};
+  height: ${props => props.size === 'medium' ? '40px' : '30px'};
   background-image: url(${ShootingStarImg});
   background-size: contain;
   background-repeat: no-repeat;
