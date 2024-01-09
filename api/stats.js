@@ -1,18 +1,20 @@
-const renderSVG = (data) => {
-  return `
-    <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
-      <style>
-        .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-        .stat { font: 400 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
-      </style>
-      <text x="10" y="25" class="header">GitHub Stats for ${data.name}</text>
-      <text x="10" y="55" class="stat">Followers: ${data.followers}</text>
-      <text x="10" y="80" class="stat">Repositories: ${data.public_repos}</text>
-    </svg>
-  `;
-};
+
 
 export default async (req, res) => {
+  const renderSVG = (data) => {
+    return `
+      <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+        <style>
+          .header { font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+          .stat { font: 400 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
+        </style>
+        <text x="10" y="25" class="header">GitHub Stats for ${data.name}</text>
+        <text x="10" y="55" class="stat">Followers: ${data.followers}</text>
+        <text x="10" y="80" class="stat">Repositories: ${data.public_repos}</text>
+      </svg>
+    `;
+  };
+  
   try {
     // Dummy data for demonstration purposes
     const data = {
@@ -32,4 +34,4 @@ export default async (req, res) => {
     res.status(500).send('Error generating SVG');
   }
 };
-export {renderSVG};
+export {};
