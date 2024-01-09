@@ -1,5 +1,3 @@
-
-
 export default async (req, res) => {
   const renderSVG = (data) => {
     return `
@@ -14,14 +12,16 @@ export default async (req, res) => {
       </svg>
     `;
   };
-  
+
   try {
-    // Dummy data for demonstration purposes
-    const data = {
-      name: 'Dummy Name',
-      followers: 123,
-      public_repos: 456,
+    // req.query에서 필요한 데이터를 직접 분해하여 할당합니다.
+    const {
+      name = 'Dummy Name',
+      followers = 123,
+      public_repos = 456,
     } = req.query;
+    // 이후에 이 변수들을 사용하여 data 객체를 생성합니다.
+    const data = {name, followers, public_repos};
 
     // In a real scenario, you'd fetch data from GitHub API
     // const response = await fetch(`https://api.github.com/users/${username}`);
