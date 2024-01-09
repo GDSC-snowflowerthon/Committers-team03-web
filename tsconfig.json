@@ -18,5 +18,5 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src", "src/assets", "src/pages/Login/.tsx", "api/stats.js"]
+  "include": ["src", "src/assets", "src/pages/Login/.tsx", "api/stats.ts"]
 }
