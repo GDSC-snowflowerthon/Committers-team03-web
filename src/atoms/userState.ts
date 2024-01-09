@@ -17,7 +17,7 @@ export const myState = atom<MyState>({
 export const otherUserState = atom<OtherUserState>({
   key: 'otherUserState',
   default: {
-    nickname: '',
+    nickname: 'otherUser11',
     snowmanHeight: 0,
     snowId: 1,
     hatId: 1,
