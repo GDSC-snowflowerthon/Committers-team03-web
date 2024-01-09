@@ -1,51 +1,18 @@
+// import Card0 from '../public/0.svg';
+// import Card1 from '../public/1.svg';
+// import Card2 from '../public/2.svg';
+// import Card3 from '../public/3.svg';
+// import Card4 from '../public/4.svg';
+// import Card5 from '../public/5.svg';
+// import Card6 from '../public/6.svg';
+// import Card7 from '../public/7.svg';
+// import Card8 from '../public/8.svg';
+// import Card9 from '../public/9.svg';
+// import Card10 from '../public/10.svg';
+import fs from 'fs';
+import path from 'path';
+
 export default async (req, res) => {
-  const renderSVG = (data) => {
-    let gradientStops;
-
-    // snowmanHeight 값에 따라 그라디언트를 조정합니다.
-    if (data.snowmanHeight <= 150) {
-      // 150 이하인 경우, #90C9F6 색상만 사용합니다.
-      gradientStops = `
-        <stop offset="0%" style="stop-color:#90C9F6;" />
-        <stop offset="100%" style="stop-color:#90C9F6;" />
-      `;
-    } else if (data.snowmanHeight <= 320) {
-      // 150 초과 320 이하인 경우, #90C9F6 에서 #2E44BC로 그라디언트를 적용합니다.
-      const gradientRatio = (data.snowmanHeight - 150) / (320 - 150);
-      gradientStops = `
-        <stop offset="0%" style="stop-color:#2E44BC;" />
-        <stop offset="${100 * gradientRatio}%" style="stop-color:#2E44BC;" />
-        <stop offset="${100 * gradientRatio}%" style="stop-color:#90C9F6;" />
-        <stop offset="100%" style="stop-color:#90C9F6;" />
-      `;
-    } else {
-      // 320 초과인 경우, #2E44BC 색상만 사용합니다.
-      gradientStops = `
-        <stop offset="0%" style="stop-color:#2E44BC;" />
-        <stop offset="100%" style="stop-color:#2E44BC;" />
-      `;
-    }
-
-    // SVG 문자열을 반환합니다.
-    return `
-      <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="snowmanGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            ${gradientStops}
-          </linearGradient>
-        </defs>
-        <rect width="400" height="200" fill="url(#snowmanGradient)" />
-        <style>
-          .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-          .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
-        </style>
-        <text x="10" y="25" class="header">Snowman Heights for ${data.nickname}</text>
-        <text x="10" y="55" class="stat">Height: ${data.snowmanHeight} cm</text>
-        <text x="10" y="80" class="stat">Attacked: ${data.damage} times</text>
-      </svg>
-    `;
-  };
-
   try {
     // req.query에서 필요한 데이터를 직접 분해하여 할당합니다.
     const {
@@ -57,7 +24,7 @@ export default async (req, res) => {
       hatId = 1,
       decoId = 1,
     } = req.query;
-    // 이후에 이 변수들을 사용하여 data 객체를 생성합니다.
+
     const data = {
       nickname,
       snowmanHeight,
@@ -68,15 +35,56 @@ export default async (req, res) => {
       decoId,
     };
 
-    // In a real scenario, you'd fetch data from GitHub API
-    // const response = await fetch(`https://api.github.com/users/${username}`);
-    // const data = await response.json();
+    // snowmanHeight에 따라 파일 이름을 결정합니다.
+    let filename;
+    if (data.snowmanHeight <= 130) {
+      filename = '0.svg';
+    } else if (snowmanHeight <= 160) {
+      filename = '1.svg';
+    } else if (snowmanHeight <= 190) {
+      filename = '2.svg';
+    } else if (snowmanHeight <= 220) {
+      filename = '3.svg';
+    } else if (snowmanHeight <= 250) {
+      filename = '4.svg';
+    } else if (snowmanHeight <= 280) {
+      filename = '5.svg';
+    } else if (snowmanHeight <= 310) {
+      filename = '6.svg';
+    } else if (snowmanHeight <= 340) {
+      filename = '7.svg';
+    } else if (snowmanHeight <= 370) {
+      filename = '8.svg';
+    } else if (snowmanHeight <= 410) {
+      filename = '9.svg';
+    } else {
+      filename = '10.svg';
+    }
 
-    const svg = renderSVG(data);
+    // 파일 시스템을 통해 SVG 파일을 읽습니다.
+    // eslint-disable-next-line no-undef
+    const filePath = path.join(process.cwd(), 'public', filename);
+    let svg = fs.readFileSync(filePath, 'utf8');
+
+    console.log(`${filePath}`);
+    // SVG 파일을 읽습니다.
+
+    // SVG 내용에 텍스트 요소를 추가합니다.
+    svg = svg.replace(
+      '</svg>',
+      `
+      <text x="10" y="25" class="header">Snowman Heights for ${nickname}</text>
+      <text x="10" y="55" class="stat">Height: ${snowmanHeight} cm</text>
+      <text x="10" y="80" class="stat">Attacked: ${damage} times</text>
+    </svg>`,
+    );
+
     res.setHeader('Content-Type', 'image/svg+xml');
     res.status(200).send(svg);
   } catch (error) {
-    res.status(500).send('Error generating SVG');
+    console.error(error);
+    res.status(500).send('Error serving the SVG file');
   }
 };
+
 export {};
