@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import * as S from './style';
 import GithubLoginButton from '../Button/GithubLoginButton/GithubLoginButton';
 import Logo from '../Logo/Logo';
+import SnowFalling from '../SnowFalling/SnowFalling';
 
 export default function LoginPageLayout() {
   const githubLoginClick = () => {
@@ -36,6 +37,7 @@ export default function LoginPageLayout() {
   return (
     <>
       <S.Layout>
+      <SnowFalling />
         <S.Wrapper>
           <Logo height={500} width={500} background="" />
           <GithubLoginButton onClick={githubLoginClick} />
