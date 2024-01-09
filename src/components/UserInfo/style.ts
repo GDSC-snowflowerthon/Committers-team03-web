@@ -2,7 +2,7 @@ import theme from '@/theme';
 import { styled } from 'styled-components';
 
 export const Container = styled.div`
-    position: fixed;
+    position: absolute;
     width: 160px;
     height: 132px;
     background-size: 160px 132px;
