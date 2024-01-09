@@ -1,5 +1,3 @@
-import fetch from 'node-fetch';
-
 const renderSVG = (data) => {
   return `
     <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +20,7 @@ export default async (req, res) => {
       name: 'Dummy Name',
       followers: 123,
       public_repos: 456,
-    };
+    } = req.query;
 
     // In a real scenario, you'd fetch data from GitHub API
     // const response = await fetch(`https://api.github.com/users/${username}`);
