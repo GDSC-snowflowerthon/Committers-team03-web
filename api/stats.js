@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 // import Card0 from '../public/0.svg';
 // import Card1 from '../public/1.svg';
 // import Card2 from '../public/2.svg';
@@ -14,6 +16,17 @@
 
 export default async (req, res) => {
   try {
+    // 파일 시스템 모듈을 사용하여 public 폴더에서 SVG 파일을 읽습니다.
+    const fs = require('fs');
+    const path = require('path');
+    const filePath = path.join(process.cwd(), 'public', filename);
+
+    // 파일 존재 여부 확인
+    if (!fs.existsSync(filePath)) {
+      console.error('File does not exist:', filePath);
+      return res.status(404).send('File not found');
+    }
+
     // req.query에서 필요한 데이터를 직접 분해하여 할당합니다.
     const {
       nickname = 'Dummy Name',
@@ -63,11 +76,11 @@ export default async (req, res) => {
 
     // 파일 시스템 모듈을 사용하여 public 폴더에서 SVG 파일을 읽습니다.
     // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
-    const fs = require('fs');
+    //const fs = require('fs');
     // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
-    const path = require('path');
+    //const path = require('path');
     // eslint-disable-next-line no-undef
-    const filePath = path.join(process.cwd(), 'public', filename);
+    //const filePath = path.join(process.cwd(), 'public', filename);
     console.log(`${filePath}`);
     // SVG 파일을 읽습니다.
     let svg = fs.readFileSync(filePath, 'utf8');
