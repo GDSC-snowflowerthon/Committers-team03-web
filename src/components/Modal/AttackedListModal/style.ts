@@ -5,5 +5,6 @@ export const Wrapper = styled.div`
   height: 600px;
   padding: 5px;
   overflow-y: auto;
+  overflow-x: hidden;
 `;
 
