@@ -8,7 +8,7 @@ export const myState = atom<MyState>({
     snowflake: 0,
     snowmanHeight: 0,
     snowId: 1,
-    hatId: 3,
+    hatId: 1,
     decoId: 1,
     newAlarm: false
   }
@@ -20,7 +20,7 @@ export const otherUserState = atom<OtherUserState>({
     nickname: '',
     snowmanHeight: 0,
     snowId: 1,
-    hatId: 2,
+    hatId: 1,
     decoId: 1,
     isFollowed: false
   },
