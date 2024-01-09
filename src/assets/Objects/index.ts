@@ -1,3 +1,4 @@
+import Object0 from './0.png';
 import Object1 from './1.png';
 import Object2 from './2.png';
 import Object3 from './3.png';
@@ -9,6 +10,7 @@ import Object8 from './8.png';
 import Object9 from './9.png';
 
 export default [
+    Object0,
     Object1, 
     Object2, 
     Object3, 
