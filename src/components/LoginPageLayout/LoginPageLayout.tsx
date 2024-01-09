@@ -3,6 +3,7 @@ import * as S from './style';
 import GithubLoginButton from '../Button/GithubLoginButton/GithubLoginButton';
 import Logo from '../Logo/Logo';
 import SnowFalling from '../SnowFalling/SnowFalling';
+import SnowmanScene from '../SnowmanScene/SnowmanScene';
 
 export default function LoginPageLayout() {
   const githubLoginClick = () => {
@@ -40,6 +41,7 @@ export default function LoginPageLayout() {
       <SnowFalling />
         <S.Wrapper>
           <Logo height={500} width={500} background="" />
+          <SnowmanScene height={"300px"} />
           <GithubLoginButton onClick={githubLoginClick} />
         </S.Wrapper>
       </S.Layout>

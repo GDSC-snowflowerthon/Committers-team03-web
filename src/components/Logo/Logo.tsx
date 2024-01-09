@@ -6,7 +6,7 @@ import {LogoProps} from '@/interfaces/logo';
 export default function Logo(props: LogoProps) {
   return (
     <S.AnimatedObjectWrapper>
-      <S.Logo {...props} width={300} height={260} background={LogoImg} />;
+      <S.Logo {...props} width={300} height={130} background={LogoImg} />;
     </S.AnimatedObjectWrapper>
   )
 }

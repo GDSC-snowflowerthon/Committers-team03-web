@@ -16,12 +16,11 @@ export const GithubButtonWrapper = styled.div`
     background-size: 50px 50px;
     background-repeat: no-repeat;
     background-size: contain;
-    margin-top: 5rem;
+    margin-top: -2px;
     width: 300px;  // 버튼 크기 조정
     height: 50px; // 버튼 크기 조정
     border: none;
     cursor: pointer;
-   
     z-index: 2;
     background-color: transparent;
 `;

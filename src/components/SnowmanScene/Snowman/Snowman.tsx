@@ -57,6 +57,10 @@ export default function Snowman() {
                 setRotate(false); // 회전 상태를 false로 설정
             }
         }
+
+        if(window.location.pathname === '/') {
+            snowmanRef.current.rotation.y += 0.03;
+        }
     });
 
   return (
