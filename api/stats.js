@@ -1,14 +1,14 @@
-// import Card0 from '../public/0.svg';
-// import Card1 from '../public/1.svg';
-// import Card2 from '../public/2.svg';
-// import Card3 from '../public/3.svg';
-// import Card4 from '../public/4.svg';
-// import Card5 from '../public/5.svg';
-// import Card6 from '../public/6.svg';
-// import Card7 from '../public/7.svg';
-// import Card8 from '../public/8.svg';
-// import Card9 from '../public/9.svg';
-// import Card10 from '../public/10.svg';
+import Card0 from '../public/0.svg';
+import Card1 from '../public/1.svg';
+import Card2 from '../public/2.svg';
+import Card3 from '../public/3.svg';
+import Card4 from '../public/4.svg';
+import Card5 from '../public/5.svg';
+import Card6 from '../public/6.svg';
+import Card7 from '../public/7.svg';
+import Card8 from '../public/8.svg';
+import Card9 from '../public/9.svg';
+import Card10 from '../public/10.svg';
 import fs from 'fs';
 import path from 'path';
 
@@ -36,34 +36,33 @@ export default async (req, res) => {
     };
 
     // snowmanHeight에 따라 파일 이름을 결정합니다.
-    let filename;
+    let filePath;
     if (data.snowmanHeight <= 130) {
-      filename = '0.svg';
+      filePath = Card0;
     } else if (snowmanHeight <= 160) {
-      filename = '1.svg';
+      filePath = Card1;
     } else if (snowmanHeight <= 190) {
-      filename = '2.svg';
+      filePath = Card2;
     } else if (snowmanHeight <= 220) {
-      filename = '3.svg';
+      filePath = Card3;
     } else if (snowmanHeight <= 250) {
-      filename = '4.svg';
+      filePath = Card4;
     } else if (snowmanHeight <= 280) {
-      filename = '5.svg';
+      filePath = Card5;
     } else if (snowmanHeight <= 310) {
-      filename = '6.svg';
+      filePath = Card6;
     } else if (snowmanHeight <= 340) {
-      filename = '7.svg';
+      filePath = Card7;
     } else if (snowmanHeight <= 370) {
-      filename = '8.svg';
+      filePath = Card8;
     } else if (snowmanHeight <= 410) {
-      filename = '9.svg';
+      filePath = Card9;
     } else {
-      filename = '10.svg';
+      filePath = Card10;
     }
 
     // 파일 시스템을 통해 SVG 파일을 읽습니다.
-    // eslint-disable-next-line no-undef
-    const filePath = path.join(process.cwd(), 'public', filename);
+
     let svg = fs.readFileSync(filePath, 'utf8');
 
     console.log(`${filePath}`);
