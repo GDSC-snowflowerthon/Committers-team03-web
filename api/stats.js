@@ -4,22 +4,25 @@ export default async (req, res) => {
 
     if (data.snowmanHeight <= 150) {
       // snowmanHeight이 150 이하일 때는 하나의 색상만 사용
-      gradientStops = `<stop offset="0%" style="stop-color:#90C9F6;stop-opacity:1" />
-                       <stop offset="100%" style="stop-color:#90C9F6;stop-opacity:1" />`;
+      gradientStops = `
+        <stop offset="0%" style="stop-color:#90C9F6;" />
+        <stop offset="100%" style="stop-color:#90C9F6;" />
+      `;
     } else if (data.snowmanHeight > 150 && data.snowmanHeight <= 320) {
       // snowmanHeight이 150 초과, 320 이하일 때는 두 색상을 그라디언트로 사용
-      gradientStops = `<stop offset="0%" style="stop-color:#90C9F6;stop-opacity:1" />
-                       <stop offset="${
-                         ((data.snowmanHeight - 150) / 170) * 100
-                       }%" style="stop-color:#90C9F6;stop-opacity:1" />
-                       <stop offset="${
-                         ((data.snowmanHeight - 150) / 170) * 100
-                       }%" style="stop-color:#2E44BC;stop-opacity:1" />
-                       <stop offset="100%" style="stop-color:#2E44BC;stop-opacity:1" />`;
+      const ratio = (data.snowmanHeight - 150) / (320 - 150);
+      gradientStops = `
+        <stop offset="0%" style="stop-color:#90C9F6;" />
+        <stop offset="${ratio * 100}%" style="stop-color:#90C9F6;" />
+        <stop offset="${ratio * 100}%" style="stop-color:#2E44BC;" />
+        <stop offset="100%" style="stop-color:#2E44BC;" />
+      `;
     } else {
       // snowmanHeight이 320 초과일 때는 다른 하나의 색상만 사용
-      gradientStops = `<stop offset="0%" style="stop-color:#2E44BC;stop-opacity:1" />
-                       <stop offset="100%" style="stop-color:#2E44BC;stop-opacity:1" />`;
+      gradientStops = `
+        <stop offset="0%" style="stop-color:#2E44BC;" />
+        <stop offset="100%" style="stop-color:#2E44BC;" />
+      `;
     }
 
     return `
