@@ -7,9 +7,9 @@ export const myState = atom<MyState>({
     nickname: 'githubid00',
     snowflake: 0,
     snowmanHeight: 0,
-    snowId: 0,
-    hatId: 0,
-    decoId: 0,
+    snowId: 1,
+    hatId: 3,
+    decoId: 1,
     newAlarm: false
   }
 });
@@ -19,9 +19,9 @@ export const otherUserState = atom<OtherUserState>({
   default: {
     nickname: '',
     snowmanHeight: 0,
-    snowId: 0,
-    hatId: 0,
-    decoId: 0,
+    snowId: 1,
+    hatId: 2,
+    decoId: 1,
     isFollowed: false
   },
 });

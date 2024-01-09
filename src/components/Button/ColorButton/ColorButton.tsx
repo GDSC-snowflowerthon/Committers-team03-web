@@ -3,50 +3,63 @@ import { useRecoilState } from 'recoil';
 import { snowmanDecorationState } from '@/atoms/snowmanDecorationState';
 import { Button } from './style';
 import { ColorButtonProps } from '@/interfaces/decoration';
+import { myState } from '@/atoms/userState';
 // 섹션별 컬러 매핑
 const bodyColorToNumberMap = {
-  '#FFFFFF': 1,
-  '#FFBA7A': 2,
-  '#A3FF82': 3,
-  '#1E90FF': 4,
-  '#FF77F1': 5,
+  1: '#FFFFFF',
+  2: '#FFBA7A',
+  3: '#A3FF82',
+  4: '#1E90FF',
+  5: '#FF77F1',
 };
 
 const scarfColorToNumberMap = {
-  '#1E90FF': 1,
-  '#FF7777': 2,
-  '#FFBA7A': 3,
-  '#A3FF82': 4,
-  '#FF77F1': 5,
+  1: '#1E90FF',
+  2: '#FF7777',
+  3: '#FFBA7A',
+  4: '#A3FF82',
+  5: '#FF77F1',
 };
 
 const hatColorToNumberMap = {
-  '#1E90FF': 1,
-  '#FF7777': 2,
-  '#FFBA7A': 3,
-  '#A3FF82': 4,
-  '#FF77F1': 5,
+  1: '#1E90FF',
+  2: '#FF7777',
+  3: '#FFBA7A',
+  4: '#A3FF82',
+  5: '#FF77F1',
 };
 
 export const ColorButton: React.FC<ColorButtonProps> = ({ color, part }) => {
-  const [decoration, setDecoration] = useRecoilState(snowmanDecorationState);
+  const [decoration, setDecoration] = useRecoilState(myState);
+
+  let colorNumberMap;
+  switch (part) {
+    case 'snowId':
+      colorNumberMap = bodyColorToNumberMap;
+      break;
+    case 'decoId':
+      colorNumberMap = scarfColorToNumberMap;
+      break;
+    case 'hatId':
+      colorNumberMap = hatColorToNumberMap;
+      break;
+    default:
+      colorNumberMap = {}; // 기본값
+  }
 
   // 현재 선택된 컬러와 매핑된 숫자를 결정합니다.
-  const isSelected = decoration[part].color === color;
-  const colorNumberMap = part === 'body' ? bodyColorToNumberMap
-                       : part === 'scarf' ? scarfColorToNumberMap
-                       : hatColorToNumberMap;
+  const isSelected = colorNumberMap[decoration[part]] === color;
 
   const handleClick = () => {
     // 상태를 업데이트하고, 서버에 보낼 숫자를 로깅합니다.
-    const colorNumber = colorNumberMap[color];
+    const colorNumber = Object.keys(colorNumberMap).find(key => colorNumberMap[key] === color);
     console.log(`${part} color number for server:`, colorNumber);
 
     setDecoration({
       ...decoration,
-      [part]: { color: color, number: colorNumber },
+      [part]: colorNumber,
     });
   };
-
+  console.log(`color:${color}`)
   return <Button color={color} isSelected={isSelected} onClick={handleClick} />;
 };
