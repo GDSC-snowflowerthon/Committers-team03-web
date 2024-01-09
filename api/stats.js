@@ -13,8 +13,9 @@ const renderSVG = (data) => {
     </svg>
   `;
 };
-//
-module.exports = async (req, res) => {
+export {renderSVG};
+
+export default async (req, res) => {
   try {
     // Dummy data for demonstration purposes
     const data = {
