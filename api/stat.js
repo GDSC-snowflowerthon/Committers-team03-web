@@ -68,12 +68,11 @@ export default async (req, res) => {
     //const filePath = path.join(process.cwd(), 'public', filename);
     console.log(`${filename}`);
     // SVG 파일을 읽습니다.
-    let svg = filename;
+    let svg;
 
     // SVG 내용에 텍스트 요소를 추가합니다.
     svg = svg.replace(
-      '</svg>',
-      `
+      `${filename}
         <style>
         .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
         .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
