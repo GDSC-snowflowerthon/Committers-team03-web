@@ -15,7 +15,7 @@ export default async (req, res) => {
       `${baseUrl}/Card${fileNumber}.svg`,
       //`${baseUrl}/Object${fileNumber}.svg`,
       `${baseUrl}/Snowman000.svg`,
-      //fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
+      fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
     ];
 
     // 모든 SVG 파일을 동시에 가져옵니다.
@@ -33,12 +33,12 @@ export default async (req, res) => {
       <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
         ${svgs.join('')}
         <style>
-          .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-          .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
+          .header { font: 900 30px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+          .stat { font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
         </style>
-        <text x="10" y="25" class="header">Snowman Heights for ${nickname}</text>
-        <text x="10" y="55" class="stat">${snowmanHeight}</text>
-        <text x="10" y="80" class="stat">Attacked by ${attacking} times</text>
+        <text x="30" y="60" class="header">${nickname}</text>
+        <text x="30" y="135" class="stat">Height: ${snowmanHeight} M</text>
+        <text x="30" y="170" class="stat">Attacked: ${attacking} times</text>
       </svg>
     `;
 
