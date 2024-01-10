@@ -13,12 +13,6 @@ import fs from 'fs';
 // import path from 'path';
 
 export default async (req, res) => {
-  let svg = fs.readFileSync(
-    'https://commiters-team03-web.vercel.app/10.svg',
-    'utf8',
-  );
-
-  console.log(svg);
   try {
     // req.query에서 필요한 데이터를 직접 분해하여 할당합니다.
     const {
@@ -95,12 +89,6 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'image/svg+xml');
     res.status(200).send(svg);
   } catch (error) {
-    let svg = fs.readFileSync(
-      'https://commiters-team03-web.vercel.app/10.svg',
-      'utf8',
-    );
-
-    console.log(svg);
     res.status(500).send('Error serving the SVG file');
   }
 };
