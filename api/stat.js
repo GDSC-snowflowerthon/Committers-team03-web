@@ -4,16 +4,30 @@ export default async (req, res) => {
   try {
     const {
       nickname = 'Dummy Name',
-      snowmanHeight = 123,
+      snowmanHeight = 310,
       attacking = 456,
     } = req.query;
 
     // 파일 URL 결정
     const baseUrl = 'https://commiters-team03-web.vercel.app';
     const fileNumber = Math.min(
-      Math.max(Math.floor(snowmanHeight / 30), 0),
+      Math.max(Math.floor((snowmanHeight - 130) / 30), 0),
       10,
     );
+
+    // 조건에 따른 스타일 결정
+    let headerColor, statColor;
+    if (fileNumber < 4) {
+      headerColor = '#3181F4';
+      statColor = '#4F5861';
+    } else if (fileNumber < 7) {
+      headerColor = '#e6fcff';
+      statColor = '#e6fcff';
+    } else {
+      headerColor = '#e6fcff';
+      statColor = '#bbecff';
+    }
+
     const urls = [
       `${baseUrl}/Card${fileNumber}.svg`,
       //`${baseUrl}/Object${fileNumber}.svg`,
@@ -36,8 +50,8 @@ export default async (req, res) => {
       <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
         ${svgs.join('')}
         <style>
-          .header { font: 900 30px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-          .stat { font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
+          .header { font: 900 30px 'Segoe UI', Ubuntu, Sans-Serif; fill: ${headerColor}; }
+          .stat { font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: ${statColor}; }
         </style>
         <text x="30" y="60" class="header">${nickname}</text>
         <text x="30" y="135" class="stat">Height: ${snowmanHeight} M</text>
