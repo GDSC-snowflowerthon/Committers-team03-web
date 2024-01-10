@@ -1,16 +1,16 @@
 /* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/no-var-requires */
-import Card0 from '/0.svg';
-import Card1 from '/1.svg';
-import Card2 from '/2.svg';
-import Card3 from '/3.svg';
-import Card4 from '/4.svg';
-import Card5 from '/5.svg';
-import Card6 from '/6.svg';
-import Card7 from '/7.svg';
-import Card8 from '/8.svg';
-import Card9 from '/9.svg';
-import Card10 from '/10.svg';
+import Card0 from '/0.txt';
+import Card1 from '/1.txt';
+import Card2 from '/2.txt';
+import Card3 from '/3.txt';
+import Card4 from '/4.txt';
+import Card5 from '/5.txt';
+import Card6 from '/6.txt';
+import Card7 from '/7.txt';
+import Card8 from '/8.txt';
+import Card9 from '/9.txt';
+import Card10 from '/10.txt';
 import {isReturnStatement} from 'typescript';
 
 export default async (req, res) => {
