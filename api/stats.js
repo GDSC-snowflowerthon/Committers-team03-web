@@ -83,7 +83,7 @@ export default async (req, res) => {
     //const filePath = path.join(process.cwd(), 'public', filename);
     console.log(`${filePath}`);
     // SVG 파일을 읽습니다.
-    let svg = fs.readFileSync(filePath, 'utf8');
+    let svg = fs.readFileSync(filePath, 'Base64');
 
     // SVG 내용에 텍스트 요소를 추가합니다.
     svg = svg.replace(
