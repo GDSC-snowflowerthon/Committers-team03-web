@@ -11,6 +11,7 @@ import Card7 from '/7.svg';
 import Card8 from '/8.svg';
 import Card9 from '/9.svg';
 import Card10 from '/10.svg';
+import {isReturnStatement} from 'typescript';
 
 export default async (req, res) => {
   const fs = require('fs');
@@ -19,27 +20,27 @@ export default async (req, res) => {
   // snowmanHeight에 따라 파일 이름을 결정합니다.
   const filePath = (data) => {
     if (data.snowmanHeight < 130) {
-      return path.join(__dirname, 'public', '0.svg');
+      return Card0;
     } else if (data.snowmanHeight < 160) {
-      return path.join(__dirname, 'public', '1.svg');
+      return Card1;
     } else if (data.nowmanHeight < 190) {
-      return path.join(__dirname, 'public', '2.svg');
+      return Card2;
     } else if (data.snowmanHeight < 220) {
-      return path.join(__dirname, 'public', '3.svg');
+      return Card3;
     } else if (data.snowmanHeight < 250) {
-      return path.join(__dirname, 'public', '4.svg');
+      return Card4;
     } else if (data.snowmanHeight < 280) {
-      return path.join(__dirname, 'public', '5.svg');
+      return Card5;
     } else if (data.snowmanHeight < 310) {
-      return path.join(__dirname, 'public', '6.svg');
+      return Card6;
     } else if (data.snowmanHeight < 340) {
-      return path.join(__dirname, 'public', '7.svg');
+      return Card7;
     } else if (data.snowmanHeight < 370) {
-      return path.join(__dirname, 'public', '8.svg');
+      return Card8;
     } else if (data.snowmanHeight < 410) {
-      return path.join(__dirname, 'public', '9.svg');
+      return Card9;
     } else {
-      return path.join(__dirname, 'public', '10.svg');
+      return Card10;
     }
   };
 
