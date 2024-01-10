@@ -1,14 +1,14 @@
-import Card0 from '/0.svg';
-import Card1 from '/1.svg';
-import Card2 from '/2.svg';
-import Card3 from '/3.svg';
-import Card4 from '/4.svg';
-import Card5 from '/5.svg';
-import Card6 from '/6.svg';
-import Card7 from '/7.svg';
-import Card8 from '/8.svg';
-import Card9 from '/9.svg';
-import Card10 from '/10.svg';
+import Card0 from '../public/0.svg';
+import Card1 from '../public/1.svg';
+import Card2 from '../public/2.svg';
+import Card3 from '../public/3.svg';
+import Card4 from '../public/4.svg';
+import Card5 from '../public/5.svg';
+import Card6 from '../public/6.svg';
+import Card7 from '../public/7.svg';
+import Card8 from '../public/8.svg';
+import Card9 from '../public/9.svg';
+import Card10 from '../public/10.svg';
 
 export default async (req, res) => {
   // snowmanHeight에 따라 파일 이름을 결정합니다.
