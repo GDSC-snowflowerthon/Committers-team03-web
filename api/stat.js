@@ -1,53 +1,52 @@
-import {Buffer} from 'buffer';
 import fetch from 'node-fetch';
 
 export default async (req, res) => {
   try {
-    const data = {
-      nickname: req.query.nickname || 'Dummy Name',
-      snowmanHeight: req.query.snowmanHeight || 223,
-      damage: req.query.damage || 456,
-    };
+    const {
+      nickname = 'Dummy Name',
+      snowmanHeight = 123,
+      attacking = 456,
+    } = req.query;
 
     // 파일 URL 결정
     const baseUrl = 'https://commiters-team03-web.vercel.app';
-    const fileNumber = Math.min(Math.floor(data.snowmanHeight / 30), 10);
-    const pngUrl = `${baseUrl}/${fileNumber}.png`;
+    const fileNumber = Math.min(Math.floor(snowmanHeight / 30), 10);
+    const urls = [
+      `${baseUrl}/Card${fileNumber}.svg`,
+      //`${baseUrl}/Object${fileNumber}.svg`,
+      `${baseUrl}/Snowman000.svg`,
+      fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
+    ];
 
-    // PNG 이미지 가져오기
-    const imageResponse = await fetch(pngUrl);
-    if (!imageResponse.ok) {
-      throw new Error(`Failed to fetch image: ${imageResponse.statusText}`);
-    }
-    const imageBuffer = await imageResponse.arrayBuffer();
-    const base64Image = Buffer.from(imageBuffer).toString('base64');
-    const imageDataUri = `data:image/png;base64,${base64Image}`;
+    // 모든 SVG 파일을 동시에 가져옵니다.
+    const svgResponses = await Promise.all(urls.map((url) => fetch(url)));
+    svgResponses.forEach((response) => {
+      if (!response.ok)
+        throw new Error(`Failed to fetch SVG: ${response.statusText}`);
+    });
+    const svgs = await Promise.all(
+      svgResponses.map((response) => response.text()),
+    );
 
-    // SVG 텍스트 컨텐츠 생성
-    const svgContent = `
+    // 모든 SVG를 조합합니다.
+    const combinedSvg = `
       <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
+        ${svgs.join('')}
         <style>
-          .header { font: 700 30px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+          .header { font: 900 30px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
           .stat { font: 600 16px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
         </style>
-        <text x="30" y="60" class="header">${data.nickname}</text>
-        <text x="30" y="135" class="stat">Height: ${data.snowmanHeight} M</text>
-        <text x="30" y="170" class="stat">Attacked: ${data.damage} times</text>
-      </svg>`;
+        <text x="30" y="60" class="header">${nickname}</text>
+        <text x="30" y="135" class="stat">Height: ${snowmanHeight} M</text>
+        <text x="30" y="170" class="stat">Attacked: ${attacking} times</text>
+      </svg>
+    `;
 
-    // HTML 문자열 조합
-    const htmlContent = `
-      <div style="position: relative; width: 400px; height: 200px;">
-        <img src="${imageDataUri}" alt="Snowman Image" style="width: 100%; height: auto;" />
-        <div style="position: absolute; top: 0; left: 0;">
-          ${svgContent}
-        </div>
-      </div>`;
-
-    res.setHeader('Content-Type', 'text/html');
-    res.status(200).send(htmlContent);
+    res.setHeader('Content-Type', 'image/svg+xml');
+    res.status(200).send(combinedSvg);
   } catch (error) {
     console.error(error);
-    res.status(500).send('Error serving the content');
+    res.status(500).send('Error generating combined SVG');
   }
 };
+export {};
