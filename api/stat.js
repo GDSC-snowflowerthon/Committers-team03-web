@@ -10,7 +10,10 @@ export default async (req, res) => {
 
     // 파일 URL 결정
     const baseUrl = 'https://commiters-team03-web.vercel.app';
-    const fileNumber = Math.min(Math.floor(snowmanHeight / 30), 10);
+    const fileNumber = Math.min(
+      Math.max(Math.floor(snowmanHeight / 30), 0),
+      10,
+    );
     const urls = [
       `${baseUrl}/Card${fileNumber}.svg`,
       //`${baseUrl}/Object${fileNumber}.svg`,
