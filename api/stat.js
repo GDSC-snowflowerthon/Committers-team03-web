@@ -89,7 +89,12 @@ export default async (req, res) => {
     res.setHeader('Content-Type', 'image/svg+xml');
     res.status(200).send(svg);
   } catch (error) {
-    console.error(error);
+    let svg = fs.readFileSync(
+      'https://commiters-team03-web.vercel.app/10.svg',
+      'utf8',
+    );
+
+    console.error(svg);
     res.status(500).send('Error serving the SVG file');
   }
 };
