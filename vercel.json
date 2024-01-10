@@ -16,6 +16,7 @@
       "memory": 128,
       "maxDuration": 10
     }
-  }
+  },
+  "regions": ["icn1"]
 
 }
