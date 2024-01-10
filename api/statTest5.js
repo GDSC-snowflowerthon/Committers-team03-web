@@ -13,7 +13,7 @@ export default async (req, res) => {
     const fileNumber = Math.min(Math.floor(snowmanHeight / 30), 10);
     const urls = [
       `${baseUrl}/Card${fileNumber}.svg`,
-      `${baseUrl}/Object${fileNumber}.svg`,
+      //`${baseUrl}/Object${fileNumber}.svg`,
       `${baseUrl}/Snowman000.svg`,
       fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
     ];
