@@ -68,20 +68,25 @@ export default async (req, res) => {
     //const filePath = path.join(process.cwd(), 'public', filename);
     console.log(`${filename}`);
     // SVG 파일을 읽습니다.
-    let svg;
-
-    // SVG 내용에 텍스트 요소를 추가합니다.
-    svg = svg.replace(
-      `${filename}
-        <style>
-        .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-        .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
-        </style>
-        <text x="10" y="25" class="header">Snowman Heights for ${nickname}</text>
-        <text x="10" y="55" class="stat">Height: ${snowmanHeight} cm</text>
-        <text x="10" y="80" class="stat">Attacked: ${damage} times</text>
-      </svg>`,
-    );
+    let svg = `${filename}
+      <style>
+      .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+      .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
+      </style>
+      <text x="10" y="25" class="header">Snowman Heights for ${nickname}</text>
+      <text x="10" y="55" class="stat">Height: ${snowmanHeight} cm</text>
+      <text x="10" y="80" class="stat">Attacked: ${damage} times</text>
+    </svg>`;
+    // // SVG 내용에 텍스트 요소를 추가합니다.
+    // (svg = `${filename}
+    //   <style>
+    //   .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+    //   .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
+    //   </style>
+    //   <text x="10" y="25" class="header">Snowman Heights for ${nickname}</text>
+    //   <text x="10" y="55" class="stat">Height: ${snowmanHeight} cm</text>
+    //   <text x="10" y="80" class="stat">Attacked: ${damage} times</text>
+    // </svg>`);
 
     res.setHeader('Content-Type', 'image/svg+xml');
     res.status(200).send(svg);
