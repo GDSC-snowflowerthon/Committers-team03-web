@@ -16,7 +16,7 @@ import {isReturnStatement} from 'typescript';
 export default async (req, res) => {
   const fs = require('fs');
   const path = require('path');
-
+  console.log(fs.readFileSync(Card10, 'utf8'));
   // snowmanHeight에 따라 파일 이름을 결정합니다.
   const filePath = (data) => {
     if (data.snowmanHeight < 130) {
@@ -51,14 +51,7 @@ export default async (req, res) => {
 
     return `
     ${svgContent}
-      <style>
-      .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-      .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
-      </style>
-      <text x="10" y="25" class="header">Snowman Heights for ${data.nickname}</text>
-      <text x="10" y="55" class="stat">Height: ${data.snowmanHeight} M</text>
-      <text x="10" y="80" class="stat">Attacked: ${data.damage} times</text>
-    </svg>
+
   `;
   };
   try {
