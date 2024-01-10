@@ -9,12 +9,10 @@ export default async (req, res) => {
       damage: req.query.damage || 456,
     };
 
-    // 파일 URL 결정
     const baseUrl = 'https://commiters-team03-web.vercel.app';
     const fileNumber = Math.min(Math.floor(data.snowmanHeight / 30), 10);
     const pngUrl = `${baseUrl}/${fileNumber}.png`;
 
-    // PNG 이미지 가져오기
     const imageResponse = await fetch(pngUrl);
     if (!imageResponse.ok) {
       throw new Error(`Failed to fetch image: ${imageResponse.statusText}`);
@@ -23,26 +21,43 @@ export default async (req, res) => {
     const base64Image = Buffer.from(imageBuffer).toString('base64');
     const imageDataUri = `data:image/png;base64,${base64Image}`;
 
-    // SVG 텍스트 컨텐츠 생성
-    const svgContent = `
-      <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
-        <style>
-          .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-          .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
-        </style>
-        <text x="10" y="25" class="header">Snowman Heights for ${data.nickname}</text>
-        <text x="10" y="55" class="stat">Height: ${data.snowmanHeight} M</text>
-        <text x="10" y="80" class="stat">Attacked: ${data.damage} times</text>
-      </svg>`;
-
-    // HTML 문자열 조합
     const htmlContent = `
       <div style="position: relative; width: 400px; height: 200px;">
         <img src="${imageDataUri}" alt="Snowman Image" style="width: 100%; height: auto;" />
-        <div style="position: absolute; top: 0; left: 0;">
-          ${svgContent}
+        <div id="text-container" style="position: absolute; top: 0; left: 0; opacity: 0; transition: opacity 2s;">
+          <div style="font: 700 30px 'Segoe UI', Ubuntu, Sans-Serif; color: #2f80ed; padding-left: 30px; padding-top: 60px;">${data.nickname}</div>
+          <div id="height" style="font: 600 16px 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif; color: #333; padding-left: 30px;">Height: 0 M</div>
+          <div id="damage" style="font: 600 16px 'Segoe UI', Ubuntu, 'Helvetica Neue', Sans-Serif; color: #333; padding-left: 30px;">Attacked: 0 times</div>
         </div>
-      </div>`;
+      </div>
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const textContainer = document.getElementById('text-container');
+          const heightElem = document.getElementById('height');
+          const damageElem = document.getElementById('damage');
+          let height = 0;
+          let damage = 0;
+          
+          textContainer.style.opacity = 1;
+
+          const animateValues = () => {
+            if (height < ${data.snowmanHeight}) {
+              height++;
+              heightElem.textContent = 'Height: ' + height + ' M';
+            }
+            if (damage < ${data.damage}) {
+              damage++;
+              damageElem.textContent = 'Attacked: ' + damage + ' times';
+            }
+            if (height < ${data.snowmanHeight} || damage < ${data.damage}) {
+              requestAnimationFrame(animateValues);
+            }
+          };
+
+          setTimeout(animateValues, 2000); // Delay the animation start
+        });
+      </script>
+    `;
 
     res.setHeader('Content-Type', 'text/html');
     res.status(200).send(htmlContent);
