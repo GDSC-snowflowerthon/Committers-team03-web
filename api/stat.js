@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable @typescript-eslint/no-var-requires */
 // import Card0 from '../public/0.svg';
 // import Card1 from '../public/1.svg';
 // import Card2 from '../public/2.svg';
@@ -11,22 +9,11 @@
 // import Card8 from '../public/8.svg';
 // import Card9 from '../public/9.svg';
 // import Card10 from '../public/10.svg';
-// import fs from 'fs';
+import fs from 'fs';
 // import path from 'path';
 
 export default async (req, res) => {
   try {
-    // 파일 시스템 모듈을 사용하여 public 폴더에서 SVG 파일을 읽습니다.
-    const fs = require('fs');
-    const path = require('path');
-    const filePath = path.join(process.cwd(), 'public', filename);
-
-    // 파일 존재 여부 확인
-    if (!fs.existsSync(filePath)) {
-      console.error('File does not exist:', filePath);
-      return res.status(404).send('File not found');
-    }
-
     // req.query에서 필요한 데이터를 직접 분해하여 할당합니다.
     const {
       nickname = 'Dummy Name',
@@ -89,6 +76,10 @@ export default async (req, res) => {
     svg = svg.replace(
       '</svg>',
       `
+        <style>
+        .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+        .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
+        </style>
         <text x="10" y="25" class="header">Snowman Heights for ${nickname}</text>
         <text x="10" y="55" class="stat">Height: ${snowmanHeight} cm</text>
         <text x="10" y="80" class="stat">Attacked: ${damage} times</text>
