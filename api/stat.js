@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import Card0 from '/0.svg';
 import Card1 from '/1.svg';
 import Card2 from '/2.svg';
@@ -11,46 +13,48 @@ import Card9 from '/9.svg';
 import Card10 from '/10.svg';
 
 export default async (req, res) => {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
   const fs = require('fs');
+  const path = require('path');
 
   // snowmanHeight에 따라 파일 이름을 결정합니다.
   const filePath = (data) => {
     if (data.snowmanHeight < 130) {
-      return Card0;
+      return path.join(__dirname, 'public', '0.svg');
     } else if (data.snowmanHeight < 160) {
-      return Card1;
+      return path.join(__dirname, 'public', '1.svg');
     } else if (data.nowmanHeight < 190) {
-      return Card2;
+      return path.join(__dirname, 'public', '2.svg');
     } else if (data.snowmanHeight < 220) {
-      return Card3;
+      return path.join(__dirname, 'public', '3.svg');
     } else if (data.snowmanHeight < 250) {
-      return Card4;
+      return path.join(__dirname, 'public', '4.svg');
     } else if (data.snowmanHeight < 280) {
-      return Card5;
+      return path.join(__dirname, 'public', '5.svg');
     } else if (data.snowmanHeight < 310) {
-      return Card6;
+      return path.join(__dirname, 'public', '6.svg');
     } else if (data.snowmanHeight < 340) {
-      return Card7;
+      return path.join(__dirname, 'public', '7.svg');
     } else if (data.snowmanHeight < 370) {
-      return Card8;
+      return path.join(__dirname, 'public', '8.svg');
     } else if (data.snowmanHeight < 410) {
-      return Card9;
+      return path.join(__dirname, 'public', '9.svg');
     } else {
-      return Card10;
+      return path.join(__dirname, 'public', '10.svg');
     }
   };
 
   const renderSVG = (data) => {
+    const svgContent = fs.readFileSync(filePath(data), 'utf8');
+    console.log(svgContent);
+    console.error(svgContent);
+
     return `
-    ${fs.readFileSync(`${filePath(data)}`, 'utf8')}
+    ${svgContent}
       <style>
       .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
       .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
       </style>
-      <text x="10" y="25" class="header">Snowman Heights for ${
-        data.nickname
-      }</text>
+      <text x="10" y="25" class="header">Snowman Heights for ${data.nickname}</text>
       <text x="10" y="55" class="stat">Height: ${data.snowmanHeight} M</text>
       <text x="10" y="80" class="stat">Attacked: ${data.damage} times</text>
     </svg>
