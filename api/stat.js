@@ -38,27 +38,27 @@ export default async (req, res) => {
     // snowmanHeight에 따라 파일 이름을 결정합니다.
     let filename;
     if (data.snowmanHeight <= 130) {
-      filename = '/0.svg';
+      filename = 'https://commiters-team03-web.vercel.app/0.svg';
     } else if (snowmanHeight <= 160) {
-      filename = '/1.svg';
+      filename = 'https://commiters-team03-web.vercel.app/1.svg';
     } else if (snowmanHeight <= 190) {
-      filename = '/2.svg';
+      filename = 'https://commiters-team03-web.vercel.app/2.svg';
     } else if (snowmanHeight <= 220) {
-      filename = '/3.svg';
+      filename = 'https://commiters-team03-web.vercel.app/3.svg';
     } else if (snowmanHeight <= 250) {
-      filename = '/4.svg';
+      filename = 'https://commiters-team03-web.vercel.app/4.svg';
     } else if (snowmanHeight <= 280) {
-      filename = '/5.svg';
+      filename = 'https://commiters-team03-web.vercel.app/5.svg';
     } else if (snowmanHeight <= 310) {
-      filename = '/6.svg';
+      filename = 'https://commiters-team03-web.vercel.app/6.svg';
     } else if (snowmanHeight <= 340) {
-      filename = '/7.svg';
+      filename = 'https://commiters-team03-web.vercel.app/7.svg';
     } else if (snowmanHeight <= 370) {
-      filename = '/8.svg';
+      filename = 'https://commiters-team03-web.vercel.app/8.svg';
     } else if (snowmanHeight <= 410) {
-      filename = '/9.svg';
+      filename = 'https://commiters-team03-web.vercel.app/9.svg';
     } else {
-      filename = '/10.svg';
+      filename = 'https://commiters-team03-web.vercel.app/10.svg';
     }
 
     // 파일 시스템 모듈을 사용하여 public 폴더에서 SVG 파일을 읽습니다.
