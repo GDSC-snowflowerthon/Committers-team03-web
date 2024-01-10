@@ -4,11 +4,13 @@ import GithubLoginButton from '../Button/GithubLoginButton/GithubLoginButton';
 import Logo from '../Logo/Logo';
 import SnowFalling from '../SnowFalling/SnowFalling';
 import SnowmanScene from '../SnowmanScene/SnowmanScene';
-
+import Card0 from '/0.svg';
 export default function LoginPageLayout() {
   const githubLoginClick = () => {
     console.log('로그인버튼 클릭');
     // window.location.href = 'http://your-backend-url/github/login';
+    console.log(`${Card0}`)
+
   };
 
   useEffect(() => {
