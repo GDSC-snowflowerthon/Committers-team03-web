@@ -15,7 +15,7 @@ export default async (req, res) => {
       `${baseUrl}/Card${fileNumber}.svg`,
       //`${baseUrl}/Object${fileNumber}.svg`,
       `${baseUrl}/Snowman000.svg`,
-      fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
+      //fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
     ];
 
     // 모든 SVG 파일을 동시에 가져옵니다.
