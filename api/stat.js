@@ -10,19 +10,15 @@ export default async (req, res) => {
     let attacking = 456; // 기본 공격 횟수
     let displayText = true; // API 호출 성공 여부 표시
 
-    try {
-      // 해당 사용자의 정보를 API에서 가져옵니다.
-      const userInfoResponse = await fetch(
-        `https://kidari.site/api/v1/readme/info/${nickname}`,
-      );
-      if (userInfoResponse.ok) {
-        const userInfo = await userInfoResponse.json();
-        snowmanHeight = userInfo.data.snowmanHeight;
-        attacking = userInfo.data.attacking;
-        displayText = false; // API 호출에 성공했으므로 대체 텍스트를 표시하지 않음
-      }
-    } catch (error) {
-      console.error('Error fetching user info:', error);
+    // 해당 사용자의 정보를 API에서 가져옵니다.
+    const userInfoResponse = await fetch(
+      `https://kidari.site/api/v1/readme/info/${nickname}`,
+    );
+    if (userInfoResponse.ok) {
+      const userInfo = await userInfoResponse.json();
+      snowmanHeight = userInfo.data.snowmanHeight;
+      attacking = userInfo.data.attacking;
+      displayText = false; // API 호출에 성공했으므로 대체 텍스트를 표시하지 않음
     }
 
     // 나머지 코드는 동일하게 유지하면서, SVG 텍스트 부분만 조건에 따라 변경합니다.
