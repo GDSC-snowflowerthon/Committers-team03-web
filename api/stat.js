@@ -11,6 +11,9 @@ import Card9 from '/9.svg';
 import Card10 from '/10.svg';
 
 export default async (req, res) => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires, no-undef
+  const fs = require('fs');
+
   // snowmanHeight에 따라 파일 이름을 결정합니다.
   const filePath = (data) => {
     if (data.snowmanHeight < 130) {
@@ -40,7 +43,7 @@ export default async (req, res) => {
 
   const renderSVG = (data) => {
     return `
-    ${filePath(data)}
+    ${fs.readFileSync(`${filePath(data)}`, 'utf8')}
       <style>
       .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
       .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
@@ -107,6 +110,7 @@ export default async (req, res) => {
     //   <text x="10" y="55" class="stat">Height: ${snowmanHeight} cm</text>
     //   <text x="10" y="80" class="stat">Attacked: ${damage} times</text>
     // </svg>`);
+
     const svg = renderSVG(data);
     res.setHeader('Content-Type', 'image/svg+xml');
     res.status(200).send(svg);
