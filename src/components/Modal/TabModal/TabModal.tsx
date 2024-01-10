@@ -2,7 +2,8 @@ import React, {useState} from 'react';
 import * as S from './style';
 import {ModalProps} from '@/interfaces/modal';
 // import {TabContentProps} from '@/interfaces/tab';
-
+import {useRecoilState} from 'recoil';
+import {rankState, profileNameState} from '@/atoms/rankState';
 const TabModal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
@@ -12,6 +13,8 @@ const TabModal: React.FC<ModalProps> = ({
   modalColor,
 }) => {
   const [currentTab, setCurrentTab] = useState<'left' | 'right'>('left');
+  const [rank, setRank] = useRecoilState(rankState);
+  const [profileName, setProfileName] = useRecoilState(profileNameState);
   const tabLeftContents = [
     {id: 1, title: 'Left Tab Content 1', height: 100},
     {id: 2, title: 'Left Tab Content 2', height: 100},
@@ -26,6 +29,13 @@ const TabModal: React.FC<ModalProps> = ({
   ];
   const handleTabClick = (tab: 'left' | 'right') => {
     setCurrentTab(tab);
+    if (tab === 'right') {
+      setProfileName('New Profile Name'); // 새로운 프로필 이름으로 변경
+      setRank(123); // 새로운 랭킹으로 변경
+    } else if (tab === 'left') {
+      setProfileName(profileName); // 새로운 프로필 이름으로 변경
+      setRank(rank); // 새로운 랭킹으로 변경
+    }
   };
 
   return (
