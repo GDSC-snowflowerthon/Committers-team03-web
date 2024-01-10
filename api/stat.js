@@ -13,25 +13,25 @@ import Card10 from '../public/10.svg';
 export default async (req, res) => {
   // snowmanHeight에 따라 파일 이름을 결정합니다.
   const filePath = (data) => {
-    if (data.snowmanHeight <= 130) {
+    if (data.snowmanHeight < 130) {
       return Card0;
-    } else if (data.snowmanHeight <= 160) {
+    } else if (data.snowmanHeight < 160) {
       return Card1;
-    } else if (data.nowmanHeight <= 190) {
+    } else if (data.nowmanHeight < 190) {
       return Card2;
-    } else if (data.snowmanHeight <= 220) {
+    } else if (data.snowmanHeight < 220) {
       return Card3;
-    } else if (data.snowmanHeight <= 250) {
+    } else if (data.snowmanHeight < 250) {
       return Card4;
-    } else if (data.snowmanHeight <= 280) {
+    } else if (data.snowmanHeight < 280) {
       return Card5;
-    } else if (data.snowmanHeight <= 310) {
+    } else if (data.snowmanHeight < 310) {
       return Card6;
-    } else if (data.snowmanHeight <= 340) {
+    } else if (data.snowmanHeight < 340) {
       return Card7;
-    } else if (data.snowmanHeight <= 370) {
+    } else if (data.snowmanHeight < 370) {
       return Card8;
-    } else if (data.snowmanHeight <= 410) {
+    } else if (data.snowmanHeight < 410) {
       return Card9;
     } else {
       return Card10;
@@ -40,15 +40,17 @@ export default async (req, res) => {
 
   const renderSVG = (data) => {
     return `
-    ${filePath}
-    <style>
-    .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
-    .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
-    </style>
-    <text x="10" y="25" class="header">Snowman Heights for ${data.nickname}</text>
-    <text x="10" y="55" class="stat">Height: ${data.snowmanHeight} cm</text>
-    <text x="10" y="80" class="stat">Attacked: ${data.damage} times</text>
-  </svg>
+    ${filePath(data)}
+      <style>
+      .header { font: 700 18px 'Segoe UI', Ubuntu, Sans-Serif; fill: #2f80ed; }
+      .stat { font: 600 14px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #333 }
+      </style>
+      <text x="10" y="25" class="header">Snowman Heights for ${
+        data.nickname
+      }</text>
+      <text x="10" y="55" class="stat">Height: ${data.snowmanHeight} M</text>
+      <text x="10" y="80" class="stat">Attacked: ${data.damage} times</text>
+    </svg>
   `;
   };
   try {
