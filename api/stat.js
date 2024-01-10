@@ -9,7 +9,7 @@
 // import Card8 from '../public/8.svg';
 // import Card9 from '../public/9.svg';
 // import Card10 from '../public/10.svg';
-import fetch from 'node-fetch';
+import fs from 'fs';
 // import path from 'path';
 
 export default async (req, res) => {
@@ -69,14 +69,8 @@ export default async (req, res) => {
     // eslint-disable-next-line no-undef
     //const filePath = path.join(process.cwd(), 'public', filename);
     console.log(`${filename}`);
-
-    // fetch를 사용하여 SVG 파일의 내용을 가져옵니다.
-    const response = await fetch(filename);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch ${filename}: ${response.status}`);
-    }
     // SVG 파일을 읽습니다.
-    let svg = await response.text();
+    let svg = await filename.text();
 
     // SVG 내용에 텍스트 요소를 추가합니다.
     svg = svg.replace(
