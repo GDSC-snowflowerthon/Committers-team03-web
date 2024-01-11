@@ -23,14 +23,12 @@ import {instance} from './axios';
 */}
 
 // 다른 유저 정보 조회
-export default {
-    getOtherData: async (nickname: string) => {
-        const response = await instance.get(`/api/v1/user?nickname=${nickname}`);
-        return {
-            ...response.data,
-        };
-    },
-};
+export const getOtherData = async (nickname: string) => {
+  const response = await instance.get(`/api/v1/user?nickname=${nickname}`);
+  return {
+    ...response.data,
+  };
+}
 
 {/*
 	"data":{

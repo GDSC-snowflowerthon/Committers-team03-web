@@ -1,14 +1,13 @@
 import {instance} from './axios';
 
 // 유저 본인 정보 조회
-export default {
-    getMyData: async (ownerId: string) => {
-        const response = await instance.get(`/api/v1/user/${ownerId}/user-info`);
-        return {
-            ...response.data,
-        };
-    },
-};
+export const getMyData =  async (ownerId: string) => {
+  const response = await instance.get(`/api/v1/user/${ownerId}/user-info`);
+  return {
+      ...response.data,
+  };
+}
+
 {/*
 	"data":{
 			"nickname" : "githubId", // 깃허브 아이디
