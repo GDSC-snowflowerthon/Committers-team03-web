@@ -6,7 +6,7 @@ const getAccessTokenFromCookies = () => Cookies.get('accessCookie');
 const getRefreshTokenFromCookies = () => Cookies.get('refreshCookie');
 
 export const instance = axios.create({
-  baseURL: 'https://kidari.site',
+  baseURL: 'https://kidari-server.shop',
   headers: {
     Authorization: `Bearer ${getAccessTokenFromCookies()}`,
   },

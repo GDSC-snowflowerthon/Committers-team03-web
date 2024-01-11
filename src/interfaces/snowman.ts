@@ -6,3 +6,10 @@ export interface SnowmanSceneProps {
 export interface SnowmanProps {
     yPosition?: number; // yPosition은 숫자 타입입니다.
   }
+
+
+export interface SnowmanCustomId {
+  snowId: number; // 눈 아이템 ID
+  hatId: number; // 모자 아이템 ID
+  decoId: number; // 장식 아이템 ID
+}

@@ -22,15 +22,10 @@ import {instance} from './axios';
 */}
 
 // 아이템 장착 (색상 반영)
-export const patchSnowmanGrow = async (snowId, hatId, decoId) => {
-  try {
+export const patchCustomList = async (snowId, hatId, decoId) => {
     await instance.patch(`api/v1/item/update`, {
       snowId: snowId,
       hatId: hatId,
       decoId: decoId
     });
-  } catch (error) {
-    console.error(error); // 에러를 콘솔에 출력
-    return null; // 에러가 발생하면 null 반환
-  }
 };
