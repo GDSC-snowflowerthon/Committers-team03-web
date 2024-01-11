@@ -2,10 +2,14 @@ import {instance} from './axios';
 
 // 유저 본인 정보 조회
 export const getMyData =  async (ownerId: string) => {
-  const response = await instance.get(`/api/v1/user/${ownerId}/user-info`);
-  return {
-      ...response.data,
-  };
+  try {
+    const response = await instance.get(`/api/v1/user/${ownerId}/user-info`);
+    return {
+        ...response.data,
+    };
+  } catch (error) {
+    return null;
+  }
 }
 
 {/*
@@ -22,7 +26,7 @@ export const getMyData =  async (ownerId: string) => {
 
   // 눈사람 키 키우기
   export const patchSnowmanGrow = async () => {
-      instance.patch(
+    await instance.patch(
         `api/v1/home/growth`, {}
       );
   };
