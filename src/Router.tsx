@@ -8,6 +8,7 @@ import Register from './pages/Register/Register';
 import Login from './pages/Login/Login';
 import { GlobalStyle } from './style';
 import { useBackgroundTheme } from './hooks/useBackgroundTheme';
+import Redirect from './pages/Redirect/Redirect';
 
 export default function Router() {
   const backgroundColor = useBackgroundTheme();
@@ -23,6 +24,7 @@ export default function Router() {
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/follow" element={<Follow />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/redirect" element={<Redirect />} />
       </Routes>
     </>
   );

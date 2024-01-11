@@ -34,8 +34,8 @@ export default function MainPageLayout({ children }: Props) {
 
 //자신의 홈인지, 다른 사람의 홈인지 분기처리
 const queryDetails = {
-  queryKey: !isMyHome ? ["myData", nickname] : ["otherData", urlNickname],
-  queryFn: !isMyHome ? () => getMyData(nickname) : () => getOtherData(urlNickname),
+  queryKey: isMyHome ? ["myData", nickname] : ["otherData", urlNickname],
+  queryFn: isMyHome ? () => getMyData(nickname) : () => getOtherData(urlNickname),
   enabled: !!nickname || !!urlNickname,
 };
 
@@ -44,7 +44,7 @@ const queryResult = useQuery<MyState | OtherUserState>(queryDetails);
   // 서버로부터 데이터를 가져온 후 Recoil 상태 업데이트
   useEffect(() => {
     if (queryResult.data) {
-      if (!isMyHome) {
+      if (isMyHome) {
         setMyDataState(queryResult.data as MyState);
         setSnowmanHeightState(queryResult.data.snowmanHeight)
       } else {
