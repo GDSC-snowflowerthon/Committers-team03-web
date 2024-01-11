@@ -18,14 +18,13 @@ export default function Home() {
   return (
     <>
       <MainPageLayout>
-      <AnimatedObjects />
-      {snowmanHeight >= 190 ? <ShootingStarFalling /> : <SnowFalling />}
-      <S.Background height={snowmanHeight} />
-      <S.SnowmanContainer>
-        <SnowmanScene height={"500px"} />
-      </S.SnowmanContainer>
-    </MainPageLayout>
-    
+        <AnimatedObjects />
+        {snowmanHeight >= 190 ? <ShootingStarFalling /> : <SnowFalling />}
+        <S.Background height={snowmanHeight} />
+        <S.SnowmanContainer>
+          <SnowmanScene height={"500px"} />
+        </S.SnowmanContainer>
+      </MainPageLayout>
     </>
     
   )
