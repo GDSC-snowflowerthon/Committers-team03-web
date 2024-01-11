@@ -21,15 +21,10 @@ export const getOtherData = async (nickname: string) => {
 
  // 친구 상태 변경 (팔로우/언팔로우)
   export const patchFollow = async (nickname: string, isFollowed: boolean) => {
-    try {
-        const response = await instance.patch(
-        `api/v1/buddy/update?nickname=${nickname}&isFollowed=${isFollowed}
-        `, {}
-      );
+    const response = await instance.patch(
+        `api/v1/buddy/update?nickname=${nickname}&isFollowed=${isFollowed}`, {}
+    );
       return response.data;
-    } catch (error) {
-      return null;
-    }
   };
 
   {/*
@@ -43,12 +38,5 @@ export const getOtherData = async (nickname: string) => {
 
 // 공격하기
 export const patchAttack = async (nickname: string) => {
-    try {
-        await instance.patch(
-        `api/v1/user/attack?nickname=${nickname}
-        `, {}
-      );
-    } catch (error) {
-      return null;
-    }
+  await instance.patch(`api/v1/user/attack?nickname=${nickname}`, {});
   };
