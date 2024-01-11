@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import Search from "@/assets/Search/Search.png";
+import theme from '@/theme';
 
 export const Container = styled.div`
   margin-top: 5rem;
@@ -21,6 +22,7 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 10px;
   outline: none;
+  color: ${theme.colors.textMain};
 `;
 
 export const SearchIcon = styled.div`
