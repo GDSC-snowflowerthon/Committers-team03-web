@@ -3,6 +3,7 @@ import PageLayout from '@/components/PageLayout/PageLayout';
 import RankingModal from '@/components/Modal/RankingModal/RankingModal';
 import useRankingModal from '@/hooks/useRankingModal';
 import {GithubProfile} from '@/components/GithubProfile/GithubProfile';
+import SnowFalling from '@/components/SnowFalling/SnowFalling';
 
 export default function Ranking() {
   const {isOpen, openModal, closeModal} = useRankingModal(); // setOpen 함수를 useModal에서 가져옵니다.
@@ -19,6 +20,7 @@ export default function Ranking() {
   return (
     <>
       <PageLayout title={'랭킹'}>
+        <SnowFalling />
         <GithubProfile />
       </PageLayout>
       <RankingModal closeModal={closeModal} isOpen={isOpen} />
