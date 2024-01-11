@@ -13,6 +13,7 @@ export default function GithubLoginButton(props: GithubButtonProps) {
         width={300}
         height={50}
         background={GithubLoginButtonImg}
+        borderRadius={'10px'}
       />
     </S.GithubButtonWrapper>
   );
