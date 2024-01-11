@@ -17,7 +17,7 @@ function AttackedListModal({closeModal, isOpen}: Props) {
   const [attackedList, setAttackedList] = useRecoilState(attackedListState);
   
       const {data} = useQuery<AttackedList>({
-        queryKey: ["homeData"],
+        queryKey: ["attackedList"],
         retry: 1, // 실패시 재호출 횟수
         queryFn: () => getAttackedList(),
       });
