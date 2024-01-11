@@ -1,10 +1,28 @@
+import { patchAttack } from '@/apis/otherHome';
+import useIsMyHome from '@/hooks/useIsMyHome';
+import { useMutation } from '@tanstack/react-query';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button'; // Adjust the import path according to your project structure
 import * as S from './style';
 
 const AttackButton = () => {
+    const navigate = useNavigate();
+    const { urlNickname } = useIsMyHome();
+
+    const { mutate } = useMutation({
+        mutationFn: () => patchAttack(urlNickname),
+        onSuccess: async () => {
+            alert('Attack successful!');
+        },
+        onError: () => {
+            alert('Your session has expired. Please login again.');
+            navigate('/');
+        },
+    });
+
     const handleAttack = () => {
-        //TODO: api 호출. 성공 시 값들 업데이트
+        mutate();
     }
     return (
         <Button
