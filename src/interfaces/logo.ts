@@ -3,4 +3,5 @@ export interface LogoProps {
     width:number,
     height:number,
     background:string,
+    border:string,
  }

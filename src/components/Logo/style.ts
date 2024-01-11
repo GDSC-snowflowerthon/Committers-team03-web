@@ -4,31 +4,24 @@ import theme from '@/theme';
 type LogoStyleProps = {
   backgroundColor?: string;
   background?: string;
+  border?: string;
   width: number;
   height: number;
   margin?: string;
-  dark?: boolean;
+  // dark?: boolean;
   padding?: string;
   borderRadius?: string;
 };
 
-export const Logo = styled.img<LogoStyleProps>`
+export const Logo = styled.div<LogoStyleProps>`
+
   background: ${(props) => props.background && `url(${props.background})`} no-repeat;
-  background-color: ${(props) => props.backgroundColor};
+  /* background-color: ${(props) => props.backgroundColor}; */
   background-size: 300px auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: ${(props) => `${props.width}px`};
   height: ${(props) => `${props.height}px`};
-  /* margin: ${(props) => `${props.margin}`}; */
   margin-top: 10rem;
-  padding: ${(props) => (props.padding ? `${props.padding}` : 0)};
-  border-radius : ${(props) => props.borderRadius};
-  height: ${(props) => `${props.height}`};
-  outline: none;
-  border: #90C9F6;
-  z-index: 2;
+  border: 1px solid #90C9F6;
   box-shadow: none;
   color: ${theme.colors.textMain};
 `
