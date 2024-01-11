@@ -26,7 +26,7 @@ export default function MainPageLayout({ children }: Props) {
     openModal,
     closeModal,
   } = useModal();
-  const {urlNickname, nickname, isMyHome} = useIsMyHome();
+  const {nickname, urlNickname, isMyHome} = useIsMyHome();
 
   const setMyDataState = useSetRecoilState(myState);
   const setOtherDataState = useSetRecoilState(otherUserState);

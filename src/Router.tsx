@@ -18,7 +18,7 @@ export default function Router() {
       <GlobalStyle backgroundColor={backgroundColor} />
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/:nickname" element={<Home />} />
+        <Route path="/:urlNickname" element={<Home />} />
         <Route path="/custom" element={<Custom />} />
         <Route path="/ranking" element={<Ranking />} />
         <Route path="/follow" element={<Follow />} />
