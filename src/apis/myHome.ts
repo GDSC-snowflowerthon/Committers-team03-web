@@ -22,25 +22,17 @@ export const getMyData =  async (ownerId: string) => {
 
   // 눈사람 키 키우기
   export const patchSnowmanGrow = async () => {
-    try {
       instance.patch(
         `api/v1/home/growth`, {}
       );
-    } catch (error) {
-      return null;
-    }
   };
 
   // 알림 조회 (받은 공격 목록 조회)
   export const getAttackedList = async () => {
-    try {
       const response = await instance.get(
         `api/v1/home/alarm`,
       );
       return response.data; //attackedList
-    } catch (error) {
-      return null;
-    }
   };
 
   {/*
