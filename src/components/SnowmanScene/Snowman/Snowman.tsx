@@ -38,7 +38,7 @@ export default function Snowman() {
     const [rotate, setRotate] = useRecoilState(snowmanRotationState);
     const myInfo = useRecoilValue(myState);
     const otherUserInfo = useRecoilValue(otherUserState);
-    const isMyHome = useIsMyHome();
+    const {isMyHome} = useIsMyHome();
 
     // 현재 페이지와 사용자 컨텍스트에 따라 장식 결정
     const userInfo = isMyHome || window.location.pathname === '/custom' ? myInfo : otherUserInfo;

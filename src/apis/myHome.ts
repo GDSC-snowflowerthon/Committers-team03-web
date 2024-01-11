@@ -1,14 +1,13 @@
 import {instance} from './axios';
 
 // 유저 본인 정보 조회
-export default {
-    getMyData: async (ownerId: string) => {
-        const response = await instance.get(`/api/v1/user/${ownerId}/user-info`);
-        return {
-            ...response.data,
-        };
-    },
-};
+export const getMyData =  async (ownerId: string) => {
+  const response = await instance.get(`/api/v1/user/${ownerId}/user-info`);
+  return {
+      ...response.data,
+  };
+}
+
 {/*
 	"data":{
 			"nickname" : "githubId", // 깃허브 아이디
@@ -23,25 +22,17 @@ export default {
 
   // 눈사람 키 키우기
   export const patchSnowmanGrow = async () => {
-    try {
       instance.patch(
         `api/v1/home/growth`, {}
       );
-    } catch (error) {
-      return null;
-    }
   };
 
   // 알림 조회 (받은 공격 목록 조회)
   export const getAttackedList = async () => {
-    try {
       const response = await instance.get(
         `api/v1/home/alarm`,
       );
       return response.data; //attackedList
-    } catch (error) {
-      return null;
-    }
   };
 
   {/*

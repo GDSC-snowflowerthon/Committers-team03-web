@@ -6,7 +6,7 @@ const getAccessTokenFromCookies = () => Cookies.get('accessCookie');
 const getRefreshTokenFromCookies = () => Cookies.get('refreshCookie');
 
 export const instance = axios.create({
-  baseURL: 'https://snowmailbox.com',
+  baseURL: 'https://kidari.site',
   headers: {
     Authorization: `Bearer ${getAccessTokenFromCookies()}`,
   },
@@ -25,7 +25,7 @@ instance.interceptors.response.use(
   async error => {
     const originalRequest = error.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
+    if (error.response && error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       const refreshToken = getRefreshTokenFromCookies();
       if (!refreshToken) {
