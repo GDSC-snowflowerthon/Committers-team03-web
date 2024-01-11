@@ -1,4 +1,4 @@
-import { myState } from '@/atoms/userState';
+import { myState, otherUserState } from '@/atoms/userState';
 import React from 'react'
 import { useRecoilValue } from 'recoil';
 import * as S from './style'
@@ -7,21 +7,25 @@ import GrowButton from '../Button/GrowButton/GrowButton';
 import FollowButton from '../Button/FollowButton/FollowButton';
 import AttackButton from '../Button/AttackButton/AttackButton';
 export default function UserInfo() {
-    const userInfo = useRecoilValue(myState);
+    const myData = useRecoilValue(myState);
+    const otherData = useRecoilValue(otherUserState);
     const isMyHome = useIsMyHome();
+
+    // 현재 홈의 데이터 결정
+    const currentData = isMyHome ? myData : otherData;
 
     return (
         <S.Container>
             <S.WhiteWrapper>
-                {userInfo.nickname || 'please login!'}
+                {currentData.nickname || 'please login!'}
             </S.WhiteWrapper>
             <S.WhiteWrapper>
-                {`눈사람 키: ${userInfo.snowmanHeight}`}
+                {`눈사람 키: ${currentData.snowmanHeight}`}
             </S.WhiteWrapper>
             {isMyHome ? (
                 <>
                     <S.WhiteWrapper>
-                        {`보유 눈송이: ${userInfo.snowflake}`}
+                        {`보유 눈송이: ${myData.snowflake}`}
                     </S.WhiteWrapper>
                     <GrowButton />
                 </>
