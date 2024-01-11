@@ -32,7 +32,7 @@ export const getMyData =  async (ownerId: string) => {
       const response = await instance.get(
         `api/v1/home/alarm`,
       );
-      return response.data; //attackedList
+      return response.data.attackedList; //attackedList
   };
 
   {/*

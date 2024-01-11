@@ -37,6 +37,7 @@ const queryDetails = {
   queryKey: isMyHome ? ["myData", nickname] : ["otherData", urlNickname],
   queryFn: isMyHome ? () => getMyData(nickname) : () => getOtherData(urlNickname),
   enabled: !!nickname || !!urlNickname,
+  retry: 1, // 실패시 재호출 횟수
 };
 
 const queryResult = useQuery<MyState | OtherUserState>(queryDetails);
