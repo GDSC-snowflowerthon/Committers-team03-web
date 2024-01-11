@@ -6,11 +6,12 @@ import useIsMyHome from '@/hooks/useIsMyHome';
 import GrowButton from '../Button/GrowButton/GrowButton';
 import FollowButton from '../Button/FollowButton/FollowButton';
 import AttackButton from '../Button/AttackButton/AttackButton';
+
 export default function UserInfo() {
     const myData = useRecoilValue(myState);
     const otherData = useRecoilValue(otherUserState);
-    const isMyHome = useIsMyHome();
-
+    const {isMyHome} = useIsMyHome();
+    console.log("sadfasdf",isMyHome);
     // 현재 홈의 데이터 결정
     const currentData = isMyHome ? myData : otherData;
 

@@ -20,7 +20,7 @@ export const getOtherData = async (nickname: string) => {
 */}
 
  // 친구 상태 변경 (팔로우/언팔로우)
-  export const patchSnowmanGrow = async (nickname: string, isFollowed: boolean) => {
+  export const patchFollow = async (nickname: string, isFollowed: boolean) => {
     try {
         const response = await instance.patch(
         `api/v1/buddy/update?nickname=${nickname}&isFollowed=${isFollowed}
