@@ -43,7 +43,7 @@ transition: transform 0.5s ease-in-out, visibility 0.5s ease-in-out;
 export const NicknameWrapper = styled.div`
     cursor: pointer;
     position: relative; // 밑줄을 정확하게 위치시키기 위해 필요
-    padding-bottom: 15px; // 텍스트와 밑줄 사이의 간격 조정
+    margin-bottom: 50px; // 텍스트와 밑줄 사이의 간격 조정
     margin-top: 40px;
     font-size: 24px;
     color: ${theme.colors.white};
@@ -57,9 +57,9 @@ export const MenuItem = styled.div`
     cursor: pointer;
     position: relative; // 밑줄을 정확하게 위치시키기 위해 필요
     padding-bottom: 15px; // 텍스트와 밑줄 사이의 간격 조정
-    margin-top: 50px;
+    margin-top: 40px;
     margin-left: -30px;
-    font-size: 24px;
+    font-size: 20px;
     color: ${theme.colors.white};
     font-weight: 400;
     white-space: pre-line;
@@ -72,6 +72,6 @@ display: flex;
 flex-direction: column;
 list-style-type: none;
 position: absolute;
-margin-top: 160px;
+margin-top: 200px;
 `;
 

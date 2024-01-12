@@ -1,9 +1,9 @@
 import {instance} from './axios';
 
 // 유저 본인 정보 조회
-export const getMyData =  async (ownerId: string) => {
+export const getMyData =  async () => {
   try {
-    const response = await instance.get(`/api/v1/user/${ownerId}/user-info`);
+    const response = await instance.get(`/api/v1/home/myinfo`);
     return {
         ...response.data,
     };

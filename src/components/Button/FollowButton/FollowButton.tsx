@@ -24,6 +24,7 @@ const FollowButton = () => {
     onError: () => {
       alert('Your session has expired. Please login again.');
       navigate('/');
+      localStorage.setItem("redirectOtherNickname", urlNickname);
   },
   });
 
