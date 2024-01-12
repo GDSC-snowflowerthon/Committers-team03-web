@@ -5,9 +5,9 @@ import {RegisterUniv} from '@/components/RegisterUniv/RegisterUniv';
 
 export default function Register() {
   return (
-    <PageLayout title={'학교 등록'}>
+    <PageLayout title={'Registration'}>
       <SearchBar
-        placeholder={'학교명을 입력하세요'}
+        placeholder={'Enter the University Name'}
         value={''}
         title={'학교 등록'}
       />

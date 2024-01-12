@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './style';
 import {ModalProps} from '@/interfaces/modal';
-import {friendRankingListState, univRankingListState} from  '@/atoms/rankState'
+import {friendRankingListState, univRankingListState} from '@/atoms/rankState';
 import {useRecoilState} from 'recoil';
 import {rankState, profileNameState} from '@/atoms/rankState';
-import { useQuery } from '@tanstack/react-query';
-import { FriendRankingList, UnivRankingList } from '@/interfaces/ranking';
-import { getFriendRankingList, getUnivRankingList } from '@/apis/ranking';
+import {useQuery} from '@tanstack/react-query';
+import {FriendRankingList, UnivRankingList} from '@/interfaces/ranking';
+import {getFriendRankingList, getUnivRankingList} from '@/apis/ranking';
 
 const TabModal: React.FC<ModalProps> = ({
   isOpen,
@@ -19,15 +19,18 @@ const TabModal: React.FC<ModalProps> = ({
   const [currentTab, setCurrentTab] = useState<'left' | 'right'>('left');
   const [rank, setRank] = useRecoilState(rankState);
   const [profileName, setProfileName] = useRecoilState(profileNameState);
-  const [univRankingList, setUnivRankingList] = useRecoilState(univRankingListState);
-  const [friendRankingList, setFriendRankingList] = useRecoilState(friendRankingListState);
+  const [univRankingList, setUnivRankingList] =
+    useRecoilState(univRankingListState);
+  const [friendRankingList, setFriendRankingList] = useRecoilState(
+    friendRankingListState,
+  );
 
   // 원래의 rank와 profileName 값을 저장하는 상태를 추가합니다.
   const [originalRank, setOriginalRank] = useState(rank);
   const [originalProfileName, setOriginalProfileName] = useState(profileName);
 
   const data1 = useQuery<UnivRankingList>({
-    queryKey: ["univRankingList"],
+    queryKey: ['univRankingList'],
     retry: 1, // 실패시 재호출 횟수
     queryFn: () => getUnivRankingList(),
   });
@@ -39,7 +42,7 @@ const TabModal: React.FC<ModalProps> = ({
   }, [data1.data]);
 
   const data2 = useQuery<FriendRankingList>({
-    queryKey: ["friendRankingList"],
+    queryKey: ['friendRankingList'],
     retry: 1, // 실패시 재호출 횟수
     queryFn: () => getFriendRankingList(),
   });
@@ -49,8 +52,6 @@ const TabModal: React.FC<ModalProps> = ({
       setFriendRankingList(data2.data);
     }
   }, [data2.data]);
-
-
 
   const handleTabClick = (tab: 'left' | 'right') => {
     setCurrentTab(tab);
@@ -80,19 +81,19 @@ const TabModal: React.FC<ModalProps> = ({
               onClick={() => handleTabClick('left')}
               isActive={currentTab === 'left'}
             >
-              개인 랭킹
+              Friend
             </S.Tab>
             <S.Tab
               onClick={() => handleTabClick('right')}
               isActive={currentTab === 'right'}
             >
-              학교 랭킹
+              University
             </S.Tab>
           </S.TabsWrapper>
           {currentTab === 'left' && (
             <S.TabContent>
               {friendRankingList.rankingList.map((content, index) => (
-                <S.TabContainer key={index}>
+                <S.TabContainer key={index} isLightWeight={index > 2}>
                   <S.TabDivider> {index + 1}</S.TabDivider>
                   <S.TabDivider>{content.nickname}</S.TabDivider>
                   <S.TabDivider> {content.snowmanHeight}</S.TabDivider>
@@ -103,10 +104,10 @@ const TabModal: React.FC<ModalProps> = ({
           {currentTab === 'right' && (
             <S.TabContent>
               {univRankingList.rankingList.map((content, index) => (
-                <S.TabContainer key={index} >
-                      <S.TabDivider>{index + 1}</S.TabDivider>
-                      <S.TabDivider>{content.univName}</S.TabDivider>
-                      <S.TabDivider>{content.totalHeight}</S.TabDivider>
+                <S.TabContainer key={index} isLightWeight={index > 2}>
+                  <S.TabDivider>{index + 1}</S.TabDivider>
+                  <S.TabDivider>{content.univName}</S.TabDivider>
+                  <S.TabDivider>{content.totalHeight}</S.TabDivider>
                 </S.TabContainer>
               ))}
             </S.TabContent>
