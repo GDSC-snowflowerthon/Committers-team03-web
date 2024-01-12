@@ -33,8 +33,8 @@ export const FollowFriend = () => {
   };
   return (
     <S.Container>
-      <S.Text>{searchResult.nickname}</S.Text>
-      <S.Text>{searchResult.snowmanHeight}m</S.Text>
+      <S.Nickname>{searchResult.nickname}</S.Nickname>
+      <S.Height>{searchResult.snowmanHeight}m</S.Height>
       <S.Profile onClick={handleProfileClick}>Profile</S.Profile>
       <S.RegisterButton clicked={searchResult.isFollowed} onClick={handleClick}>
         {searchResult.isFollowed ? 'UnFollow' : 'Follow'}
