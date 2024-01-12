@@ -39,12 +39,12 @@ export default function Snowman() {
     const myInfo = useRecoilValue(myState);
     const otherUserInfo = useRecoilValue(otherUserState);
     const {isMyHome} = useIsMyHome();
-      
+
     // 현재 페이지와 사용자 컨텍스트에 따라 장식 결정
     const userInfo = isMyHome || window.location.pathname === '/custom' ? myInfo : otherUserInfo;
-    const bodyColor = bodyColorToNumberMap[userInfo.snowId];
-    const scarfColor = scarfColorToNumberMap[userInfo.decoId];
-    const hatColor = hatColorToNumberMap[userInfo.hatId];
+    const bodyColor = bodyColorToNumberMap[userInfo.snowId || 1];
+    const scarfColor = scarfColorToNumberMap[userInfo.decoId || 1];
+    const hatColor = hatColorToNumberMap[userInfo.hatId || 1];
     console.log(`${bodyColor}${scarfColor}${hatColor}`)
     useFrame(() => {
         if (rotate && snowmanRef.current) {
