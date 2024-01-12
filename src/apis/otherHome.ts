@@ -7,18 +7,6 @@ export const getOtherData = async (nickname: string) => {
 };
 
 
-
-{/*
-	"data":{
-			"nickname" : "gitHubId", // 깃허브 아이디
-			"snowmanHeight" : 30, //눈사람 키
-			"snowId" : 3,
-			"hatId" : 5,
-			"decoId" : 7
-			"isFollowed" : false //2024-01-08 추가
-	}
-*/}
-
  // 친구 상태 변경 (팔로우/언팔로우)
   export const patchFollow = async (nickname: string, isFollowed: boolean) => {
     const response = await instance.patch(
@@ -27,14 +15,6 @@ export const getOtherData = async (nickname: string) => {
       return response.data;
   };
 
-  {/*
-{
-	"data":{
-		"nickname" : "gitHubId", // 추가/삭제된 친구의 gitHubId
-		"isFollowed" : "true" // 친구 추가 여부(true or false)
-	}
-}
-*/}
 
 // 공격하기
 export const patchAttack = async (nickname: string) => {
