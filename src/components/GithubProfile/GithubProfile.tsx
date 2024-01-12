@@ -34,7 +34,6 @@ export const GithubProfile: React.FC = () => {
       <S.Wrapper>
         <S.AnimatedObjectWrapper>
           <S.ProfileImage src={SliverCrown} />
-
         </S.AnimatedObjectWrapper>
         <S.Container>
           <S.ProfileRank>{profileName} is ranked {rank}th :)</S.ProfileRank>
