@@ -20,4 +20,5 @@ export const Arrow = styled.div<ArrowProps>`
   position: absolute;
   top: ${(props) => props.top};
   right: ${(props) => props.right};
+  z-index: 100;
 `;
