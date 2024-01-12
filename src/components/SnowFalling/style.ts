@@ -1,57 +1,24 @@
 import styled, { keyframes } from 'styled-components';
-import { CSSProperties } from 'react';
-import MediumSnowImg from "@/assets/Snow/MediumSnow.png";
-import SmallSnowImg from "@/assets/Snow/SmallSnow.png";
-// Leaf 컴포넌트에서 사용할 속성의 타입을 정의
-interface SnowProps extends CSSProperties {
-  '--start-left'?: string;
-  '--end-left'?: string;
-  '--rotation-start'?: string;
-  '--rotation-end'?: string;
-}
+import ShootingStarImg from "@/assets/Snow/Snow.png";
 
-const SnowFall = keyframes`
+const shootingStar = keyframes`
   0% {
+      top: var(--start-top);
+      left: var(--start-left);
       opacity: 1;
-      top: -10%;
-      left: var(--start-left);  
-      transform: rotate(var(--rotation-start));
-      
+      transform: scale(0);
+  }
+  30% {
+      opacity: 1;
+      transform: scale(1);
   }
   100% {
-      opacity: 1;
-      top: 90%;
-      left: var(--end-left); 
-      transform: rotate(var(--rotation-end));
+      top: var(--end-top);
+      left: var(--end-left);
+      opacity: 0;
+      transform: scale(1);
   }
-  
 `;
-
-// SnowProps 인터페이스 정의
-interface SnowProps {
-    leafType: 'MediumSnowImg' | 'SmallSnowImg';
-    startLeft: string;
-    endLeft: string;
-    rotateStart: string;
-    rotateEnd: string;
-    delay: number;
-  }
-  
-  // Snow 컴포넌트 정의
-  export const Snow = styled.div<SnowProps>`
-    position: absolute;
-    top: -20px;
-    width: ${props => props.leafType === 'MediumSnowImg' ? '30px' : '20px'};
-    height: ${props => props.leafType === 'MediumSnowImg' ? '30px' : '20px'};
-    background-image: url(${props => props.leafType === 'MediumSnowImg' ? MediumSnowImg : SmallSnowImg});
-    background-size: cover;
-    animation: ${SnowFall} 6s linear infinite;
-    animation-delay: ${props => props.delay}s;
-    --start-left: ${props => props.startLeft};
-    --end-left: ${props => props.endLeft};
-    --rotation-start: ${props => props.rotateStart};
-    --rotation-end: ${props => props.rotateEnd};
-  `;
 
 export const SnowWrapper = styled.div`
   position: absolute;
@@ -59,7 +26,6 @@ export const SnowWrapper = styled.div`
   max-width: 430px;
   max-height: 932px;
   height: 932px;
-  top: -30px;
   left: 50%;
   right: 50%;
   transform: translateX(-50%);
@@ -67,11 +33,30 @@ export const SnowWrapper = styled.div`
   z-index: 0;
 `;
 
-export const Container = styled.div`
+export const Snow = styled.div<{
+  size: 'small' | 'medium',
+  delay: number,
+  duration: number,
+  startTop: string,
+  startLeft: string,
+  endTop: string,
+  endLeft: string
+}>`
   position: absolute;
-  width: 100%;
-  max-width: 430px;
-  max-height: 932px;
-  height: 800px;
-  
+  top: var(--start-top);
+  left: var(--start-left);
+  width: ${props => props.size === 'medium' ? '40px' : '30px'};
+  height: ${props => props.size === 'medium' ? '40px' : '30px'};
+  background-image: url(${ShootingStarImg});
+  background-size: contain;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation: ${shootingStar} linear infinite;
+  animation-delay: ${props => props.delay}s;
+  animation-duration: ${props => props.duration}s;
+  --start-top: ${props => props.startTop};
+  --start-left: ${props => props.startLeft};
+  --end-top: ${props => props.endTop};
+  --end-left: ${props => props.endLeft};
+
 `;

@@ -1,43 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import * as S from './style';
 
-const numSnows = 30;
+const numSnows = 20;
 
 const SnowFalling: React.FC = () => {
-  const [leaves, setLeaves] = useState<Array<JSX.Element>>([]);
+  const [snows, setSnows] = useState<Array<JSX.Element>>([]);
 
   useEffect(() => {
-    const newLeaves = [];
-      
+    const newSnows = [];
+
     for (let i = 0; i < numSnows; i++) {
-        const isMediumSnow = Math.random() > 0.5;
-        const leafType = isMediumSnow ? "MediumSnowImg" : "SmallSnowImg";
-        const delay = Math.random() * 15;
-        const startLeft = `${Math.random() * 200 - 50}%`;  
-        const endLeft = `${Math.random() * 200 - 50}%`;   
-        const rotateStart = `${Math.floor(Math.random() * 180)}deg`;
-        const rotateEnd = `${Math.floor(Math.random() * 180)}deg`;
+      const size = Math.random() > 0.5 ? 'medium' : 'small';
+      const delay = Math.random() * 15;
+      const duration = Math.random() * 5 + 5;
 
-      newLeaves.push(
-        <S.Container key={`snow-${i}`}> {/* 여기에 key 추가 */}
-        <S.SnowWrapper>
-        <S.Snow
-              leafType={leafType}
-              delay={delay}
-              startLeft={startLeft}
-              endLeft={endLeft}
-              rotateStart={rotateStart}
-              rotateEnd={rotateEnd}
-            />
+      // 시작점과 끝점을 조정하여 화면 전체에서 떨어지도록 함
+      const startTop = `${-30 + Math.random() * 30}%`; // 상단에서 시작
+      const startLeft = `${Math.random() * 100}%`; // 왼쪽에서 시작
+      const endTop = `${100 + Math.random() * 30}%`; // 하단에서 끝남
+      const endLeft = `${startLeft}`; // 시작점과 동일한 좌표에서 끝남
+
+      newSnows.push(
+        <S.SnowWrapper key={`star-${i}`}>
+          <S.Snow
+            size={size}
+            delay={delay}
+            duration={duration}
+            startTop={startTop}
+            startLeft={startLeft}
+            endTop={endTop}
+            endLeft={endLeft}
+          />
         </S.SnowWrapper>
-      </S.Container>
-    );
-  }
+      );
+    }
 
-    setLeaves(newLeaves);
+    setSnows(newSnows);
   }, []);
 
-  return <>{leaves}</>;
+  return <>{snows}</>;
 };
 
-export default SnowFalling
+export default SnowFalling;
