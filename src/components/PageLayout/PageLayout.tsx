@@ -3,6 +3,7 @@ import * as S from './style';
 import SideBar from '@/components/SideBar/SideBar'
 import HamburgerButton from '../Button/HamburgerButton/HamburgerButton';
 import SnowFalling from '../SnowFalling/SnowFalling';
+import HomeButton from '../Button/HomeButton/HomeButton';
 
 interface Props {
   children: React.ReactNode;
@@ -22,7 +23,8 @@ export default function PageLayout({ children, title }: Props) {
     <S.Layout>
     <SnowFalling />
       <S.Wrapper>
-        <HamburgerButton onClick={() => handleHamburgerClick()} /> {/* 클릭 이벤트 핸들러 추가 */}
+        <HamburgerButton onClick={() => handleHamburgerClick()} />
+        <HomeButton />
         <S.Title>
           {title}
         </S.Title>

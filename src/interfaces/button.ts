@@ -22,6 +22,9 @@ export interface ButtonProps {
   export interface BellButtonProps extends Partial<ButtonProps> {
   }
 
+  export interface HomeButtonProps extends Partial<ButtonProps> {
+  }
+
   export interface LogoutButtonProps extends Partial<ButtonProps> {
   }
 
