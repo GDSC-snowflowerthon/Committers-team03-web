@@ -41,7 +41,7 @@ const GrowButton = () => {
         borderRadius="12px"
         onClick={() => handleGrow()}
         >
-            <S.ButtonText>키우기</S.ButtonText>
+            <S.ButtonText>Grow</S.ButtonText> {/* 키우기 */}
         </Button>
     );
 };

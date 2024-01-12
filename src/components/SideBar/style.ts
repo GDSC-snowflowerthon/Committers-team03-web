@@ -62,6 +62,8 @@ export const MenuItem = styled.div`
     font-size: 24px;
     color: ${theme.colors.white};
     font-weight: 400;
+    white-space: pre-line;
+    line-height: 1.3;
 `;
 
 // 메뉴 아이템 영역
