@@ -6,7 +6,11 @@ import {FollowFriend} from '@/components/Follow/FollowFriend';
 export default function Follow() {
   return (
     <PageLayout title={'친구 추가'}>
-      <SearchBar placeholder={'깃허브 아이디를 입력하세요'} value={''} />
+      <SearchBar
+        placeholder={'깃허브 아이디를 입력하세요'}
+        value={''}
+        title={'친구 등록'}
+      />
       <FollowFriend />
     </PageLayout>
   );
