@@ -21,13 +21,14 @@ export const Text = styled.div`
 
 `;
 
-export const RegisterButton = styled.button<{ clicked: boolean }>`
+export const RegisterButton = styled.button`
   width: 60px;
   height: 35px;
   color: ${theme.colors.white};
   border-radius: 12px;
   font-weight: 600;
-  background-color: ${props => props.clicked ? '#7E9ECC' : '#3181F4'};
+  background-color: ${props => props.onClick ? '#7E9ECC' : '#3181F4'};
+  // 지금은 false로 지정되어 있어서 색깔은 고정됨, 나중에 onClick이 true가 되면 색깔이 바뀜
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

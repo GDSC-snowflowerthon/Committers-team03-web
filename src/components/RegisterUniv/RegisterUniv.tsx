@@ -1,19 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 import * as S from './style';
-
+import {useRecoilState} from 'recoil';
+import {univState} from '@/atoms/univState';
 export const RegisterUniv = () => {
-  const [isClicked, setIsClicked] = useState(false);
-
+  const [univ, setUniv] = useRecoilState(univState);
   const handleClick = () => {
-    setIsClicked(!isClicked);
+    setUniv((prevUniv) => ({
+      ...prevUniv,
+      isRegistered: !prevUniv.isRegistered,
+    }));
   };
   return (
     <S.Container>
-      <S.Text>눈사람대학교</S.Text>
-      <S.Text>128m</S.Text>
-     
-      <S.RegisterButton clicked={isClicked} onClick={handleClick}>
-        {isClicked ? '취소' : '등록'}
+      <S.Text>{univ.univName}</S.Text>
+      <S.Text>{univ.totalHeight}</S.Text>
+
+      <S.RegisterButton onClick={handleClick}>
+        {univ.isRegistered ? '취소' : '등록'}
       </S.RegisterButton>
     </S.Container>
   );
