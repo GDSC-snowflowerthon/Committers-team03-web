@@ -18,3 +18,7 @@ export const SnowmanContainer = styled.div`
     position: absolute;
     z-index: 2;
 `;
+
+export const ArrowWrapper = styled.div`
+  z-index: 3;
+`

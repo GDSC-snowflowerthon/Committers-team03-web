@@ -12,7 +12,7 @@ export const AnimatedObjectWrapper = styled.div<AnimatedObjectsProps>`
   position: absolute;
   top: ${({ topPosition }) => topPosition === 0 ? '320px' : `${topPosition+320}px`};
   right: 50px;
-  z-index: 1;
+  z-index: 0;
   background-image: url(${props => props.backgroundImageUrl});
   background-color: transparent;
   background-size: contain;
