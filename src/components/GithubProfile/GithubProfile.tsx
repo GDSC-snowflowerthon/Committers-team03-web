@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import * as S from './style';
 import {useRecoilState} from 'recoil';
 import {rankState, profileNameState} from '@/atoms/rankState';
-
+import SliverCrown from '@/assets/SilverCrown/SliverCrown.png';
 // 백엔드 API 주소
 const BACKEND_API_URL = 'https://your-backend-api-url';
 
@@ -34,7 +34,7 @@ export const GithubProfile: React.FC = () => {
   return (
     <>
       <S.Wrapper>
-        <S.ProfileImage />
+        <S.ProfileImage src={SliverCrown} />
         <S.Container>
           <S.ProfileName>{profileName}님은</S.ProfileName>
           <S.ProfileRank>{rank}등 입니다 :)</S.ProfileRank>
