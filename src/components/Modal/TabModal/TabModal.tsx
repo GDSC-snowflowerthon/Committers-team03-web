@@ -15,6 +15,13 @@ const TabModal: React.FC<ModalProps> = ({
   const [currentTab, setCurrentTab] = useState<'left' | 'right'>('left');
   const [rank, setRank] = useRecoilState(rankState);
   const [profileName, setProfileName] = useRecoilState(profileNameState);
+
+  // 원래의 rank와 profileName 값을 저장하는 상태를 추가합니다.
+  const [originalRank, setOriginalRank] = useState(rank);
+  const [originalProfileName, setOriginalProfileName] = useState(profileName);
+
+  // 임시로 작성한 탭 내용, 추후 백엔드 API와 연동하여 데이터를 가져와야 함
+
   const tabLeftContents = [
     {id: 1, title: 'Left Tab Content 1', height: 100},
     {id: 2, title: 'Left Tab Content 2', height: 100},
@@ -30,11 +37,14 @@ const TabModal: React.FC<ModalProps> = ({
   const handleTabClick = (tab: 'left' | 'right') => {
     setCurrentTab(tab);
     if (tab === 'right') {
+      setOriginalRank(rank);
+      setOriginalProfileName(profileName);
+
       setProfileName('New Profile Name'); // 새로운 프로필 이름으로 변경
-      setRank(123); // 새로운 랭킹으로 변경
+      setRank(12311); // 새로운 랭킹으로 변경
     } else if (tab === 'left') {
-      setProfileName(profileName); // 새로운 프로필 이름으로 변경
-      setRank(rank); // 새로운 랭킹으로 변경
+      setProfileName(originalProfileName);
+      setRank(originalRank);
     }
   };
 
