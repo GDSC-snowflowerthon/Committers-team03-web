@@ -32,10 +32,12 @@ export const GithubProfile: React.FC = () => {
   return (
     <>
       <S.Wrapper>
-        <S.ProfileImage src={SliverCrown} />
+        <S.AnimatedObjectWrapper>
+          <S.ProfileImage src={SliverCrown} />
+
+        </S.AnimatedObjectWrapper>
         <S.Container>
-          <S.ProfileName>{profileName} is </S.ProfileName>
-          <S.ProfileRank>ranked {rank}th :)</S.ProfileRank>
+          <S.ProfileRank>{profileName} is ranked {rank}th :)</S.ProfileRank>
         </S.Container>
       </S.Wrapper>
     </>
