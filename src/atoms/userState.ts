@@ -4,7 +4,7 @@ import { OtherUserState, MyState } from '@/interfaces/userState'; // 인터페�
 export const myState = atom<MyState>({
   key: 'myState',
   default: {
-    nickname: 'githubid00',
+    nickname: 'minseong0324',
     snowflake: 0,
     snowmanHeight: 0,
     snowId: 1,
