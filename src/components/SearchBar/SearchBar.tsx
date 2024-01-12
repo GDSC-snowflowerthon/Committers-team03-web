@@ -4,10 +4,12 @@ import {SearchBarProps} from '@/interfaces/search';
 import {useRecoilState} from 'recoil';
 import {univState} from '@/atoms/univState';
 import { instance } from '@/apis/axios';
+import {buddyState} from '@/atoms/buddyState';
 
 const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [, setSearchResult] = useRecoilState(univState);
+  const [, setSearchBuddyResult] = useRecoilState(buddyState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -19,7 +21,7 @@ const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
         const response = await instance.get(
           `/api/v1/univ?univName=${inputValue}`
         );
-        const data = response?.data;
+        const data = response?.data?.data;
         console.log(data);
         setSearchResult((prev) => ({
           ...prev,
@@ -31,13 +33,13 @@ const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
         const response = await instance.get(
           '/api/v1/buddy/search',
         );
-        const data = response?.data;
+        const data = response?.data?.data;
         console.log(data);
-        setSearchResult((prev) => ({
+        setSearchBuddyResult((prev) => ({
           ...prev,
-          nickname: data.nickname,
-          snowmanHeight: data.snowmanHeight,
-          isFollowed: data.isFollowed,
+          nickname: data?.nickname,
+          snowmanHeight: data?.snowmanHeight,
+          isFollowed: data?.isFollowed,
         }));
       }
     } catch (error) {
