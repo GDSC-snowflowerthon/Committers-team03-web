@@ -19,7 +19,9 @@ export const GithubProfile: React.FC = () => {
         // }
 
         const userData = response.data;
-        setProfileName(userData.nickname);
+        if (userData.myUnivName === 'none') {
+          setProfileName(''); // Clear the profileName if there is no university
+        }
         setRank(userData.myUnivRanking);
       } catch (error) {
         console.error('Error fetching user ranking:', error);
@@ -33,8 +35,12 @@ export const GithubProfile: React.FC = () => {
       <S.Wrapper>
         <S.ProfileImage src={SliverCrown} />
         <S.Container>
-          <S.ProfileName>{profileName}님은</S.ProfileName>
-          <S.ProfileRank>{rank}등 입니다 :)</S.ProfileRank>
+          <S.ProfileName>{profileName}님의 학교는</S.ProfileName>
+          {profileName ? (
+            <S.ProfileRank>{rank}등 입니다 :)</S.ProfileRank>
+          ) : (
+            <S.ProfileRank>아직 소속된 대학이 없어요 :(</S.ProfileRank>
+          )}
         </S.Container>
       </S.Wrapper>
     </>
