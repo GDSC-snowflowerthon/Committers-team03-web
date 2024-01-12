@@ -10,21 +10,21 @@ const hatColors = ['#1E90FF', '#FF7777', '#FFBA7A', '#A3FF82', '#FF77F1'];
 export const SnowmanDecorationSection: React.FC = () => {
     return (
         <S.Container>
-            <S.SectionTitle>눈덩이 꾸미기</S.SectionTitle>
+            <S.SectionTitle>Snowball</S.SectionTitle> {/* 눈덩이 꾸미기 */}
             <S.ColorSection>
             {bodyColors.map((color) => (
                 <ColorButton key={color} color={color} part="snowId" />
             ))}
             </S.ColorSection>
     
-            <S.SectionTitle>목도리 꾸미기</S.SectionTitle>
+            <S.SectionTitle>Muffler</S.SectionTitle> {/* 목도리 꾸미기 */}
             <S.ColorSection>
             {scarfColors.map((color) => (
                 <ColorButton key={color} color={color} part="decoId" />
             ))}
             </S.ColorSection>
     
-            <S.SectionTitle>모자 꾸미기</S.SectionTitle>
+            <S.SectionTitle>Hat</S.SectionTitle> {/* 모자 꾸미기 */}
             <S.ColorSection>
             {hatColors.map((color) => (
                 <ColorButton key={color} color={color} part="hatId" />

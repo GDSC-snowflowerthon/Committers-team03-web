@@ -20,7 +20,7 @@ function CustomModal({closeModal, isOpen}: Props) {
         >
             <S.Wrapper>
                 <S.Title>
-                    눈사람 꾸미기
+                    Decorate {/* 눈사람 꾸미기 */}
                 </S.Title>
                 <CustomCompleteButton>
                     

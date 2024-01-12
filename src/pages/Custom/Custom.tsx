@@ -50,7 +50,7 @@ export default function Custom() {
   
   return (
     <>
-      <PageLayout title={"눈사람 꾸미기"}>
+      <PageLayout title={"Decorate"}> {/* 눈사람 꾸미기 */}
         <S.SnowmanContainer>
           <SnowmanScene height={"400px"}/>
         </S.SnowmanContainer>      
