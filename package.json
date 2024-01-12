@@ -51,5 +51,7 @@
     "vite": "^4.4.5"
   },
   "format": "prettier --write --cache .",
-  "lint": "eslint src/**/*.{ts,tsx} --fix"
+  "lint": "eslint src/**/*.{ts,tsx} --fix",
+  "proxy" : "https://kidari-server.shop"
+
 }
