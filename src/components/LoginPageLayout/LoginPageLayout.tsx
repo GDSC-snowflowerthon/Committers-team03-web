@@ -8,13 +8,8 @@ import SnowmanScene from '../SnowmanScene/SnowmanScene';
 import LogoImg from '@/assets/Logo/Kidari.png';
 export default function LoginPageLayout() {
   const githubLoginClick = () => {
-    console.log('로그인버튼 클릭');
-
-    // 리다이렉트 URL
-    const redirectUri = encodeURIComponent('https://kidari.site/redirect');
-
     // 사용자를 깃허브 로그인 페이지로 리다이렉트
-    window.location.href = redirectUri;
+    window.location.href = "https://kidari-server.shop/oauth2/authorization/github";
   };
 
   return (
