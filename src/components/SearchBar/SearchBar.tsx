@@ -15,16 +15,22 @@ const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
 
   const handleSearch = async () => {
     try {
+      // Get the access token
+      const tokenResponse = await axios.get('https://kidari.site/api/v1/univ', {
+        withCredentials: true,
+      });
+      const accessToken = tokenResponse.data.accessToken;
+
       if (title === '학교 등록') {
         const response = await axios.post(
-          'api/v1/univ',
+          'https://kidari.site/api/v1/univ',
           {
             univName: inputValue,
           },
           {
             headers: {
               'Content-Type': 'application/json',
-              // 'Authorization': `Bearer ${accessToken}`,
+              Authorization: `Bearer ${accessToken}`,
             },
           },
         );
@@ -37,7 +43,13 @@ const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
           isRegistered: data.data.isRegistered,
         }));
       } else {
-        const response = await axios.get('api/v1/buddy/search');
+        // Set the Authorization header for the GET request
+        axios.defaults.headers.common['Authorization'] =
+          `Bearer ${accessToken}`;
+
+        const response = await axios.get(
+          'https://kidari.site/api/v1/buddy/search',
+        );
         const data = response.data;
         console.log(data);
         setSearchResult((prev) => ({
