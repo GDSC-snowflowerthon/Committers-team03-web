@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import * as S from './style';
 import {ModalProps} from '@/interfaces/modal';
-// import {TabContentProps} from '@/interfaces/tab';
+
 import {useRecoilState} from 'recoil';
 import {rankState, profileNameState} from '@/atoms/rankState';
+
 const TabModal: React.FC<ModalProps> = ({
   isOpen,
   onClose,
@@ -34,6 +35,7 @@ const TabModal: React.FC<ModalProps> = ({
     {id: 3, title: 'Right Tab Content 3', height: 50},
     // ... (다른 탭의 내용도 추가할 수 있음)
   ];
+
   const handleTabClick = (tab: 'left' | 'right') => {
     setCurrentTab(tab);
     if (tab === 'right') {
