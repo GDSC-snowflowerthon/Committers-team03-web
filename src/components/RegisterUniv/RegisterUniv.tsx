@@ -3,48 +3,36 @@ import axios from 'axios';
 import * as S from './style';
 import {useRecoilState} from 'recoil';
 import {univState} from '@/atoms/univState';
+import { instance } from '@/apis/axios';
 
-const BACKEND_API_URL = 'https://kidari.site';
 
 export const RegisterUniv = () => {
   const [univ, setUniv] = useRecoilState(univState);
 
   const handleClick = async () => {
-    const {data} = await axios.get(`${BACKEND_API_URL}/api/v1/univ/update`, {
-      withCredentials: true,
-    });
-    axios.defaults.headers.common['Authorization'] =
-      `Bearer ${data.accessToken}`;
-
-    try {
-      if (!univ.isRegistered) {
-        const response = await axios.patch(
-          `${BACKEND_API_URL}/api/v1/univ/update?univName=${univ.univName}&isRegistered=true`,
-        );
-
-        const responseData = response.data.data;
-
-        setUniv({
-          univName: responseData.univName,
-          totalHeight: univ.totalHeight,
-          isRegistered: responseData.isRegistered,
-        });
-      } else {
-        const response = await axios.patch(
-          `${BACKEND_API_URL}/api/v1/univ/update?univName=${univ.univName}&isRegistered=false`,
-        );
-
-        const responseData = response.data.data;
-
-        setUniv({
-          univName: responseData.univName,
-          totalHeight: univ.totalHeight,
-          isRegistered: responseData.isRegistered,
-        });
+      try {
+        if (!univ?.isRegistered) {
+          const response = await instance.patch(
+            `/api/v1/univ/update?univName=${univ?.univName}&isRegistered=true`,
+          );
+            setUniv({
+              univName: response.data.data?.univName,
+              totalHeight: response.data.data?.totalHeight,
+              isRegistered: response.data.data?.isRegistered,
+            });
+        } else {
+          const response = await instance.patch(
+            `/api/v1/univ/update?univName=${univ?.univName}&isRegistered=false`,
+          );
+          setUniv({
+            univName: response.data.data?.univName,
+            totalHeight: response.data.data?.totalHeight,
+            isRegistered: response.data.data?.isRegistered,
+          });
+        }
+      } catch (error) {
+        alert(error.message);
       }
-    } catch (error) {
-      console.error(error);
-    }
   };
 
   return (

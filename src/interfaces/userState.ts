@@ -23,3 +23,9 @@ export interface UnivState{
     totalHeight : number,
     isRegistered : boolean,
 }
+
+export interface buddyType{
+    nickname : string,
+    snowmanHeight : number,
+    isFollowed : boolean,
+}
