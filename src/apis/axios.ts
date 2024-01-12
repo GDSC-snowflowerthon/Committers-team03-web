@@ -8,7 +8,7 @@ const getRefreshTokenFromCookies = () => Cookies.get('refreshCookie');
 export const instance = axios.create({
   baseURL: 'https://kidari-server.shop',
   headers: {
-    Authorization: `Bearer ${getAccessTokenFromCookies()}`,
+    Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJuaWNrbmFtZSI6IkdhbmdoZWUtTGVlLTA1MjIiLCJtZW1iZXJJZCI6MSwicm9sZSI6IlJPTEVfTUVNQkVSIiwiaWF0IjoxNzA1MDkwNjYwLCJleHAiOjE3MDc2ODI2NjB9.2O0vunX-WkIUI9oMDOdL9OnSz1sWuZzDiJTBdMdIkEk}`,
   },
 });
 

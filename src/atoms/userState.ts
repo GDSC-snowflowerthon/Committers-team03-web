@@ -6,7 +6,7 @@ export const myState = atom<MyState>({
   default: {
     nickname: 'minseong0324',
     snowflake: 0,
-    snowmanHeight: 0,
+    snowmanHeight: 220,
     snowId: 1,
     hatId: 1,
     decoId: 1,
