@@ -3,7 +3,7 @@ import * as S from './style';
 import {useRecoilState} from 'recoil';
 import {rankState, profileNameState} from '@/atoms/rankState';
 import SliverCrown from '@/assets/SilverCrown/SliverCrown.png';
-import {getBuddyRankingData} from '@/apis/ranking';
+import {getUnivRankingData} from '@/apis/ranking';
 
 export const GithubProfile: React.FC = () => {
   const [rank, setRank] = useRecoilState(rankState);
@@ -12,7 +12,7 @@ export const GithubProfile: React.FC = () => {
   useEffect(() => {
     const fetchRanking = async () => {
       try {
-        const response = await getBuddyRankingData();
+        const response = await getUnivRankingData();
 
         // if (response.status === 401) {
         //   window.location.href = RANKING_API_URL;
@@ -20,12 +20,11 @@ export const GithubProfile: React.FC = () => {
 
         const userData = response.data;
         setProfileName(userData.nickname);
-        setRank(userData.myRanking);
+        setRank(userData.myUnivRanking);
       } catch (error) {
         console.error('Error fetching user ranking:', error);
       }
     };
-
     fetchRanking();
   }, []);
 
