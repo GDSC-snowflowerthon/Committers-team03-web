@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import theme from '@/theme';
 export const Wrapper = styled.div`
  margin-top: 3rem;
   max-width: 430px;
@@ -14,8 +14,8 @@ export const Wrapper = styled.div`
 export const ProfileImage = styled.img`
     width: 100px;
     height: 100px;
-    background-color: #ffffff;
-    border-radius: 50%;
+ 
+
     margin-top: 2rem;
 `;
 
@@ -23,12 +23,13 @@ export const ProfileName = styled.div`
     font-size: 14px;
     margin-top: 1rem;
     margin-right: 0.5rem;
+    color: ${theme.colors.textMain};
 `;
 
 export const ProfileRank = styled.div`
     font-size: 14px;
     margin-top: 1rem;
-   
+    color: ${theme.colors.textMain};
 `;
 
 export const Container = styled.div`
