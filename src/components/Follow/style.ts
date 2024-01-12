@@ -15,15 +15,21 @@ export const Container = styled.div`
   margin-top: 2rem;
 `;
 
-export const Text = styled.div`
+export const Nickname = styled.div`
   font-size: 14px;
+  padding-left: 30px;
   color: ${theme.colors.textMain};
 
 `;
-
-export const Profile = styled.div`
-
+export const Height = styled.div`
   font-size: 14px;
+  padding-left: 50px;
+  color: ${theme.colors.textMain};
+
+`;
+export const Profile = styled.div`
+  font-size: 14px;
+  padding-left: 40px;
   color: ${theme.colors.textMain};
   cursor: pointer;
 `;
@@ -40,5 +46,6 @@ export const RegisterButton = styled.button<{ clicked: boolean }>`
   background-repeat: no-repeat;
   background-position: center;
   border: none;
+  margin-left: 2.5rem;
   cursor: pointer;
 `;
