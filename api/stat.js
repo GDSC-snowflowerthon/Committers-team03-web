@@ -10,21 +10,21 @@ export default async (req, res) => {
     let attacking = 456; // 기본 공격 횟수
     let displayText = true; // API 호출 성공 여부 표시
 
-    // 해당 사용자의 정보를 API에서 가져옵니다.
-    try {
-      // 해당 사용자의 정보를 API에서 가져옵니다.
-      const userInfoResponse = await fetch(
-        `https://kidari-server.shop/api/v1/readme/info/${nickname}`,
-      );
-      if (userInfoResponse.ok) {
-        const userInfo = await userInfoResponse.json();
-        snowmanHeight = userInfo.data.snowmanHeight;
-        attacking = userInfo.data.attacking;
-        displayText = false; // API 호출에 성공했으므로 대체 텍스트를 표시하지 않음
-      }
-    } catch (error) {
-      console.error('Error fetching user info:', error);
-    }
+    // // 해당 사용자의 정보를 API에서 가져옵니다.
+    // try {
+    //   // 해당 사용자의 정보를 API에서 가져옵니다.
+    //   const userInfoResponse = await fetch(
+    //     `https://kidari-server.shop/api/v1/readme/info/${nickname}`,
+    //   );
+    //   if (userInfoResponse.ok) {
+    //     const userInfo = await userInfoResponse.json();
+    //     snowmanHeight = userInfo.data.snowmanHeight;
+    //     attacking = userInfo.data.attacking;
+    //     displayText = false; // API 호출에 성공했으므로 대체 텍스트를 표시하지 않음
+    //   }
+    // } catch (error) {
+    //   console.error('Error fetching user info:', error);
+    // }
 
     // 나머지 코드는 동일하게 유지하면서, SVG 텍스트 부분만 조건에 따라 변경합니다.
     let svgTextContent;
@@ -41,7 +41,7 @@ export default async (req, res) => {
     }
 
     // 파일 URL 결정
-    const baseUrl = 'https://commiters-team03-web.vercel.app'; //TODO: https://kidari.site로 바꿔야함.
+    const baseUrl = 'https://kidari.site'; //TODO: https://kidari.site로 바꿔야함.
     const fileNumber = Math.min(
       Math.max(Math.floor((snowmanHeight - 130) / 30), 0),
       10,
@@ -64,7 +64,7 @@ export default async (req, res) => {
       `${baseUrl}/Card${fileNumber}.svg`,
       //`${baseUrl}/Object${fileNumber}.svg`,
       `${baseUrl}/Snowman000.svg`,
-      fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
+      //fileNumber >= 4 ? `${baseUrl}/Star.svg` : `${baseUrl}/Snow.svg`,
     ];
 
     // 모든 SVG 파일을 동시에 가져옵니다.
