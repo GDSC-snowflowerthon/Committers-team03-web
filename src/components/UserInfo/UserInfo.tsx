@@ -10,7 +10,7 @@ import AttackButton from '../Button/AttackButton/AttackButton';
 export default function UserInfo() {
     const myData = useRecoilValue(myState);
     const otherData = useRecoilValue(otherUserState);
-    const {isMyHome} = useIsMyHome();
+    const {isMyHome, urlNickname} = useIsMyHome();
     console.log("sadfasdf",isMyHome);
     // 현재 홈의 데이터 결정
     const currentData = isMyHome ? myData : otherData;
@@ -18,7 +18,7 @@ export default function UserInfo() {
     return (
         <S.Container>
             <S.WhiteWrapper>
-                {currentData.nickname || 'please login!'}
+                {urlNickname || 'please login!'} {/* currentData.nickname */}
             </S.WhiteWrapper>
             <S.WhiteWrapper>
                 {`Heights: ${currentData.snowmanHeight}`} {/*눈사람 키 */}
