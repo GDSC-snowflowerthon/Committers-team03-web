@@ -11,7 +11,7 @@ export interface MyState {
 
 export interface OtherUserState {
     nickname: string;  // 깃허브 아이디
-    snowmanHeight: number; // 눈사람 키
+    snowmanHeight: number | undefined; // 눈사람 키
     snowId: number; // 눈 아이템 ID
     hatId: number; // 모자 아이템 ID
     decoId: number; // 장식 아이템 ID

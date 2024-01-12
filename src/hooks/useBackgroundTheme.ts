@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 
 export const useBackgroundTheme = () => {
     const location = useLocation();
-    const snowmanHeight = useRecoilValue(snowmanHeightState);
+    const snowmanHeight = useRecoilValue(snowmanHeightState) || 1;
     const topScrollRoutes = ['/', '/custom', '/ranking', '/follow', '/register'];
 
     const calculateGradient = (height: number): string => {

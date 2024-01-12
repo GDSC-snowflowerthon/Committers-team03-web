@@ -8,7 +8,7 @@ import SnowFalling from '@/components/SnowFalling/SnowFalling';
 import ShootingStarFalling from '@/components/ShootingStarFalling/ShootingStarFalling';
 import AnimatedObjects from '@/components/AnimatedObjects/AnimatedObjects';
 export default function Home() {
-  const snowmanHeight = useRecoilValue(snowmanHeightState);
+  const snowmanHeight = useRecoilValue(snowmanHeightState) || 1;
   const [, setYPosition] = useRecoilState(snowmanYPositionState);
 
   useEffect(() => {

@@ -5,9 +5,10 @@ import { snowmanHeightState } from '@/atoms/snowmanState';
 import Objects from '@/assets/Objects';
 
 export default function AnimatedObjects() {
-  const snowmanHeight = useRecoilValue(snowmanHeightState);
+  const snowmanHeight = useRecoilValue(snowmanHeightState) || 1;
 
   let objectIndex = 0;
+    
   if (snowmanHeight >= 130) {
     objectIndex = Math.floor((snowmanHeight - 130) / 30);
     objectIndex = Math.min(objectIndex, Objects.length - 1);

@@ -10,7 +10,7 @@ export const snowmanRotationState = atom<boolean>({
   default: false, // 기본 회전 각도는 0으로 설정
 });
 
-export const snowmanHeightState = atom<number>({
+export const snowmanHeightState = atom<number | undefined>({
   key: 'snowmanHeightState',
   default: 190, // 초기 눈사람의 키는 0으로 설정
 });
