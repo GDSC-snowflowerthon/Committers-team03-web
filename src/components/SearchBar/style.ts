@@ -22,13 +22,15 @@ export const Input = styled.input`
   width: 380px;
   height: 45px;
   flex: 1;
-  padding: 8px;
+  padding:8px;
+  text-indent: 16px;
   border-radius: 12px;
   outline: none;
   border: none;
   color: ${theme.colors.textMain};
   font-weight: 600;
   font-size: 14px;
+  
 `;
 
 export const SearchIcon = styled.div`

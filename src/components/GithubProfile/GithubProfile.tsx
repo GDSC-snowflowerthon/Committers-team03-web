@@ -34,8 +34,8 @@ export const GithubProfile: React.FC = () => {
       <S.Wrapper>
         <S.ProfileImage src={SliverCrown} />
         <S.Container>
-          <S.ProfileName>{profileName}님은</S.ProfileName>
-          <S.ProfileRank>{rank}등 입니다 :)</S.ProfileRank>
+          <S.ProfileName>{profileName} is </S.ProfileName>
+          <S.ProfileRank>ranked {rank}th :)</S.ProfileRank>
         </S.Container>
       </S.Wrapper>
     </>

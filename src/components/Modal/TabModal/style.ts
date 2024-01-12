@@ -157,12 +157,16 @@ export const TabContent = styled.div`
   
 `;
 
-export const TabContainer = styled.div`
+export const TabContainer = styled.div<{ isLightWeight?: boolean }>`
   width: 100%;
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin-top: 1rem;
+  font-weight: ${(props) => (props.isLightWeight ? 400 : 700)};
 `;
 
-export const TabDivider = styled.div``;
+export const TabDivider = styled.div`
+
+`;
+

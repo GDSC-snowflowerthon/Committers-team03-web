@@ -35,11 +35,11 @@ export const GithubProfile: React.FC = () => {
       <S.Wrapper>
         <S.ProfileImage src={SliverCrown} />
         <S.Container>
-          <S.ProfileName>{profileName}님의 학교는</S.ProfileName>
+          <S.ProfileName>{profileName}`s university </S.ProfileName>
           {profileName ? (
-            <S.ProfileRank>{rank}등 입니다 :)</S.ProfileRank>
+            <S.ProfileRank>is ranked {rank}th :)</S.ProfileRank>
           ) : (
-            <S.ProfileRank>아직 소속된 대학이 없어요 :(</S.ProfileRank>
+            <S.ProfileRank>has not been registered yet :(</S.ProfileRank>
           )}
         </S.Container>
       </S.Wrapper>

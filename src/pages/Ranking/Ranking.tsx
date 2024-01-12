@@ -19,7 +19,7 @@ export default function Ranking() {
 
   return (
     <>
-      <PageLayout title={'랭킹'}>
+      <PageLayout title={'Ranking'}>
         <SnowFalling />
         <GithubProfile />
       </PageLayout>

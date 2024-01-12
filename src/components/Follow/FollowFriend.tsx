@@ -1,26 +1,26 @@
 import React from 'react';
 import {useRecoilValue, useSetRecoilState} from 'recoil';
 import * as S from './style';
-import { useNavigate } from 'react-router-dom';
-import { useMutation } from '@tanstack/react-query';
-import { patchFollow } from '@/apis/otherHome';
-import { buddyState } from '@/atoms/buddyState';
+import {useNavigate} from 'react-router-dom';
+import {useMutation} from '@tanstack/react-query';
+import {patchFollow} from '@/apis/otherHome';
+import {buddyState} from '@/atoms/buddyState';
 export const FollowFriend = () => {
   const navigate = useNavigate();
   const searchResult = useRecoilValue(buddyState);
   const setBuddy = useSetRecoilState(buddyState);
 
-  const { mutate } = useMutation({
-    mutationFn: () => patchFollow(searchResult.nickname, !searchResult.isFollowed),
+  const {mutate} = useMutation({
+    mutationFn: () =>
+      patchFollow(searchResult.nickname, !searchResult.isFollowed),
     onSuccess: async () => {
       // 상태 업데이트
-      setBuddy({ ...searchResult, isFollowed: !searchResult.isFollowed });
+      setBuddy({...searchResult, isFollowed: !searchResult.isFollowed});
     },
     onError: (error) => {
       alert(error);
-  },
+    },
   });
-
 
   const handleClick = () => {
     mutate();
@@ -35,9 +35,9 @@ export const FollowFriend = () => {
     <S.Container>
       <S.Text>{searchResult.nickname}</S.Text>
       <S.Text>{searchResult.snowmanHeight}m</S.Text>
-      <S.Profile onClick={handleProfileClick}>프로필</S.Profile>
+      <S.Profile onClick={handleProfileClick}>Profile</S.Profile>
       <S.RegisterButton clicked={searchResult.isFollowed} onClick={handleClick}>
-        {searchResult.isFollowed ? '언팔로우' : '팔로우'}
+        {searchResult.isFollowed ? 'UnFollow' : 'Follow'}
       </S.RegisterButton>
     </S.Container>
   );
