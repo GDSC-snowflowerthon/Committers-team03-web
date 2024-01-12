@@ -3,7 +3,7 @@ import styled, { keyframes } from "styled-components";
 
 const moveUpDown = keyframes`
   0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
+  50% { transform: translateY(-15px); }
   100% { transform: translateY(0); }
 `;
 
@@ -19,7 +19,7 @@ export const AnimatedObjectWrapper = styled.div<AnimatedObjectsProps>`
   background-repeat: no-repeat;
   width: 180px;
   height: 180px;
-  animation: ${moveUpDown} 3s ease-in-out infinite;
+  animation: ${moveUpDown} 1s ease-in-out infinite;
 `;
 
 

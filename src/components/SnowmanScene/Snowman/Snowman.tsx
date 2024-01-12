@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Sphere, Cylinder } from '@react-three/drei';
 import * as THREE from 'three';
@@ -38,28 +38,61 @@ export default function Snowman() {
     const [rotate, setRotate] = useRecoilState(snowmanRotationState);
     const myInfo = useRecoilValue(myState);
     const otherUserInfo = useRecoilValue(otherUserState);
-    const {isMyHome} = useIsMyHome();
+    const {isMyHome, urlNickname} = useIsMyHome();
 
     // 현재 페이지와 사용자 컨텍스트에 따라 장식 결정
     const userInfo = isMyHome || window.location.pathname === '/custom' ? myInfo : otherUserInfo;
     const bodyColor = bodyColorToNumberMap[userInfo.snowId || 1];
     const scarfColor = scarfColorToNumberMap[userInfo.decoId || 1];
     const hatColor = hatColorToNumberMap[userInfo.hatId || 1];
+    const [rotationDirection, setRotationDirection] = useState(1); // 1: 오른쪽, -1: 왼쪽
+    const maxRotation = 0.3; // 최대 회전 각도
+
+    // 회전 속도를 계산하는 함수
+    const calculateRotationSpeed = (currentRotation) => {
+        const normalizedRotation = Math.abs(currentRotation) / maxRotation; // 0에서 1 사이의 값
+        return (1 - normalizedRotation) * 0.01 + 0.001; // 최소 속도 0.001, 최대 속도 0.01
+    };
+
     console.log(`${bodyColor}${scarfColor}${hatColor}`)
     useFrame(() => {
-        if (rotate && snowmanRef.current) {
-            const rotationStep = 0.11; // 회전 속도
-            snowmanRef.current.rotation.y += rotationStep;
+        if (snowmanRef.current) {
+            // URL이 '/:urlNickname' 형태인지 확인
+            if (urlNickname) {
+                // 좌우 두리번 구현
+                const currentRotation = snowmanRef.current.rotation.y;
 
-            if (snowmanRef.current.rotation.y >= Math.PI * 4) {
-                // 2바퀴 회전 후 멈춤
-                snowmanRef.current.rotation.y = 0; // 회전 각도 초기화
-                setRotate(false); // 회전 상태를 false로 설정
+                const rotationSpeed = calculateRotationSpeed(currentRotation);
+                // 예정된 새로운 회전 각도
+                let newRotation = currentRotation + rotationDirection * rotationSpeed;
+
+                // 눈사람이 특정 각도를 넘어서면 방향을 전환하고 각도를 조정
+                if (newRotation > maxRotation) {
+                    newRotation = maxRotation;
+                    setRotationDirection(-1); // 방향 전환
+                } else if (newRotation < -maxRotation) {
+                    newRotation = -maxRotation;
+                    setRotationDirection(1); // 방향 전환
+                }
+
+                // 눈사람 회전 적용
+                snowmanRef.current.rotation.y = newRotation;
             }
-        }
+            
+            if (rotate && snowmanRef.current) {
+                const rotationStep = 0.11; // 회전 속도
+                snowmanRef.current.rotation.y += rotationStep;
 
-        if(window.location.pathname === '/') {
-            snowmanRef.current.rotation.y += 0.03;
+                if (snowmanRef.current.rotation.y >= Math.PI * 4) {
+                    // 2바퀴 회전 후 멈춤
+                    snowmanRef.current.rotation.y = 0; // 회전 각도 초기화
+                    setRotate(false); // 회전 상태를 false로 설정
+                }
+            }
+
+            if(window.location.pathname === '/') {
+                snowmanRef.current.rotation.y += 0.03;
+            }
         }
     });
 
