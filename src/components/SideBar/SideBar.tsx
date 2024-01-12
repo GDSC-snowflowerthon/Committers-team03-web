@@ -15,10 +15,10 @@ const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
 
     const menuItems = useMemo(
         () => [
-            { menuName: "랭킹", path: "/ranking" },
-            { menuName: "친구추가", path: "/follow" },
-            { menuName: "눈사람 꾸미기", path: "/custom" },
-            { menuName: "학교 등록", path: "/register" },
+            { menuName: "Ranking", path: "/ranking" }, // 랭킹
+            { menuName: "Follow", path: "/follow" }, // 친구추가
+            { menuName: "Decorate", path: "/custom" }, // 눈사람 꾸미기
+            { menuName: "University \n Registration", path: "/register" }, // 학교 등록
         ],
         []
     );
@@ -35,7 +35,7 @@ const SideBar: React.FC<SideBarProps> = ({ onCloseClick, isOpen }) => {
             )}            
             <S.MainSection $isOpenProps={isOpen}>
                 <S.NicknameWrapper onClick={handleNavigateToHome}>
-                    {`안녕하세요 :) \n ${dummyName} 님`}
+                    {`Hello :) \n ${dummyName}`}
                 </S.NicknameWrapper>
                 <S.MenuList>
                     {menuItems.map((menu) => (

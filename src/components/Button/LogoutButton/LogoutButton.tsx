@@ -21,7 +21,7 @@ export default function LogoutButton(props: LogoutButtonProps) {
                 borderRadius={`12px`}
                 onClick={() => handleLogout()}
             >
-                <S.ButtonText>로그아웃</S.ButtonText>
+                <S.ButtonText>Logout</S.ButtonText>
             </Button>
         </S.LogoutButtonWrapper>
     )
