@@ -6,7 +6,7 @@ import {instance} from './axios';
       const response = await instance.get(
         `api/v1/item`,
       );
-      return response.data;
+      return response.data.data;
     } catch (error) {
       return null;
     }

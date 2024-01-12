@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import * as S from './style';
 import {SearchBarProps} from '@/interfaces/search';
 import {useRecoilState} from 'recoil';
-import {otherUserState} from '@/atoms/userState';
-import axios from 'axios';
+import {univState} from '@/atoms/univState';
+import { instance } from '@/apis/axios';
 
 const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
-  const [inputValue, setInputValue] = useState('');
-  const [, setSearchResult] = useRecoilState(otherUserState);
+  const [inputValue, setInputValue] = useState<string>('');
+  const [, setSearchResult] = useRecoilState(univState);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(event.target.value);
@@ -15,42 +15,23 @@ const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
 
   const handleSearch = async () => {
     try {
-      // Get the access token
-      const tokenResponse = await axios.get('https://kidari.site/api/v1/univ', {
-        withCredentials: true,
-      });
-      const accessToken = tokenResponse.data.accessToken;
-
       if (title === '학교 등록') {
-        const response = await axios.post(
-          'https://kidari.site/api/v1/univ',
-          {
-            univName: inputValue,
-          },
-          {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`,
-            },
-          },
+        const response = await instance.get(
+          `/api/v1/univ?univName=${inputValue}`
         );
-        const data = response.data;
+        const data = response?.data;
         console.log(data);
         setSearchResult((prev) => ({
           ...prev,
-          univName: data.data.univName,
-          totalHeight: data.data.totalHeight,
-          isRegistered: data.data.isRegistered,
+          univName: data?.univName,
+          totalHeight: data?.totalHeight,
+          isRegistered: data?.isRegistered,
         }));
       } else {
-        // Set the Authorization header for the GET request
-        axios.defaults.headers.common['Authorization'] =
-          `Bearer ${accessToken}`;
-
-        const response = await axios.get(
-          'https://kidari.site/api/v1/buddy/search',
+        const response = await instance.get(
+          '/api/v1/buddy/search',
         );
-        const data = response.data;
+        const data = response?.data;
         console.log(data);
         setSearchResult((prev) => ({
           ...prev,

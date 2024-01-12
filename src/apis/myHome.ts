@@ -5,7 +5,7 @@ export const getMyData =  async () => {
   try {
     const response = await instance.get(`/api/v1/home/myinfo`);
     return {
-        ...response.data,
+        ...response.data.data,
     };
   } catch (error) {
     return null;
@@ -36,7 +36,7 @@ export const getMyData =  async () => {
       const response = await instance.get(
         `api/v1/home/alarm`,
       );
-      return response.data.attackedList; //attackedList
+      return response.data.data.attackedList; //attackedList
   };
 
   {/*
