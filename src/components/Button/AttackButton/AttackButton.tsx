@@ -32,7 +32,7 @@ const AttackButton = () => {
         borderRadius="12px"
         onClick={() => handleAttack()}
         >
-            <S.ButtonText>공격하기</S.ButtonText>
+            <S.ButtonText>Attack!</S.ButtonText> {/* 공격하기 */}
         </Button>
     );
 };

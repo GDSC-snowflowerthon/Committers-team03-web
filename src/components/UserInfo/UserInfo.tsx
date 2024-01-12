@@ -21,12 +21,12 @@ export default function UserInfo() {
                 {currentData.nickname || 'please login!'}
             </S.WhiteWrapper>
             <S.WhiteWrapper>
-                {`눈사람 키: ${currentData.snowmanHeight}`}
+                {`Heights: ${currentData.snowmanHeight}`} {/*눈사람 키 */}
             </S.WhiteWrapper>
             {isMyHome ? (
                 <>
                     <S.WhiteWrapper>
-                        {`보유 눈송이: ${myData.snowflake}`}
+                        {`Snowflakes: ${myData.snowflake}`} {/*보유 눈송이 */}
                     </S.WhiteWrapper>
                     <GrowButton />
                 </>
