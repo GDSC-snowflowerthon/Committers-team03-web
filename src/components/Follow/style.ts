@@ -7,11 +7,10 @@ export const Container = styled.div`
   align-items: center;
   justify-content: space-around;
   background-color:${theme.colors.white};
-  margin-right: 8px;
-  width: 380px;
+  width: 85%;
   height: 45px;
   padding: 8px;
-  border-radius: 10px;
+  border-radius: 12px;
   outline: none;
   margin-top: 2rem;
 `;
@@ -34,7 +33,8 @@ export const RegisterButton = styled.button<{ clicked: boolean }>`
   height: 35px;
   color: ${theme.colors.white};
   font-size: 12px;
-  border-radius: 4px;
+  font-weight: 700; 
+  border-radius: 12px;
   background-color: ${props => props.clicked ? `${theme.colors.unFollow}` : `${theme.colors.follow}`};
   background-size: cover;
   background-repeat: no-repeat;
