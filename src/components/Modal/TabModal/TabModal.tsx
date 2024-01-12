@@ -1,9 +1,12 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import * as S from './style';
 import {ModalProps} from '@/interfaces/modal';
-
+import {univRankingListState} from  '@/atoms/rankState'
 import {useRecoilState} from 'recoil';
 import {rankState, profileNameState} from '@/atoms/rankState';
+import { useQuery } from '@tanstack/react-query';
+import { UnivRankingList } from '@/interfaces/ranking';
+import { getUnivRankingList } from '@/apis/ranking';
 
 const TabModal: React.FC<ModalProps> = ({
   isOpen,
@@ -16,25 +19,24 @@ const TabModal: React.FC<ModalProps> = ({
   const [currentTab, setCurrentTab] = useState<'left' | 'right'>('left');
   const [rank, setRank] = useRecoilState(rankState);
   const [profileName, setProfileName] = useRecoilState(profileNameState);
+  const [univRankingList, setUnivRankingList] = useRecoilState(univRankingListState);
 
   // 원래의 rank와 profileName 값을 저장하는 상태를 추가합니다.
   const [originalRank, setOriginalRank] = useState(rank);
   const [originalProfileName, setOriginalProfileName] = useState(profileName);
 
-  // 임시로 작성한 탭 내용, 추후 백엔드 API와 연동하여 데이터를 가져와야 함
+  const {data} = useQuery<UnivRankingList>({
+    queryKey: ["univRankingList"],
+    retry: 1, // 실패시 재호출 횟수
+    queryFn: () => getUnivRankingList(),
+  });
 
-  const tabLeftContents = [
-    {id: 1, title: 'Left Tab Content 1', height: 100},
-    {id: 2, title: 'Left Tab Content 2', height: 100},
-    {id: 3, title: 'Left Tab Content 3', height: 100},
-    // ... (다른 탭의 내용도 추가할 수 있음)
-  ];
-  const tabRightContents = [
-    {id: 1, title: 'Right Tab Content 1', height: 50},
-    {id: 2, title: 'Right Tab Content 2', height: 50},
-    {id: 3, title: 'Right Tab Content 3', height: 50},
-    // ... (다른 탭의 내용도 추가할 수 있음)
-  ];
+  useEffect(() => {
+    if (data) {
+      setUnivRankingList(data);
+    }
+  }, [data]);
+
 
   const handleTabClick = (tab: 'left' | 'right') => {
     setCurrentTab(tab);
@@ -86,11 +88,11 @@ const TabModal: React.FC<ModalProps> = ({
           )}
           {currentTab === 'right' && (
             <S.TabContent>
-              {tabRightContents.map((content) => (
-                <S.TabContainer key={content.id}>
-                  <S.TabDivider> {content.id}</S.TabDivider>
-                  <S.TabDivider>{content.title}</S.TabDivider>
-                  <S.TabDivider> {content.height}</S.TabDivider>
+              {univRankingList.rankingList.map((content, index) => (
+                <S.TabContainer key={index} >
+                      <S.TabDivider>{index + 1}</S.TabDivider>
+                      <S.TabDivider>{content.univName}</S.TabDivider>
+                      <S.TabDivider>{content.totalHeight}</S.TabDivider>
                 </S.TabContainer>
               ))}
             </S.TabContent>
