@@ -4,11 +4,12 @@ import {useRecoilState} from 'recoil';
 import {rankState, profileNameState} from '@/atoms/rankState';
 import SliverCrown from '@/assets/SilverCrown/SliverCrown.png';
 import {getBuddyRankingData} from '@/apis/ranking';
+import useIsMyHome from '@/hooks/useIsMyHome';
 
 export const GithubProfile: React.FC = () => {
   const [rank, setRank] = useRecoilState(rankState);
   const [profileName, setProfileName] = useRecoilState(profileNameState);
-
+  const { nickname } = useIsMyHome(); //TODO: 임시용
   useEffect(() => {
     const fetchRanking = async () => {
       try {
@@ -36,7 +37,7 @@ export const GithubProfile: React.FC = () => {
           <S.ProfileImage src={SliverCrown} />
         </S.AnimatedObjectWrapper>
         <S.Container>
-          <S.ProfileRank>{profileName} is ranked {rank}th :)</S.ProfileRank>
+          <S.ProfileRank>{nickname} is ranked {rank}th :)</S.ProfileRank> {/* profileName */}
         </S.Container>
       </S.Wrapper>
     </>
