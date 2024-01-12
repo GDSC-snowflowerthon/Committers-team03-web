@@ -1,53 +1,35 @@
-import React, {useEffect} from 'react';
-import {useRecoilValue, useRecoilState} from 'recoil';
+import React from 'react';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
 import * as S from './style';
-import {otherUserState} from '@/atoms/userState';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useMutation } from '@tanstack/react-query';
+import { patchFollow } from '@/apis/otherHome';
+import { buddyState } from '@/atoms/buddyState';
 export const FollowFriend = () => {
-  const searchResult = useRecoilValue(otherUserState);
-  const [, setIsFollowed] = useRecoilState(otherUserState);
-  const fetchUserData = async (nickname: string, accessToken: string) => {
-    try {
-      const response = await axios.get(
-        `/api/v1/buddy/search?nickname=${nickname}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      );
+  const navigate = useNavigate();
+  const searchResult = useRecoilValue(buddyState);
+  const setBuddy = useSetRecoilState(buddyState);
 
-      const userData = response.data.data;
+  const { mutate } = useMutation({
+    mutationFn: () => patchFollow(searchResult.nickname, !searchResult.isFollowed),
+    onSuccess: async () => {
+      // 상태 업데이트
+      setBuddy({ ...searchResult, isFollowed: !searchResult.isFollowed });
+    },
+    onError: (error) => {
+      alert(error);
+  },
+  });
 
-      setIsFollowed({
-        nickname: userData.nickname,
-        snowmanHeight: userData.snowmanHeight,
-        snowId: userData.snowId,
-        hatId: userData.hatId,
-        decoId: userData.decoId,
-        isFollowed: userData.isFollowed,
-      });
-    } catch (error) {
-      console.error('Error fetching user data:', error);
-    }
-  };
 
-  useEffect(() => {
-    const accessToken = 'your-access-token'; // 실제 access token 으로 대체 예정
-    const userNickname = searchResult.nickname; // Replace with the user you want to search
-
-    fetchUserData(userNickname, accessToken);
-  }, []);
   const handleClick = () => {
-    setIsFollowed((prev) => ({...prev, isFollowed: !prev.isFollowed}));
+    mutate();
   };
   const handleProfileClick = () => {
-    // 이동할 경로(임시)
-    const profilePath = `/profile/${searchResult.nickname}`;
+    const profilePath = `/${searchResult.nickname}`;
 
     // 페이지 이동
-    window.location.href = profilePath;
+    navigate(profilePath);
   };
   return (
     <S.Container>
