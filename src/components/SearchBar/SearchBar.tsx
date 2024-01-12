@@ -4,7 +4,7 @@ import {SearchBarProps} from '@/interfaces/search';
 import {useRecoilState} from 'recoil';
 import {otherUserState} from '@/atoms/userState';
 
-const SearchBar: React.FC<SearchBarProps> = ({placeholder}) => {
+const SearchBar: React.FC<SearchBarProps> = ({placeholder, title}) => {
   const [inputValue, setInputValue] = useState('');
   const [, setSearchResult] = useRecoilState(otherUserState);
 
@@ -14,15 +14,36 @@ const SearchBar: React.FC<SearchBarProps> = ({placeholder}) => {
 
   const handleSearch = async () => {
     try {
-      const response = await fetch('api/v1/buddy/search');
-      const data = await response.json();
-      console.log(data);
-      setSearchResult((prev) => ({
-        ...prev,
-        nickname: data.nickname,
-        snowmanHeight: data.snowmanHeight,
-        isFollowed: data.isFollowed,
-      }));
+      if (title === '학교 등록') {
+        const response = await fetch('api/v1/univ', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${accessToken}`,
+          },
+          body: JSON.stringify({
+            univName: inputValue, // 사용자가 입력한 대학명을 사용합니다.
+          }),
+        });
+        const data = await response.json();
+        console.log(data);
+        setSearchResult((prev) => ({
+          ...prev,
+          univName: data.data.univName,
+          totalHeight: data.data.totalHeight,
+          isRegistered: data.data.isRegistered,
+        }));
+      } else {
+        const response = await fetch('api/v1/buddy/search');
+        const data = await response.json();
+        console.log(data);
+        setSearchResult((prev) => ({
+          ...prev,
+          nickname: data.nickname,
+          snowmanHeight: data.snowmanHeight,
+          isFollowed: data.isFollowed,
+        }));
+      }
     } catch (error) {
       console.error(error);
     }

@@ -17,3 +17,9 @@ export interface OtherUserState {
     decoId: number; // 장식 아이템 ID
     isFollowed: boolean; // 팔로우 여부
 }
+
+export interface UnivState{
+    univName : string,
+    totalHeight : number,
+    isRegistered : boolean,
+}
