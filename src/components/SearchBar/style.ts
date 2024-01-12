@@ -6,13 +6,16 @@ export const Container = styled.div`
   margin-top: 5rem;
   position: relative; // Add this
   width:89%;
+  outline: none;
+  border: none;
 `;
 
 export const Label = styled.label`
-  
   display: flex; 
   align-items: center;
   justify-content: center;
+  outline: none;
+  border: none;
 `;
 
 export const Input = styled.input`
@@ -20,9 +23,9 @@ export const Input = styled.input`
   height: 45px;
   flex: 1;
   padding: 8px;
-  border: 1px solid #ccc;
   border-radius: 12px;
   outline: none;
+  border: none;
   color: ${theme.colors.textMain};
   font-weight: 600;
   font-size: 14px;
