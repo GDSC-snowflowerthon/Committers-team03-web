@@ -23,8 +23,8 @@ const GrowButton = () => {
             });
         },
         onError: () => {
-            alert('Your session has expired. Please login again.');
-            navigate('/');
+            // alert('Your session has expired. Please login again.');
+            // navigate('/');
         },
     });
 

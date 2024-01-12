@@ -22,9 +22,9 @@ const FollowButton = () => {
       setOtherUserData({ ...otherData, isFollowed: !isFollowed });
     },
     onError: () => {
-      alert('Your session has expired. Please login again.');
-      navigate('/');
-      localStorage.setItem("redirectOtherNickname", urlNickname);
+      // alert('Your session has expired. Please login again.');
+      // navigate('/');
+      // localStorage.setItem("redirectOtherNickname", urlNickname);
   },
   });
 

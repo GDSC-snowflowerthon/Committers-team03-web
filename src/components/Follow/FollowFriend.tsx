@@ -18,7 +18,7 @@ export const FollowFriend = () => {
       setBuddy({...searchResult, isFollowed: !searchResult.isFollowed});
     },
     onError: (error) => {
-      alert(error);
+     // alert(error);
     },
   });
 

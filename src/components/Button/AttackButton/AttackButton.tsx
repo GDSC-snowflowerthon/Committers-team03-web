@@ -16,9 +16,10 @@ const AttackButton = () => {
             alert('Attack successful!');
         },
         onError: () => {
-            alert('Your session has expired. Please login again.');
-            navigate('/');
-            localStorage.setItem("redirectOtherNickname", urlNickname);
+            // alert('Your session has expired. Please login again.');
+            // navigate('/');
+            // localStorage.setItem("redirectOtherNickname", urlNickname);
+            
         },
     });
 
