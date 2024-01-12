@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import * as S from './style';
 import {ModalProps} from '@/interfaces/modal';
-import {univRankingListState} from  '@/atoms/rankState'
+import {friendRankingListState, univRankingListState} from  '@/atoms/rankState'
 import {useRecoilState} from 'recoil';
 import {rankState, profileNameState} from '@/atoms/rankState';
 import { useQuery } from '@tanstack/react-query';
-import { UnivRankingList } from '@/interfaces/ranking';
-import { getUnivRankingList } from '@/apis/ranking';
+import { FriendRankingList, UnivRankingList } from '@/interfaces/ranking';
+import { getFriendRankingList, getUnivRankingList } from '@/apis/ranking';
 
 const TabModal: React.FC<ModalProps> = ({
   isOpen,
@@ -20,22 +20,36 @@ const TabModal: React.FC<ModalProps> = ({
   const [rank, setRank] = useRecoilState(rankState);
   const [profileName, setProfileName] = useRecoilState(profileNameState);
   const [univRankingList, setUnivRankingList] = useRecoilState(univRankingListState);
+  const [friendRankingList, setFriendRankingList] = useRecoilState(friendRankingListState);
 
   // 원래의 rank와 profileName 값을 저장하는 상태를 추가합니다.
   const [originalRank, setOriginalRank] = useState(rank);
   const [originalProfileName, setOriginalProfileName] = useState(profileName);
 
-  const {data} = useQuery<UnivRankingList>({
+  const data1 = useQuery<UnivRankingList>({
     queryKey: ["univRankingList"],
     retry: 1, // 실패시 재호출 횟수
     queryFn: () => getUnivRankingList(),
   });
 
   useEffect(() => {
-    if (data) {
-      setUnivRankingList(data);
+    if (data1.data) {
+      setUnivRankingList(data1.data);
     }
-  }, [data]);
+  }, [data1.data]);
+
+  const data2 = useQuery<FriendRankingList>({
+    queryKey: ["friendRankingList"],
+    retry: 1, // 실패시 재호출 횟수
+    queryFn: () => getFriendRankingList(),
+  });
+
+  useEffect(() => {
+    if (data2.data) {
+      setFriendRankingList(data2.data);
+    }
+  }, [data2.data]);
+
 
 
   const handleTabClick = (tab: 'left' | 'right') => {
@@ -77,11 +91,11 @@ const TabModal: React.FC<ModalProps> = ({
           </S.TabsWrapper>
           {currentTab === 'left' && (
             <S.TabContent>
-              {tabLeftContents.map((content) => (
-                <S.TabContainer key={content.id}>
-                  <S.TabDivider> {content.id}</S.TabDivider>
-                  <S.TabDivider>{content.title}</S.TabDivider>
-                  <S.TabDivider> {content.height}</S.TabDivider>
+              {friendRankingList.rankingList.map((content, index) => (
+                <S.TabContainer key={index}>
+                  <S.TabDivider> {index + 1}</S.TabDivider>
+                  <S.TabDivider>{content.nickname}</S.TabDivider>
+                  <S.TabDivider> {content.snowmanHeight}</S.TabDivider>
                 </S.TabContainer>
               ))}
             </S.TabContent>
