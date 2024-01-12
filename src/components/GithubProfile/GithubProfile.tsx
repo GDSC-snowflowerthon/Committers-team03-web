@@ -4,10 +4,10 @@ import {useRecoilState} from 'recoil';
 import axios from 'axios';
 import {rankState, profileNameState} from '@/atoms/rankState';
 import SliverCrown from '@/assets/SilverCrown/SliverCrown.png';
+import {getBuddyRankingData} from '@/apis/ranking';
 
 // 백엔드 API 주소
 const MYINFO_API_URL = 'https://kidari.site/api/v1/home/myinfo';
-const RANKING_API_URL = 'https://kidari.site/api/v1/ranking/buddy/own';
 
 export const GithubProfile: React.FC = () => {
   const [rank, setRank] = useRecoilState(rankState);
@@ -34,14 +34,11 @@ export const GithubProfile: React.FC = () => {
 
     const fetchRanking = async () => {
       try {
-        const response = await axios.get(`${RANKING_API_URL}`, {
-          method: 'GET',
-          withCredentials: true,
-        });
+        const response = await getBuddyRankingData();
 
-        if (response.status === 401) {
-          window.location.href = RANKING_API_URL;
-        }
+        // if (response.status === 401) {
+        //   window.location.href = RANKING_API_URL;
+        // }
 
         const userData = response.data;
         setRank(userData.myRanking);
