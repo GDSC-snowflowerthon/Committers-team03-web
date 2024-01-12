@@ -11,7 +11,7 @@ export default function LoginPageLayout() {
     console.log('로그인버튼 클릭');
 
     // 리다이렉트 URL
-    const redirectUri = encodeURIComponent('https://kidari.site/redirect');
+    const redirectUri = 'https://kidari-server.shop/login';
 
     // 사용자를 깃허브 로그인 페이지로 리다이렉트
     window.location.href = redirectUri;

@@ -1,61 +1,50 @@
-import React, {useEffect} from 'react';
-import {useRecoilValue, useRecoilState} from 'recoil';
+import React from 'react';
 import * as S from './style';
-import {otherUserState} from '@/atoms/userState';
-import axios from 'axios';
+import {useRecoilValue, useSetRecoilState} from 'recoil';
+import {searchState} from '@/atoms/searchState';
+import {patchFollow} from '@/apis/follow';
+
 export const FollowFriend = () => {
-  const searchResult = useRecoilValue(otherUserState);
-  const [, setIsFollowed] = useRecoilState(otherUserState);
-  const fetchUserData = async (nickname: string, accessToken: string) => {
+  const searchResult = useRecoilValue(searchState);
+  const setSearchResult = useSetRecoilState(searchState);
+  const baseURL = 'https://kidari-server.shop';
+  const handleClick = async () => {
     try {
-      const response = await axios.get(
-        `/api/v1/buddy/search?nickname=${nickname}`,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
+      if (searchResult.data?.isFollowed) {
+        await patchFollow(searchResult.data?.nickname, false);
+      } else {
+        await patchFollow(searchResult.data?.nickname, true);
+      }
+
+      setSearchResult((prev) => ({
+        ...prev,
+        data: {
+          ...prev.data,
+          isFollowed: !prev.data?.isFollowed,
         },
-      );
-
-      const userData = response.data.data;
-
-      setIsFollowed({
-        nickname: userData.nickname,
-        snowmanHeight: userData.snowmanHeight,
-        snowId: userData.snowId,
-        hatId: userData.hatId,
-        decoId: userData.decoId,
-        isFollowed: userData.isFollowed,
-      });
+      }));
     } catch (error) {
-      console.error('Error fetching user data:', error);
+      console.error(error);
     }
   };
-
-  useEffect(() => {
-    const accessToken = 'your-access-token'; // 실제 access token 으로 대체 예정
-    const userNickname = searchResult.nickname; // Replace with the user you want to search
-
-    fetchUserData(userNickname, accessToken);
-  }, []);
-  const handleClick = () => {
-    setIsFollowed((prev) => ({...prev, isFollowed: !prev.isFollowed}));
-  };
   const handleProfileClick = () => {
-    // 이동할 경로(임시)
-    const profilePath = `/profile/${searchResult.nickname}`;
+    // 이동할 경로
+    const profilePath =
+      baseURL + `/api/v1/user?nickname=${searchResult.data?.nickname}`;
 
     // 페이지 이동
     window.location.href = profilePath;
   };
   return (
     <S.Container>
-      <S.Text>{searchResult.nickname}</S.Text>
-      <S.Text>{searchResult.snowmanHeight}m</S.Text>
+      <S.Text>{searchResult.data?.nickname}</S.Text>
+      <S.Text>{searchResult.data?.snowmanHeight}m</S.Text>
       <S.Profile onClick={handleProfileClick}>프로필</S.Profile>
-      <S.RegisterButton clicked={searchResult.isFollowed} onClick={handleClick}>
-        {searchResult.isFollowed ? '언팔로우' : '팔로우'}
+      <S.RegisterButton
+        clicked={searchResult.data?.isFollowed}
+        onClick={handleClick}
+      >
+        {searchResult.data?.isFollowed ? '언팔로우' : '팔로우'}
       </S.RegisterButton>
     </S.Container>
   );
