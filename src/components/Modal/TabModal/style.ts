@@ -160,13 +160,14 @@ export const TabContent = styled.div`
 export const TabContainer = styled.div<{ isLightWeight?: boolean }>`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between; /* 양 끝과 중앙에 요소를 배치 */
   align-items: center;
   margin-top: 1rem;
   font-weight: ${(props) => (props.isLightWeight ? 400 : 700)};
 `;
 
 export const TabDivider = styled.div`
-
+  padding: 0 30px 0 30px;
 `;
+
 

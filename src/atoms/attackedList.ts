@@ -11,7 +11,7 @@ const defaultAttackedList: AttackedList = {
       {
         nickname: "githubId",
         time: "2024.01.11 15:20",
-        newAttack: false,
+        newAttack: true,
       },
       {
         nickname: "githubId",

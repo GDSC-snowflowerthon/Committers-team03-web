@@ -7,24 +7,24 @@ export const profileNameState = atom({ key: "profileNameState", default: "minsun
 const defaultUnivRankingList: UnivRankingList = {
     rankingList: [
       {
-        univName: "gitffadsfasdfasdfsadff",
-        totalHeight: 123,
+        univName: "Havard Univ.",
+        totalHeight: 10231,
       },
       {
-        univName: "gitffadsfasdfasdfsadff",
-        totalHeight: 123,
+        univName: "Oxford Univ.",
+        totalHeight: 9341,
       },
       {
-        univName: "gitffadsfasdfasdfsadff",
-        totalHeight: 123,
+        univName: "Chicago Univ.",
+        totalHeight: 8871,
       },
       {
-        univName: "gitffadsfasdfasdfsadff",
-        totalHeight: 123,
+        univName: "Newyork Univ.",
+        totalHeight: 8871,
       },
       {
-        univName: "gitffadsfasdfasdfsadff",
-        totalHeight: 123,
+        univName: "Yale Univ",
+        totalHeight: 8559,
       },
     ],
   };
@@ -39,26 +39,37 @@ export const univRankingListState = atom<UnivRankingList | null>({
 const defaultFriendRankingList: FriendRankingList = {
     rankingList: [
       {
-        nickname: "gitffadsfasdfasdfsadff",
-        snowmanHeight: 123,
+        nickname: "stakbucks",
+        snowmanHeight: 133,
       },
       {
-        nickname: "gitffadsfasdfasdfsadff",
-        snowmanHeight: 123,
+        nickname: "kim-limit",
+        snowmanHeight: 125,
       },
       {
-        nickname: "gitffadsfasdfasdfsadff",
-        snowmanHeight: 123,
+        nickname: "usernamebuzz",
+        snowmanHeight: 113,
       },
       {
-        nickname: "gitffadsfasdfasdfsadff",
-        snowmanHeight: 123,
+        nickname: "djdongjae",
+        snowmanHeight: 111,
       },
       {
-        nickname: "gitffadsfasdfasdfsadff",
-        snowmanHeight: 123,
+        nickname: "seochan99",
+        snowmanHeight: 97,
       },
-    
+      {
+        nickname: "jjuuuunnii",
+        snowmanHeight: 78,
+      },
+      {
+        nickname: "KEONI1231",
+        snowmanHeight: 31,
+      },
+      {
+        nickname: "seohyun-lee",
+        snowmanHeight: 27,
+      },
     ],
   };
   
