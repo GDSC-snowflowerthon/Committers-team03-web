@@ -43,7 +43,7 @@ export default function CustomCompleteButton(props: CustomCompleteButtonProps) {
         borderRadius={`12px`}
         onClick={handleComplete}
       >
-        <S.ButtonText>완성</S.ButtonText>
+        <S.ButtonText>Done</S.ButtonText> {/* 완성 */}
       </Button>
     </S.CustomCompleteButtonWrapper>
   );
