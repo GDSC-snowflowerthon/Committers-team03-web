@@ -1,36 +1,59 @@
 import React, {useEffect} from 'react';
 import * as S from './style';
 import {useRecoilState} from 'recoil';
+import axios from 'axios';
 import {rankState, profileNameState} from '@/atoms/rankState';
 import SliverCrown from '@/assets/SilverCrown/SliverCrown.png';
+
 // 백엔드 API 주소
-const BACKEND_API_URL = 'https://your-backend-api-url';
-
-// GitHub OAuth 애플리케이션 정보
-const GITHUB_CLIENT_ID = 'your-github-client-id';
-
-// GitHub 로그인 URL
-const GITHUB_LOGIN_URL = `https://github.com/login/oauth/authorize?client_id=${GITHUB_CLIENT_ID}&scope=user`;
+const MYINFO_API_URL = 'https://kidari.site/api/v1/home/myinfo';
+const RANKING_API_URL = 'https://kidari.site/api/v1/ranking/buddy/own';
 
 export const GithubProfile: React.FC = () => {
   const [rank, setRank] = useRecoilState(rankState);
   const [profileName, setProfileName] = useRecoilState(profileNameState);
+
   useEffect(() => {
-    fetch(`${BACKEND_API_URL}/api/user/profile`, {
-      method: 'GET',
-      credentials: 'include',
-    })
-      .then((res) => {
-        if (res.status === 401) {
-          window.location.href = GITHUB_LOGIN_URL;
+    const fetchMyInfo = async () => {
+      try {
+        const response = await axios.get(`${MYINFO_API_URL}`, {
+          method: 'GET',
+          withCredentials: true,
+        });
+
+        if (response.status === 401) {
+          window.location.href = MYINFO_API_URL;
         }
-        return res.json();
-      })
-      .then((res) => {
-        setProfileName(res.name);
-        setRank(res.rank);
-      });
+
+        const userData = response.data;
+        setProfileName(userData.nickname);
+      } catch (error) {
+        console.error('Error fetching user profile:', error);
+      }
+    };
+
+    const fetchRanking = async () => {
+      try {
+        const response = await axios.get(`${RANKING_API_URL}`, {
+          method: 'GET',
+          withCredentials: true,
+        });
+
+        if (response.status === 401) {
+          window.location.href = RANKING_API_URL;
+        }
+
+        const userData = response.data;
+        setRank(userData.myRanking);
+      } catch (error) {
+        console.error('Error fetching user ranking:', error);
+      }
+    };
+
+    fetchMyInfo();
+    fetchRanking();
   }, []);
+
   return (
     <>
       <S.Wrapper>
